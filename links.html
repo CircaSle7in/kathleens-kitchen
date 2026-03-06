@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kathleen's Kitchen — Links</title>
+    <meta name="description" content="Order homemade breads and sweet treats from Kathleen's Kitchen in Pepperwood, Utah.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%23CF7A9B'/><text x='16' y='21' font-size='14' font-family='serif' font-weight='bold' fill='white' text-anchor='middle'>KK</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Great+Vibes&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FDF8FA;
+            --pink: #CF7A9B;
+            --pink-dark: #B86485;
+            --pink-light: #F5E0EA;
+            --purple: #A893C2;
+            --purple-dark: #8F7AAD;
+            --purple-light: #EDE8F3;
+            --green: #7BA37B;
+            --charcoal: #2D2D2D;
+            --taupe: #8B8578;
+            --border: #EADEE4;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 300;
+            color: var(--charcoal);
+            background: linear-gradient(170deg, var(--cream) 0%, var(--pink-light) 40%, var(--purple-light) 70%, var(--cream) 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 1rem;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+        }
+
+        .profile-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center 20%;
+            border: 3px solid white;
+            box-shadow: 0 4px 20px rgba(207, 122, 155, 0.25);
+            margin-bottom: 1.2rem;
+        }
+
+        .brand-name {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: var(--pink-dark);
+            line-height: 1.1;
+            margin-bottom: 0.3rem;
+        }
+
+        .tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--purple-dark);
+            font-style: italic;
+            margin-bottom: 0.3rem;
+        }
+
+        .location {
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--taupe);
+            margin-bottom: 2rem;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .link-btn {
+            display: block;
+            padding: 1rem 1.5rem;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-btn.primary {
+            background: var(--pink);
+            color: white;
+            box-shadow: 0 4px 15px rgba(207, 122, 155, 0.3);
+        }
+        .link-btn.primary:hover {
+            background: var(--pink-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(207, 122, 155, 0.4);
+        }
+
+        .link-btn.secondary {
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--charcoal);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+        .link-btn.secondary:hover {
+            background: white;
+            border-color: var(--pink);
+            color: var(--pink-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+
+        .link-btn .btn-subtitle {
+            display: block;
+            font-size: 0.65rem;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            text-transform: none;
+            margin-top: 0.2rem;
+            opacity: 0.7;
+        }
+
+        .event-badge {
+            display: inline-block;
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.2rem 0.6rem;
+            border-radius: 2rem;
+            margin-bottom: 1rem;
+        }
+        .event-badge.open {
+            background: rgba(123, 163, 123, 0.15);
+            color: var(--green);
+        }
+        .event-badge.sold-out {
+            background: rgba(207, 122, 155, 0.15);
+            color: var(--pink-dark);
+        }
+
+        .footer-text {
+            font-size: 0.7rem;
+            color: var(--taupe);
+            letter-spacing: 0.1em;
+        }
+
+        .footer-text a {
+            color: var(--pink);
+            text-decoration: none;
+        }
+
+        /* Subtle animation */
+        .container { animation: fadeUp 0.6s ease-out; }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <img src="images/kathleen-about.png" alt="Kathleen" class="profile-photo">
+    <h1 class="brand-name">Kathleen's Kitchen</h1>
+    <p class="tagline">Homemade Breads & Sweet Treats</p>
+    <p class="location">Pepperwood, Utah</p>
+
+    <!-- Current event status badge — update this with each event -->
+    <span class="event-badge open">Easter Orders Open</span>
+
+    <div class="links">
+        <!-- PRIMARY: Always the current event order link -->
+        <a href="index.html#order" class="link-btn primary">
+            Order Now
+            <span class="btn-subtitle">Easter & Conference Weekend — Apr 4-5</span>
+        </a>
+
+        <a href="index.html#events" class="link-btn secondary">
+            See Upcoming Events
+            <span class="btn-subtitle">Limited spots — check what's baking next</span>
+        </a>
+
+        <a href="index.html#menu" class="link-btn secondary">
+            What We Make
+            <span class="btn-subtitle">Breads, rolls, brownies, bars & more</span>
+        </a>
+
+        <!--
+            KATHLEEN: Replace the phone number below with your real number.
+            Format: href="sms:+18015551234" for texting
+        -->
+        <a href="sms:+10000000000" class="link-btn secondary">
+            Text Kathleen
+            <span class="btn-subtitle">Questions? Text is best!</span>
+        </a>
+    </div>
+
+    <p class="footer-text">
+        Made with love in Pepperwood
+    </p>
+</div>
+
+</body>
+</html>

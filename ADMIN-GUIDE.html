@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kathleen's Kitchen — Admin Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Great+Vibes&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FDF8FA;
+            --warm-white: #FFFAFC;
+            --pink: #CF7A9B;
+            --pink-dark: #B86485;
+            --pink-light: #F5E0EA;
+            --pink-pale: #FBF0F4;
+            --purple: #A893C2;
+            --purple-dark: #8F7AAD;
+            --purple-light: #EDE8F3;
+            --green: #7BA37B;
+            --green-dark: #5E8A5E;
+            --green-light: #E5EDE5;
+            --charcoal: #2D2D2D;
+            --taupe: #8B8578;
+            --border: #EADEE4;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 300;
+            color: var(--charcoal);
+            background: var(--cream);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            line-height: 1.3;
+        }
+
+        /* ---- Header ---- */
+        .guide-header {
+            text-align: center;
+            padding: 4rem 2rem 3rem;
+            background: linear-gradient(135deg, var(--pink-pale) 0%, var(--purple-light) 50%, var(--green-light) 100%);
+        }
+        .guide-header h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            color: var(--pink-dark);
+            margin-bottom: 0.3rem;
+        }
+        .guide-header .subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--purple-dark);
+            margin-bottom: 1rem;
+        }
+        .guide-header p {
+            max-width: 550px;
+            margin: 0 auto;
+            font-size: 0.95rem;
+            color: var(--taupe);
+        }
+
+        /* ---- Table of Contents ---- */
+        .toc {
+            max-width: 700px;
+            margin: 3rem auto 2rem;
+            padding: 2rem 2.5rem;
+            background: var(--warm-white);
+            border: 1px solid var(--border);
+        }
+        .toc h2 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--pink-dark);
+        }
+        .toc ol {
+            list-style: none;
+            counter-reset: toc-counter;
+            padding: 0;
+        }
+        .toc li {
+            counter-increment: toc-counter;
+            margin-bottom: 0.5rem;
+        }
+        .toc li::before {
+            content: counter(toc-counter) ".";
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.3rem;
+            color: var(--pink);
+            margin-right: 0.6rem;
+        }
+        .toc a {
+            color: var(--charcoal);
+            text-decoration: none;
+            font-size: 0.95rem;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s, color 0.3s;
+        }
+        .toc a:hover {
+            color: var(--pink-dark);
+            border-bottom-color: var(--pink);
+        }
+
+        /* ---- Main content ---- */
+        .guide-body {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        /* ---- Section card ---- */
+        .guide-section {
+            margin-top: 3rem;
+            padding: 2.5rem;
+            background: var(--warm-white);
+            border: 1px solid var(--border);
+        }
+        .guide-section h2 {
+            font-size: 1.8rem;
+            color: var(--pink-dark);
+            margin-bottom: 0.3rem;
+        }
+        .section-number {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: var(--pink);
+            line-height: 1;
+            margin-bottom: 0.3rem;
+        }
+        .section-divider {
+            width: 50px;
+            height: 1px;
+            background: linear-gradient(to right, var(--pink), var(--purple));
+            margin: 1rem 0 1.5rem;
+        }
+
+        .guide-section p, .guide-section li {
+            font-size: 0.95rem;
+            color: var(--taupe);
+            margin-bottom: 0.8rem;
+        }
+        .guide-section strong {
+            font-weight: 500;
+            color: var(--charcoal);
+        }
+
+        .guide-section ol, .guide-section ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1.2rem;
+        }
+        .guide-section li { margin-bottom: 0.5rem; }
+
+        /* ---- Callout boxes ---- */
+        .tip {
+            background: var(--green-light);
+            border-left: 3px solid var(--green);
+            padding: 1rem 1.2rem;
+            margin: 1.2rem 0;
+            font-size: 0.9rem;
+            color: var(--green-dark);
+        }
+        .tip strong { color: var(--green-dark); }
+
+        .warning {
+            background: #FFF8E1;
+            border-left: 3px solid #F57C00;
+            padding: 1rem 1.2rem;
+            margin: 1.2rem 0;
+            font-size: 0.9rem;
+            color: #6D4C00;
+        }
+        .warning strong { color: #6D4C00; }
+
+        .highlight {
+            background: var(--pink-light);
+            border-left: 3px solid var(--pink);
+            padding: 1rem 1.2rem;
+            margin: 1.2rem 0;
+            font-size: 0.9rem;
+            color: var(--pink-dark);
+        }
+        .highlight strong { color: var(--pink-dark); }
+
+        /* ---- Code blocks ---- */
+        .code-label {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--purple);
+            margin-bottom: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        pre {
+            background: #2D2D2D;
+            color: #E8E0E4;
+            padding: 1.2rem 1.5rem;
+            overflow-x: auto;
+            font-size: 0.82rem;
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+            position: relative;
+            border-left: 3px solid var(--purple);
+        }
+        pre code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; }
+
+        /* Syntax highlighting in the dark block */
+        .tag { color: #CF7A9B; }
+        .attr { color: #A893C2; }
+        .val { color: #7BA37B; }
+        .cmt { color: #8B8578; font-style: italic; }
+        .txt { color: #E8E0E4; }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.6);
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.7rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .copy-btn:hover { background: rgba(255,255,255,0.2); color: white; }
+        .copy-btn.copied { background: var(--green); color: white; border-color: var(--green); }
+
+        /* ---- Inline code ---- */
+        code:not(pre code) {
+            background: var(--purple-light);
+            color: var(--purple-dark);
+            padding: 0.15rem 0.4rem;
+            font-size: 0.85rem;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+        }
+
+        /* ---- Visual examples ---- */
+        .visual-example {
+            border: 1px dashed var(--border);
+            padding: 1.5rem;
+            margin: 1.2rem 0;
+            background: var(--cream);
+        }
+        .visual-example-label {
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--purple);
+            margin-bottom: 0.8rem;
+        }
+
+        /* Mini event card preview */
+        .mini-event-card {
+            background: var(--warm-white);
+            border: 1px solid var(--border);
+            padding: 1rem 1.2rem;
+            max-width: 320px;
+        }
+        .mini-event-card .name {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.4rem;
+            color: var(--pink-dark);
+        }
+        .mini-event-card .status-open {
+            display: inline-block;
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.2rem 0.6rem;
+            border-radius: 2rem;
+            background: var(--green-light);
+            color: var(--green-dark);
+        }
+        .mini-event-card .status-sold {
+            display: inline-block;
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.2rem 0.6rem;
+            border-radius: 2rem;
+            background: var(--pink-light);
+            color: var(--pink-dark);
+        }
+
+        /* Mini showcase item preview */
+        .mini-showcase {
+            display: inline-block;
+            text-align: center;
+            padding: 1rem;
+            background: var(--cream);
+            border: 1px solid var(--border);
+            max-width: 160px;
+        }
+        .mini-showcase .icon {
+            width: 120px; height: 80px;
+            background-size: cover;
+            background-position: center;
+            margin: 0 auto 0.5rem;
+        }
+        .mini-showcase .name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* ---- Arrow callouts ---- */
+        .arrow-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            margin: 0.8rem 0;
+            font-size: 0.9rem;
+            color: var(--taupe);
+        }
+        .arrow-note .arrow {
+            color: var(--pink);
+            font-size: 1.2rem;
+            line-height: 1.4;
+            flex-shrink: 0;
+        }
+
+        /* ---- Footer ---- */
+        .guide-footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, var(--pink-pale) 0%, var(--purple-light) 50%, var(--green-light) 100%);
+        }
+        .guide-footer .brand {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            color: var(--pink-dark);
+            margin-bottom: 0.5rem;
+        }
+        .guide-footer p {
+            font-size: 0.85rem;
+            color: var(--taupe);
+        }
+
+        /* ---- Responsive ---- */
+        @media (max-width: 768px) {
+            .guide-section { padding: 1.5rem; }
+            pre { font-size: 0.75rem; padding: 1rem; }
+            .toc { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ================================================
+     HEADER
+     ================================================ -->
+<header class="guide-header">
+    <h1>Admin Guide</h1>
+    <div class="subtitle">Kathleen's Kitchen Website</div>
+    <p>
+        Everything you need to know to update your website. Don't worry, it's simpler than it looks!
+        You'll be editing just one file: <strong>index.html</strong>.
+    </p>
+</header>
+
+<!-- ================================================
+     TABLE OF CONTENTS
+     ================================================ -->
+<div class="toc">
+    <h2>What's in This Guide</h2>
+    <ol>
+        <li><a href="#add-event">How to Add a New Event</a></li>
+        <li><a href="#sold-out">How to Mark an Event as Sold Out</a></li>
+        <li><a href="#prices">How to Update Prices</a></li>
+        <li><a href="#phone">How to Add Your Phone Number</a></li>
+        <li><a href="#photo">How to Add Your Photo</a></li>
+        <li><a href="#product-photos">How to Add Product Photos</a></li>
+        <li><a href="#form">How to Connect the Order Form</a></li>
+        <li><a href="#go-live">How to Go Live</a></li>
+    </ol>
+</div>
+
+<div class="guide-body">
+
+    <div class="highlight">
+        <strong>Before you start:</strong> Open the file called <code>index.html</code> in any text editor. On a Mac you can use TextEdit (switch to plain text mode first: Format &rarr; Make Plain Text). On Windows, Notepad works great. Or use a free code editor like <strong>Visual Studio Code</strong> if you'd like colored code that's easier to read.
+    </div>
+
+<!-- ================================================
+     1. ADD A NEW EVENT
+     ================================================ -->
+<section class="guide-section" id="add-event">
+    <div class="section-number">1</div>
+    <h2>How to Add a New Event</h2>
+    <div class="section-divider"></div>
+
+    <p>Each event on your site is a "card" &mdash; a block of code that describes the date, items, spots, and button. To add a new event, you copy an existing block and change the details.</p>
+
+    <p><strong>Here's what to do:</strong></p>
+    <ol>
+        <li>Open <code>index.html</code> and search for <code>UPCOMING EVENTS</code> (use Ctrl+F or Cmd+F).</li>
+        <li>Scroll down until you see the event cards. Each one starts with a comment like <code>&lt;!-- EVENT 1: ... --&gt;</code>.</li>
+        <li>Copy the entire template below and paste it <strong>right before</strong> the closing <code>&lt;/div&gt;</code> that says <code>&lt;!-- end events-grid --&gt;</code> (or just after the last event card).</li>
+        <li>Change the parts in <strong>ALL CAPS</strong> to your real event details.</li>
+    </ol>
+
+    <div class="code-label">Template &mdash; Copy This Whole Block</div>
+    <pre><code id="event-template"><span class="cmt">&lt;!-- EVENT: YOUR EVENT NAME --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"event-card"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"event-card-header"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"event-date-badge"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;span</span> <span class="attr">class=</span><span class="val">"month"</span><span class="tag">&gt;</span><span class="txt">MAY</span><span class="tag">&lt;/span&gt;</span>
+            <span class="tag">&lt;span</span> <span class="attr">class=</span><span class="val">"day"</span><span class="tag">&gt;</span><span class="txt">10</span><span class="tag">&lt;/span&gt;</span>
+        <span class="tag">&lt;/div&gt;</span>
+        <span class="tag">&lt;span</span> <span class="attr">class=</span><span class="val">"event-status open"</span><span class="tag">&gt;</span><span class="txt">Open</span><span class="tag">&lt;/span&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"event-card-body"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;h3</span> <span class="attr">class=</span><span class="val">"event-name"</span><span class="tag">&gt;</span><span class="txt">YOUR EVENT NAME</span><span class="tag">&lt;/h3&gt;</span>
+        <span class="tag">&lt;p</span> <span class="attr">class=</span><span class="val">"event-desc"</span><span class="tag">&gt;</span><span class="txt">A short description of what this bake is about.</span><span class="tag">&lt;/p&gt;</span>
+        <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"event-items-label"</span><span class="tag">&gt;</span><span class="txt">Available Items</span><span class="tag">&lt;/div&gt;</span>
+        <span class="tag">&lt;ul</span> <span class="attr">class=</span><span class="val">"event-items"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;li&gt;&lt;span&gt;</span><span class="txt">Grandma's Rolls</span><span class="tag">&lt;/span&gt;&lt;span</span> <span class="attr">class=</span><span class="val">"item-price"</span><span class="tag">&gt;</span><span class="txt">$10/dozen</span><span class="tag">&lt;/span&gt;&lt;/li&gt;</span>
+            <span class="tag">&lt;li&gt;&lt;span&gt;</span><span class="txt">Cinnamon Rolls</span><span class="tag">&lt;/span&gt;&lt;span</span> <span class="attr">class=</span><span class="val">"item-price"</span><span class="tag">&gt;</span><span class="txt">$18/dozen</span><span class="tag">&lt;/span&gt;&lt;/li&gt;</span>
+            <span class="cmt">&lt;!-- Add or remove items as needed --&gt;</span>
+        <span class="tag">&lt;/ul&gt;</span>
+        <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"event-progress"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"event-progress-label"</span><span class="tag">&gt;</span>
+                <span class="tag">&lt;span&gt;&lt;strong&gt;</span><span class="txt">0</span><span class="tag">&lt;/strong&gt;</span><span class="txt"> of 20 spots claimed</span><span class="tag">&lt;/span&gt;</span>
+                <span class="tag">&lt;span&gt;</span><span class="txt">20 left</span><span class="tag">&lt;/span&gt;</span>
+            <span class="tag">&lt;/div&gt;</span>
+            <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"event-progress-bar"</span><span class="tag">&gt;</span>
+                <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"event-progress-fill green"</span> <span class="attr">style=</span><span class="val">"width: 0%"</span><span class="tag">&gt;&lt;/div&gt;</span>
+            <span class="tag">&lt;/div&gt;</span>
+        <span class="tag">&lt;/div&gt;</span>
+        <span class="tag">&lt;p</span> <span class="attr">class=</span><span class="val">"event-order-by"</span><span class="tag">&gt;</span><span class="txt">Order by May 7, 2026</span><span class="tag">&lt;/p&gt;</span>
+        <span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"#order"</span> <span class="attr">class=</span><span class="val">"btn btn-pink"</span> <span class="attr">onclick=</span><span class="val">"selectEvent('your-event-id')"</span><span class="tag">&gt;</span><span class="txt">Order Now &amp;mdash; 20 spots left</span><span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code><button class="copy-btn" onclick="copyBlock('event-template')">Copy</button></pre>
+
+    <p><strong>Things to change in the template:</strong></p>
+    <div class="arrow-note"><span class="arrow">&rarr;</span><span><strong>MAY</strong> and <strong>10</strong> &mdash; Change to your event's month and day.</span></div>
+    <div class="arrow-note"><span class="arrow">&rarr;</span><span><strong>YOUR EVENT NAME</strong> &mdash; Something fun like "Mother's Day Brunch" or "Summer Bread Drop".</span></div>
+    <div class="arrow-note"><span class="arrow">&rarr;</span><span><strong>The item list</strong> &mdash; Add or remove <code>&lt;li&gt;</code> lines for whatever you're baking.</span></div>
+    <div class="arrow-note"><span class="arrow">&rarr;</span><span><strong>20</strong> (the max orders) &mdash; Change to however many spots you want to offer.</span></div>
+    <div class="arrow-note"><span class="arrow">&rarr;</span><span><strong>your-event-id</strong> &mdash; A short nickname with no spaces, like <code>mothers-day-2026</code>. This connects the card to the order form.</span></div>
+    <div class="arrow-note"><span class="arrow">&rarr;</span><span><strong>Order by</strong> date &mdash; The deadline for people to order.</span></div>
+
+    <div class="warning">
+        <strong>Don't forget the order form!</strong> When you add a new event, you also need to add it in two more places so the order form knows about it. Scroll down in <code>index.html</code> to find:
+        <br><br>
+        <strong>1. The event dropdown</strong> &mdash; Search for <code>eventSelect</code>. Add a new <code>&lt;option&gt;</code> line:
+        <br><code>&lt;option value="your-event-id"&gt;Your Event Name (May 10) &mdash; 20 spots left&lt;/option&gt;</code>
+        <br><br>
+        <strong>2. The checkbox group</strong> &mdash; Search for <code>event-items-group</code>. Copy one of the existing <code>&lt;div id="items-..."&gt;</code> blocks and change the <code>id</code> to match your event ID (like <code>items-mothers-day-2026</code>) and update the items inside.
+        <br><br>
+        <strong>3. The JavaScript name mapping</strong> &mdash; Search for <code>eventNames</code> near the bottom. Add a new line:
+        <br><code>'your-event-id': "Your Event Name",</code>
+    </div>
+
+    <div class="tip">
+        <strong>Updating the progress bar:</strong> As orders come in, update the numbers in the event card. Change the <code>&lt;strong&gt;0&lt;/strong&gt; of 20</code> text, the "20 left" text, the button text, and the <code>width: 0%</code> on the progress bar. For example, if 5 of 20 spots are taken, set <code>width: 25%</code>. The color works like this: <code>green</code> for under 70%, <code>orange</code> for 70-90%, and <code>red</code> for over 90%.
+    </div>
+</section>
+
+<!-- ================================================
+     2. MARK AN EVENT SOLD OUT
+     ================================================ -->
+<section class="guide-section" id="sold-out">
+    <div class="section-number">2</div>
+    <h2>How to Mark an Event as Sold Out</h2>
+    <div class="section-divider"></div>
+
+    <p>When an event fills up, you need to make three small changes to that event's card:</p>
+
+    <p><strong>Step 1:</strong> Find the event card's opening <code>&lt;div&gt;</code> tag. Change it from:</p>
+    <pre><code><span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"event-card"</span><span class="tag">&gt;</span></code></pre>
+    <p>To:</p>
+    <pre><code><span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"event-card is-sold-out"</span><span class="tag">&gt;</span></code></pre>
+
+    <p><strong>Step 2:</strong> Find the status badge for that event. Change it from:</p>
+    <pre><code><span class="tag">&lt;span</span> <span class="attr">class=</span><span class="val">"event-status open"</span><span class="tag">&gt;</span><span class="txt">Open</span><span class="tag">&lt;/span&gt;</span></code></pre>
+    <p>To:</p>
+    <pre><code><span class="tag">&lt;span</span> <span class="attr">class=</span><span class="val">"event-status sold-out"</span><span class="tag">&gt;</span><span class="txt">Sold Out</span><span class="tag">&lt;/span&gt;</span></code></pre>
+
+    <p><strong>Step 3:</strong> Find the "Order Now" button at the bottom of that event card. Change it from:</p>
+    <pre><code><span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"#order"</span> <span class="attr">class=</span><span class="val">"btn btn-pink"</span> <span class="attr">onclick=</span><span class="val">"selectEvent('...')"</span><span class="tag">&gt;</span><span class="txt">Order Now &amp;mdash; 5 spots left</span><span class="tag">&lt;/a&gt;</span></code></pre>
+    <p>To:</p>
+    <pre><code><span class="tag">&lt;span</span> <span class="attr">class=</span><span class="val">"btn btn-sold-out"</span><span class="tag">&gt;</span><span class="txt">Sold Out</span><span class="tag">&lt;/span&gt;</span></code></pre>
+
+    <div class="visual-example">
+        <div class="visual-example-label">What it will look like</div>
+        <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+            <div class="mini-event-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                    <span class="name">Open Event</span>
+                    <span class="status-open">Open</span>
+                </div>
+                <div style="background: var(--pink); color: white; text-align: center; padding: 0.5rem; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;">Order Now</div>
+            </div>
+            <div class="mini-event-card" style="opacity: 0.7;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                    <span class="name">Sold Out Event</span>
+                    <span class="status-sold">Sold Out</span>
+                </div>
+                <div style="background: var(--border); color: var(--taupe); text-align: center; padding: 0.5rem; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;">Sold Out</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tip">
+        <strong>Also update the progress bar</strong> to show all spots taken. Set the numbers to match (e.g., "12 of 12"), change "left" to "None left", and set the progress fill to <code>width: 100%</code> with the <code>red</code> class. Also remove this event from the dropdown list in the order form so nobody tries to order it.
+    </div>
+</section>
+
+<!-- ================================================
+     3. UPDATE PRICES
+     ================================================ -->
+<section class="guide-section" id="prices">
+    <div class="section-number">3</div>
+    <h2>How to Update Prices</h2>
+    <div class="section-divider"></div>
+
+    <p>Prices appear in <strong>three places</strong> throughout the file. You'll want to update all of them to keep things consistent.</p>
+
+    <p><strong>Place 1: Event cards</strong> &mdash; Each event card has a list of items with prices. Search for the item name (like "Cinnamon Rolls") and you'll find lines like this:</p>
+    <pre><code><span class="tag">&lt;li&gt;&lt;span&gt;</span><span class="txt">Cinnamon Rolls</span><span class="tag">&lt;/span&gt;&lt;span</span> <span class="attr">class=</span><span class="val">"item-price"</span><span class="tag">&gt;</span><span class="txt">$18/dozen</span><span class="tag">&lt;/span&gt;&lt;/li&gt;</span></code></pre>
+    <p>Change <code>$18/dozen</code> to your new price.</p>
+
+    <p><strong>Place 2: Order form checkboxes</strong> &mdash; Search for <code>event-items-group</code> to find the order form sections. Each item has a price shown to customers:</p>
+    <pre><code><span class="tag">&lt;span</span> <span class="attr">class=</span><span class="val">"item-price"</span><span class="tag">&gt;</span><span class="txt">$18/doz</span><span class="tag">&lt;/span&gt;</span></code></pre>
+    <p>Change these to match.</p>
+
+    <p><strong>Place 3 (if you want):</strong> There is no master price list on the site, so the prices only need to match within each event card and its corresponding order form checkbox group.</p>
+
+    <div class="tip">
+        <strong>Quick find trick:</strong> Use your editor's "Find and Replace" feature (Ctrl+H or Cmd+H). Search for the old price like <code>$18/dozen</code> and replace with the new one. This catches most instances in one go.
+    </div>
+</section>
+
+<!-- ================================================
+     4. ADD YOUR PHONE NUMBER
+     ================================================ -->
+<section class="guide-section" id="phone">
+    <div class="section-number">4</div>
+    <h2>How to Add Your Phone Number</h2>
+    <div class="section-divider"></div>
+
+    <p>The site has a placeholder phone number: <code>(000) 000-0000</code>. You need to replace it with your real number.</p>
+
+    <p><strong>Here's how:</strong></p>
+    <ol>
+        <li>Open <code>index.html</code> in your editor.</li>
+        <li>Use Find and Replace (Ctrl+H or Cmd+H).</li>
+        <li>In the "Find" box, type: <code>(000) 000-0000</code></li>
+        <li>In the "Replace" box, type your real number, like: <code>(801) 555-1234</code></li>
+        <li>Click "Replace All".</li>
+    </ol>
+
+    <p>There's also a phone link you should update. Search for <code>+10000000000</code> and replace it with your number in the format <code>+18015551234</code> (no dashes or spaces, with the country code 1 in front).</p>
+
+    <pre><code><span class="cmt">&lt;!-- Find this in the footer: --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"tel:+18015551234"</span><span class="tag">&gt;</span><span class="txt">(801) 555-1234</span><span class="tag">&lt;/a&gt;</span></code></pre>
+
+    <div class="tip">
+        <strong>The phone link</strong> is what makes the number clickable on mobile phones. The <code>href="tel:..."</code> part needs the number with no spaces or dashes, and the text between the tags is what people see on screen.
+    </div>
+</section>
+
+<!-- ================================================
+     5. ADD YOUR PHOTO
+     ================================================ -->
+<section class="guide-section" id="photo">
+    <div class="section-number">5</div>
+    <h2>How to Add Your Photo</h2>
+    <div class="section-divider"></div>
+
+    <p>The About section currently shows a pretty gradient placeholder that says "Your photo here." Here's how to replace it with a real photo:</p>
+
+    <p><strong>Step 1:</strong> Put your photo in the <code>images</code> folder (the same folder that has the bakery photos). Name it something simple like <code>kathleen.jpg</code>.</p>
+
+    <p><strong>Step 2:</strong> Search for <code>about-image</code> in your file. You'll find this line:</p>
+    <pre><code><span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"about-image"</span><span class="tag">&gt;&lt;/div&gt;</span></code></pre>
+
+    <p><strong>Step 3:</strong> Replace it with:</p>
+    <pre><code><span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"about-image"</span> <span class="attr">style=</span><span class="val">"background: url('images/kathleen.jpg') center/cover no-repeat;"</span><span class="tag">&gt;&lt;/div&gt;</span></code></pre>
+
+    <div class="tip">
+        <strong>Photo tips:</strong> A portrait-style photo works best here (the space is taller than it is wide). The photo will be cropped to fit, centering on the middle. If your face is getting cut off, you can change <code>center</code> to <code>top</code> in the style to focus on the top of the photo instead.
+    </div>
+
+    <div class="warning">
+        <strong>File name matters:</strong> Make sure the name in the code exactly matches your file name, including uppercase/lowercase. <code>Kathleen.JPG</code> is different from <code>kathleen.jpg</code> to a web browser.
+    </div>
+</section>
+
+<!-- ================================================
+     6. ADD PRODUCT PHOTOS
+     ================================================ -->
+<section class="guide-section" id="product-photos">
+    <div class="section-number">6</div>
+    <h2>How to Add Product Photos</h2>
+    <div class="section-divider"></div>
+
+    <p>In the "What We Make" section, some items already have photos and some show colored placeholders. Here's how to add a photo to any item.</p>
+
+    <p><strong>Step 1:</strong> Put your product photo in the <code>images</code> folder. Name it something clear like <code>cheese-rolls.png</code>.</p>
+
+    <p><strong>Step 2:</strong> Find the item in the code. Search for the item name (like "Cheese Rolls"). You'll see something like this:</p>
+    <pre><code><span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"showcase-icon bread"</span><span class="tag">&gt;&lt;/div&gt;</span></code></pre>
+
+    <p><strong>Step 3:</strong> Add <code>has-image</code> to the class and add the photo as a background image:</p>
+    <pre><code><span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"showcase-icon bread has-image"</span> <span class="attr">style=</span><span class="val">"background-image: url('images/cheese-rolls.png')"</span><span class="tag">&gt;&lt;/div&gt;</span></code></pre>
+
+    <p>That's it! Here's a comparison of what items look like with and without photos:</p>
+
+    <div class="visual-example">
+        <div class="visual-example-label">Without photo vs. with photo</div>
+        <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: end;">
+            <div class="mini-showcase">
+                <div class="icon" style="background: var(--pink-light);"></div>
+                <div class="name">Cheese Rolls</div>
+                <div style="font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--purple);">Bread</div>
+            </div>
+            <div style="font-size: 1.5rem; color: var(--taupe); align-self: center;">&rarr;</div>
+            <div class="mini-showcase">
+                <div class="icon" style="background: var(--pink-light); display: flex; align-items: center; justify-content: center; font-size: 0.65rem; color: var(--taupe);">Your photo here</div>
+                <div class="name">Cheese Rolls</div>
+                <div style="font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--purple);">Bread</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tip">
+        <strong>Photo size:</strong> Square or slightly wide photos work best. They'll be automatically cropped to fit the card. Photos around 400x300 pixels are ideal &mdash; big enough to look sharp but small enough to load fast.
+    </div>
+
+    <p><strong>For sweets</strong>, use <code>sweet</code> instead of <code>bread</code> in the class. The only difference is the placeholder color (purple instead of pink), but the photo covers it either way:</p>
+    <pre><code><span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"showcase-icon sweet has-image"</span> <span class="attr">style=</span><span class="val">"background-image: url('images/peanut-butter-bars.png')"</span><span class="tag">&gt;&lt;/div&gt;</span></code></pre>
+</section>
+
+<!-- ================================================
+     7. CONNECT THE ORDER FORM
+     ================================================ -->
+<section class="guide-section" id="form">
+    <div class="section-number">7</div>
+    <h2>How to Connect the Order Form</h2>
+    <div class="section-divider"></div>
+
+    <p>Right now, the order form looks beautiful but doesn't actually send the orders anywhere. To make it work, you'll use a free service called <strong>Formspree</strong> that sends form submissions to your email.</p>
+
+    <p><strong>Step 1:</strong> Go to <a href="https://formspree.io" target="_blank" style="color: var(--pink); border-bottom: 1px solid var(--pink);">formspree.io</a> and create a free account.</p>
+
+    <p><strong>Step 2:</strong> Create a new form. Formspree will give you a form ID that looks something like <code>xrgjeknl</code>.</p>
+
+    <p><strong>Step 3:</strong> In <code>index.html</code>, search for <code>theForm</code>. You'll find this line:</p>
+    <pre><code><span class="tag">&lt;form</span> <span class="attr">id=</span><span class="val">"theForm"</span><span class="tag">&gt;</span></code></pre>
+
+    <p><strong>Step 4:</strong> Change it to include the Formspree action and method:</p>
+    <pre><code><span class="tag">&lt;form</span> <span class="attr">id=</span><span class="val">"theForm"</span> <span class="attr">action=</span><span class="val">"https://formspree.io/f/xrgjeknl"</span> <span class="attr">method=</span><span class="val">"POST"</span><span class="tag">&gt;</span></code></pre>
+
+    <p>(Replace <code>xrgjeknl</code> with your actual Formspree form ID.)</p>
+
+    <p><strong>Step 5:</strong> You'll also want to update the JavaScript so it actually submits instead of just showing a success message. Search for <code>e.preventDefault()</code> near the bottom of the file and <strong>delete</strong> (or add <code>//</code> in front of) the entire block from <code>document.getElementById('theForm').addEventListener</code> through its closing <code>});</code>. Formspree will handle the submission and redirect.</p>
+
+    <div class="tip">
+        <strong>Formspree's free plan</strong> gives you 50 submissions per month, which is perfect for a small bakery. When someone submits an order, you'll get an email with all their details &mdash; name, phone, event, items, and notes.
+    </div>
+
+    <div class="highlight">
+        <strong>Alternative:</strong> If you'd rather get orders by text message, you can skip Formspree and just have people text you directly. Replace the order form with a simple message like "Text me at (your number) with your order!" Many cottage bakers prefer this personal touch.
+    </div>
+</section>
+
+<!-- ================================================
+     8. GO LIVE
+     ================================================ -->
+<section class="guide-section" id="go-live">
+    <div class="section-number">8</div>
+    <h2>How to Go Live</h2>
+    <div class="section-divider"></div>
+
+    <p>When you're happy with how everything looks, it's time to put your site on the internet. The easiest free way is <strong>Netlify Drop</strong>.</p>
+
+    <p><strong>Here's all you do:</strong></p>
+    <ol>
+        <li>Go to <a href="https://app.netlify.com/drop" target="_blank" style="color: var(--pink); border-bottom: 1px solid var(--pink);">app.netlify.com/drop</a>.</li>
+        <li><strong>Drag your entire project folder</strong> (the one containing <code>index.html</code> and the <code>images</code> folder) onto the page.</li>
+        <li>That's it! Netlify gives you a live link you can share.</li>
+    </ol>
+
+    <p>The free link will look something like <code>random-name-12345.netlify.app</code>. You can:</p>
+    <ul>
+        <li>Create a free Netlify account to keep the site and pick a nicer name (like <code>kathleens-kitchen.netlify.app</code>).</li>
+        <li>Later, connect a custom domain (like <code>kathleenskitchen.com</code>) if you buy one &mdash; domains usually cost about $12/year from sites like Namecheap or Google Domains.</li>
+    </ul>
+
+    <div class="tip">
+        <strong>Updating your live site:</strong> Any time you make changes to your files, just drag the folder onto Netlify Drop again and it replaces the old version. Your link stays the same.
+    </div>
+
+    <div class="warning">
+        <strong>Make sure your folder includes everything:</strong> The folder you drag should contain both <code>index.html</code> and the <code>images</code> folder. If you only drag the HTML file, the photos won't show up.
+    </div>
+</section>
+
+<!-- ================================================
+     CLOSING NOTE
+     ================================================ -->
+<section class="guide-section" style="border-left: 3px solid var(--pink); background: var(--pink-pale);">
+    <h2 style="color: var(--pink-dark);">You've Got This!</h2>
+    <div class="section-divider"></div>
+    <p style="color: var(--charcoal); font-size: 1rem;">
+        Updating a website can feel intimidating at first, but it really is just finding the right spot in the file and changing the words. The more you do it, the more natural it becomes.
+    </p>
+    <p style="color: var(--charcoal); font-size: 1rem;">
+        <strong>A few golden rules to remember:</strong>
+    </p>
+    <ul style="color: var(--charcoal);">
+        <li><strong>Always save a backup</strong> before making changes. Just copy the whole folder and name it something like "backup-march-6".</li>
+        <li><strong>Test locally first.</strong> Double-click <code>index.html</code> to open it in your browser and see how it looks before going live.</li>
+        <li><strong>Be careful with the angle brackets</strong> (<code>&lt;</code> and <code>&gt;</code>). Every opening tag needs a closing tag. If something looks broken, you probably accidentally deleted one.</li>
+        <li><strong>Undo is your friend.</strong> If something goes wrong, Ctrl+Z (or Cmd+Z on Mac) takes you back.</li>
+    </ul>
+    <p style="color: var(--charcoal); font-size: 1rem; margin-top: 1rem;">
+        Happy baking (and happy editing)!
+    </p>
+</section>
+
+</div>
+
+<!-- ================================================
+     FOOTER
+     ================================================ -->
+<footer class="guide-footer">
+    <div class="brand">Kathleen's Kitchen</div>
+    <p>Admin Guide &mdash; Keep this file handy for when you need a refresher.</p>
+    <p style="margin-top: 0.5rem; font-size: 0.75rem; opacity: 0.6;">This guide is part of your website files. It won't show up on the live site.</p>
+</footer>
+
+<!-- ================================================
+     COPY BUTTON SCRIPT
+     ================================================ -->
+<script>
+    function copyBlock(id) {
+        var el = document.getElementById(id);
+        // Get the plain text content (strips HTML tags)
+        var text = el.textContent || el.innerText;
+        // Clean up extra whitespace from the HTML formatting
+        text = text.replace(/\n{3,}/g, '\n\n').trim();
+
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(text).then(function() {
+                showCopied(el);
+            });
+        } else {
+            // Fallback for older browsers
+            var textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            showCopied(el);
+        }
+    }
+
+    function showCopied(el) {
+        var btn = el.parentElement.querySelector('.copy-btn');
+        if (btn) {
+            btn.textContent = 'Copied!';
+            btn.classList.add('copied');
+            setTimeout(function() {
+                btn.textContent = 'Copy';
+                btn.classList.remove('copied');
+            }, 2000);
+        }
+    }
+</script>
+
+</body>
+</html>

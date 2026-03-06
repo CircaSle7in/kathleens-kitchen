@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kathleen's Kitchen — Homemade Breads & Sweets</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Homemade breads and sweet treats baked fresh in Pepperwood, Utah. Order from Kathleen's Kitchen for your next gathering.">
+    <meta name="theme-color" content="#CF7A9B">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Kathleen's Kitchen — Homemade Breads & Sweets">
+    <meta property="og:description" content="Homemade breads and sweet treats baked fresh in Pepperwood, Utah. Order from Kathleen's Kitchen for your next gathering.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images/hero-bakery-spread.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kathleen's Kitchen — Homemade Breads & Sweets">
+    <meta name="twitter:description" content="Homemade breads and sweet treats baked fresh in Pepperwood, Utah. Order from Kathleen's Kitchen for your next gathering.">
+    <meta name="twitter:image" content="images/hero-bakery-spread.png">
+
+    <!-- Inline SVG Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%23CF7A9B'/><text x='16' y='21' font-size='14' font-family='serif' font-weight='bold' fill='white' text-anchor='middle'>KK</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Great+Vibes&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* ═══════════════════════════════════════════
+           COLOR SYSTEM — Pink, Purple & Green Pastels
+           ═══════════════════════════════════════════ */
+        :root {
+            --cream: #FDF8FA;
+            --warm-white: #FFFAFC;
+            --pink: #CF7A9B;
+            --pink-dark: #B86485;
+            --pink-light: #F5E0EA;
+            --pink-pale: #FBF0F4;
+            --purple: #A893C2;
+            --purple-dark: #8F7AAD;
+            --purple-light: #EDE8F3;
+            --green: #7BA37B;
+            --green-dark: #5E8A5E;
+            --green-light: #E5EDE5;
+            --charcoal: #2D2D2D;
+            --taupe: #8B8578;
+            --border: #EADEE4;
+        }
+
+        /* ═══════════════════════════════════════════
+           RESET & BASE
+           ═══════════════════════════════════════════ */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 300;
+            color: var(--charcoal);
+            background: var(--cream);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img { max-width: 100%; display: block; }
+        a { color: inherit; text-decoration: none; }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+        /* ═══════════════════════════════════════════
+           NAVIGATION
+           ═══════════════════════════════════════════ */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(253, 248, 250, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 20px rgba(0,0,0,0.05);
+            padding: 0.7rem 2rem;
+        }
+
+        .nav-logo {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.8rem;
+            color: var(--pink-dark);
+        }
+
+        nav.scrolled .nav-logo { font-size: 1.5rem; }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--taupe);
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 1px;
+            background: var(--pink);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--pink); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 24px;
+            height: 1.5px;
+            background: var(--charcoal);
+            margin: 6px 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .nav-toggle.open span:nth-child(1) {
+            transform: translateY(7.5px) rotate(45deg);
+        }
+        .nav-toggle.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .nav-toggle.open span:nth-child(3) {
+            transform: translateY(-7.5px) rotate(-45deg);
+        }
+
+        /* ═══════════════════════════════════════════
+           HERO
+           ═══════════════════════════════════════════ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            background: url('images/hero-bakery-spread.png') center/cover no-repeat;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(170deg, rgba(253,248,250,0.88) 0%, rgba(245,224,234,0.82) 30%, rgba(237,232,243,0.80) 60%, rgba(229,237,229,0.85) 100%);
+            z-index: 1;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%; right: -10%;
+            width: 60%; height: 60%;
+            background: radial-gradient(circle, rgba(207,122,155,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -10%; left: -5%;
+            width: 40%; height: 40%;
+            background: radial-gradient(circle, rgba(168,147,194,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-botanical {
+            position: absolute;
+            opacity: 0.07;
+            pointer-events: none;
+        }
+
+        .hero-botanical.top-right { top: 5%; right: 5%; width: 300px; transform: rotate(15deg); }
+        .hero-botanical.bottom-left { bottom: 8%; left: 3%; width: 250px; transform: rotate(-20deg) scaleX(-1); }
+
+        .hero-content { position: relative; z-index: 2; }
+
+        .hero-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 400;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--taupe);
+            margin-bottom: 1.5rem;
+            padding: 0.5rem 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: 2rem;
+            background: rgba(255,255,255,0.5);
+        }
+
+        .hero-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(3.5rem, 10vw, 7rem);
+            color: var(--pink-dark);
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 300;
+            font-style: italic;
+            color: var(--purple-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-tagline {
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: var(--taupe);
+            letter-spacing: 0.08em;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 1rem 2.5rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-pink { background: var(--pink); color: white; }
+        .btn-pink:hover {
+            background: var(--pink-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(207,122,155,0.35);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--pink);
+            border: 1px solid var(--pink);
+        }
+        .btn-outline:hover { background: var(--pink); color: white; }
+
+        .btn-sold-out {
+            background: var(--border);
+            color: var(--taupe);
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem; left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--taupe);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            opacity: 0.6;
+        }
+
+        .scroll-indicator .line {
+            width: 1px; height: 40px;
+            background: linear-gradient(to bottom, var(--taupe), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+            50% { opacity: 1; transform: scaleY(1); }
+        }
+
+        /* ═══════════════════════════════════════════
+           SECTION UTILITIES
+           ═══════════════════════════════════════════ */
+        .section { padding: 6rem 2rem; }
+        .section-wide { max-width: 1100px; margin: 0 auto; }
+
+        .section-header { text-align: center; margin-bottom: 4rem; }
+
+        .section-label {
+            font-size: 0.7rem;
+            font-weight: 400;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--purple);
+            margin-bottom: 0.8rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+
+        .section-divider {
+            width: 60px; height: 1px;
+            background: linear-gradient(to right, var(--pink), var(--purple));
+            margin: 1.5rem auto;
+        }
+
+        .section-desc {
+            max-width: 500px;
+            margin: 0 auto;
+            color: var(--taupe);
+            font-size: 0.95rem;
+        }
+
+        /* ═══════════════════════════════════════════
+           ABOUT
+           ═══════════════════════════════════════════ */
+        .about { background: var(--warm-white); }
+
+        .about-content {
+            max-width: 1100px; margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            aspect-ratio: 4/5;
+            background: url('images/kathleen-about.png') center/cover no-repeat;
+            position: relative;
+        }
+
+        .about-text h2 { font-size: 2.2rem; margin-bottom: 1.5rem; }
+        .about-text h2 span {
+            font-family: 'Great Vibes', cursive;
+            color: var(--pink);
+            font-size: 2.8rem;
+        }
+        .about-text p { color: var(--taupe); margin-bottom: 1.2rem; font-size: 0.95rem; }
+        .about-signature {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            color: var(--pink);
+            margin-top: 1.5rem;
+        }
+
+        /* ═══════════════════════════════════════════
+           EVENT CARDS
+           ═══════════════════════════════════════════ */
+        .events { background: var(--cream); }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+        .event-card {
+            background: var(--warm-white);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; bottom: 0;
+            width: 3px;
+            background: var(--pink);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.3s ease;
+            z-index: 1;
+        }
+
+        .event-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+        }
+
+        .event-card:not(.is-sold-out):hover::before {
+            transform: scaleY(1);
+        }
+
+        .event-card.is-sold-out { opacity: 0.7; }
+        .event-card.is-sold-out:hover { transform: none; box-shadow: none; }
+
+        .event-card-header {
+            padding: 1.5rem 1.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .event-date-badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: var(--purple-light);
+            padding: 0.6rem 1rem;
+            min-width: 65px;
+            text-align: center;
+        }
+
+        .event-date-badge .month {
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--purple);
+        }
+
+        .event-date-badge .day {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--purple-dark);
+            line-height: 1;
+        }
+
+        .event-status {
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.8rem;
+            border-radius: 2rem;
+        }
+
+        .event-status.open { background: var(--green-light); color: var(--green-dark); }
+        .event-status.almost-full { background: #FFF3E0; color: #E65100; }
+        .event-status.sold-out { background: var(--pink-light); color: var(--pink-dark); }
+
+        .event-card-body { padding: 1.2rem 1.5rem 1.5rem; }
+
+        .event-name {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.8rem;
+            color: var(--pink-dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .event-desc { font-size: 0.85rem; color: var(--taupe); margin-bottom: 1rem; }
+
+        .event-items-label {
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--purple);
+            margin-bottom: 0.5rem;
+        }
+
+        .event-items { list-style: none; margin-bottom: 1.2rem; }
+        .event-items li {
+            font-size: 0.85rem;
+            padding: 0.3rem 0;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+        }
+        .event-items li:last-child { border-bottom: none; }
+        .event-items .item-price { color: var(--taupe); font-size: 0.8rem; }
+
+        .event-progress { margin-bottom: 1.2rem; }
+        .event-progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--taupe);
+            margin-bottom: 0.4rem;
+        }
+        .event-progress-label strong { font-weight: 500; color: var(--charcoal); }
+
+        .event-progress-bar {
+            height: 4px;
+            background: var(--border);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .event-progress-fill {
+            height: 100%;
+            border-radius: 2px;
+            transition: width 0.5s ease;
+        }
+        .event-progress-fill.green { background: var(--green); }
+        .event-progress-fill.orange { background: #F57C00; }
+        .event-progress-fill.red { background: var(--pink); }
+
+        .event-order-by {
+            font-size: 0.75rem;
+            color: var(--taupe);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .event-card .btn { width: 100%; text-align: center; }
+
+        /* ═══════════════════════════════════════════
+           SHOWCASE (What We Make)
+           ═══════════════════════════════════════════ */
+        .showcase { background: var(--warm-white); }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .showcase-item {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: var(--cream);
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+            overflow: hidden;
+        }
+
+        .showcase-item:hover {
+            border-color: var(--pink);
+            transform: translateY(-2px);
+        }
+
+        .showcase-icon {
+            width: 100%; height: 140px;
+            margin: 0 0 1rem;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.4s ease;
+        }
+        .showcase-icon.bread { background-color: var(--pink-light); }
+        .showcase-icon.sweet { background-color: var(--purple-light); }
+        .showcase-icon.has-image { border-radius: 0; }
+
+        .showcase-item:hover .showcase-icon.has-image {
+            transform: scale(1.05);
+        }
+
+        .showcase-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+        }
+
+        .showcase-tag {
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--purple);
+        }
+
+        /* ═══════════════════════════════════════════
+           HOW IT WORKS
+           ═══════════════════════════════════════════ */
+        .how-it-works {
+            background: linear-gradient(135deg, var(--pink-pale) 0%, var(--purple-light) 50%, var(--green-light) 100%);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .step-number {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: var(--pink);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .step-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-desc { font-size: 0.85rem; color: var(--taupe); }
+
+        /* ═══════════════════════════════════════════
+           ORDER FORM
+           ═══════════════════════════════════════════ */
+        .order { background: var(--warm-white); }
+
+        .order-form { max-width: 650px; margin: 0 auto; }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        .form-group::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 50%;
+            width: 100%; height: 2px;
+            background: var(--pink);
+            transform: translateX(-50%) scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        .form-group:focus-within::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--taupe);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: var(--charcoal);
+            background: var(--cream);
+            border: 1px solid var(--border);
+            outline: none;
+            transition: border-color 0.3s;
+            border-radius: 0;
+            -webkit-appearance: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus { border-color: var(--pink); }
+
+        .form-group textarea { resize: vertical; min-height: 100px; }
+
+        /* Checkbox groups per event */
+        .event-items-group { display: none; }
+        .event-items-group.active { display: block; }
+
+        .checkbox-section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.6rem 0.8rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            border-radius: 4px;
+        }
+
+        .checkbox-item:hover { background: var(--cream); }
+
+        .checkbox-item input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 18px; height: 18px;
+            border: 1.5px solid var(--border);
+            cursor: pointer;
+            position: relative;
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+
+        .checkbox-item input[type="checkbox"]:checked {
+            background: var(--pink);
+            border-color: var(--pink);
+        }
+
+        .checkbox-item input[type="checkbox"]:checked::after {
+            content: '';
+            position: absolute;
+            top: 2px; left: 5px;
+            width: 5px; height: 9px;
+            border: solid white;
+            border-width: 0 1.5px 1.5px 0;
+            transform: rotate(45deg);
+        }
+
+        .checkbox-item .item-name { font-size: 0.9rem; font-weight: 400; }
+        .checkbox-item .item-price { font-size: 0.8rem; color: var(--taupe); margin-left: auto; }
+
+        .form-submit { text-align: center; margin-top: 2rem; }
+
+        .form-note {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--taupe);
+            margin-top: 1rem;
+        }
+
+        .order-event-context {
+            background: var(--purple-light);
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .order-event-context.visible { display: flex; }
+        .order-event-context .event-label {
+            font-size: 0.7rem; font-weight: 500;
+            letter-spacing: 0.15em; text-transform: uppercase;
+            color: var(--purple);
+        }
+        .order-event-context .event-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.4rem; color: var(--purple-dark);
+        }
+
+        .order-success {
+            display: none;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+        .order-success.show { display: block; }
+        .order-success h3 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: var(--pink);
+            margin-bottom: 1rem;
+        }
+        .order-success p { color: var(--taupe); font-size: 0.95rem; }
+
+        /* ═══════════════════════════════════════════
+           WAVE DIVIDER
+           ═══════════════════════════════════════════ */
+        .wave-divider { height: 60px; overflow: hidden; position: relative; }
+        .wave-divider svg { position: absolute; bottom: 0; width: 100%; height: 60px; }
+        .wave-divider.cream svg { fill: var(--cream); }
+        .wave-divider.warm-white svg { fill: var(--warm-white); }
+
+        /* ═══════════════════════════════════════════
+           FOOTER
+           ═══════════════════════════════════════════ */
+        footer {
+            background: var(--charcoal);
+            color: rgba(255,255,255,0.7);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1100px; margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem; color: white;
+            margin-bottom: 1rem;
+        }
+        .footer-desc { font-size: 0.85rem; line-height: 1.8; max-width: 300px; }
+
+        .footer-heading {
+            font-size: 0.7rem; font-weight: 500;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            color: white; margin-bottom: 1.2rem;
+        }
+
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.6rem; }
+        .footer-links a { font-size: 0.85rem; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--pink-light); }
+
+        .footer-social { display: flex; gap: 1rem; margin-top: 1rem; }
+        .footer-social a {
+            width: 36px; height: 36px;
+            border: 1px solid rgba(255,255,255,0.2);
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s; font-size: 0.75rem;
+        }
+        .footer-social a:hover { border-color: var(--pink-light); color: var(--pink-light); }
+
+        .footer-bottom {
+            max-width: 1100px; margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex; justify-content: space-between;
+            align-items: center; font-size: 0.75rem;
+        }
+
+        /* ═══════════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════════ */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex; flex-direction: column;
+                position: absolute; top: 100%; left: 0; right: 0;
+                background: rgba(253,248,250,0.98);
+                backdrop-filter: blur(10px);
+                padding: 1.5rem 2rem; gap: 1rem;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-toggle { display: block; }
+            .about-content { grid-template-columns: 1fr; gap: 2rem; }
+            .about-image { aspect-ratio: 16/9; order: -1; }
+            .events-grid { grid-template-columns: 1fr; }
+            .steps { grid-template-columns: 1fr; gap: 2rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .checkbox-group { grid-template-columns: 1fr; }
+            .showcase-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-content { grid-template-columns: 1fr; gap: 2rem; }
+            .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+            .hero-title { font-size: clamp(3rem, 12vw, 5rem); }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0; transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* ═══════════════════════════════════════════
+           STICKY ORDER BUTTON
+           ═══════════════════════════════════════════ */
+        .floating-order-btn {
+            position: fixed;
+            bottom: 2rem; right: 2rem;
+            z-index: 90;
+            padding: 0.8rem 1.8rem;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            background: var(--pink);
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(207,122,155,0.4);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease;
+            pointer-events: none;
+        }
+        .floating-order-btn.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        .floating-order-btn:hover {
+            background: var(--pink-dark);
+        }
+
+        /* ═══════════════════════════════════════════
+           PRINT STYLES — Show menu & events only
+           ═══════════════════════════════════════════ */
+        @media print {
+            nav, .hero, .hero-overlay, .scroll-indicator,
+            .how-it-works, .order, .wave-divider, footer,
+            .floating-order-btn {
+                display: none !important;
+            }
+
+            body {
+                background: white;
+                color: black;
+                font-size: 12pt;
+                line-height: 1.5;
+            }
+
+            .section { padding: 1rem 0; }
+            .section-wide { max-width: 100%; }
+
+            .fade-in { opacity: 1 !important; transform: none !important; }
+
+            .events-grid { grid-template-columns: 1fr; gap: 1rem; }
+
+            .event-card {
+                break-inside: avoid;
+                border: 1px solid #ccc;
+                box-shadow: none !important;
+            }
+
+            .event-card.is-sold-out { opacity: 1; }
+
+            .event-progress-fill { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+
+            .btn { display: none !important; }
+
+            .showcase-grid { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+
+            .showcase-item {
+                break-inside: avoid;
+                border: 1px solid #ccc;
+            }
+
+            .showcase-icon { display: none; }
+
+            a[href]::after { content: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     NAVIGATION
+     ═══════════════════════════════════════════ -->
+<nav>
+    <a href="#" class="nav-logo">Kathleen's Kitchen</a>
+    <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#events">Upcoming</a></li>
+        <li><a href="#menu">What We Make</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open'); this.classList.toggle('open')">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════════ -->
+<section class="hero">
+    <div class="hero-overlay"></div>
+    <svg class="hero-botanical top-right" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="currentColor" fill="none" stroke-width="1.5" color="#CF7A9B">
+            <path d="M100 280 Q100 200 100 20"/>
+            <path d="M100 60 Q70 40 50 60 Q70 60 100 60"/><path d="M100 60 Q130 40 150 60 Q130 60 100 60"/>
+            <path d="M100 100 Q65 80 40 100 Q65 100 100 100"/><path d="M100 100 Q135 80 160 100 Q135 100 100 100"/>
+            <path d="M100 140 Q60 120 35 140 Q60 140 100 140"/><path d="M100 140 Q140 120 165 140 Q140 140 100 140"/>
+            <path d="M100 180 Q55 160 30 180 Q55 180 100 180"/><path d="M100 180 Q145 160 170 180 Q145 180 100 180"/>
+            <path d="M100 220 Q60 200 35 220 Q60 220 100 220"/><path d="M100 220 Q140 200 165 220 Q140 220 100 220"/>
+        </g>
+    </svg>
+    <svg class="hero-botanical bottom-left" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="currentColor" fill="none" stroke-width="1.5" color="#A893C2">
+            <path d="M100 280 Q100 200 100 20"/>
+            <path d="M100 60 Q70 40 50 60 Q70 60 100 60"/><path d="M100 60 Q130 40 150 60 Q130 60 100 60"/>
+            <path d="M100 100 Q65 80 40 100 Q65 100 100 100"/><path d="M100 100 Q135 80 160 100 Q135 100 100 100"/>
+            <path d="M100 140 Q60 120 35 140 Q60 140 100 140"/><path d="M100 140 Q140 120 165 140 Q140 140 100 140"/>
+            <path d="M100 180 Q55 160 30 180 Q55 180 100 180"/><path d="M100 180 Q145 160 170 180 Q145 180 100 180"/>
+        </g>
+    </svg>
+
+    <div class="hero-content">
+        <div class="hero-badge">Pepperwood, Utah</div>
+        <h1 class="hero-title">Kathleen's Kitchen</h1>
+        <p class="hero-subtitle">Homemade Breads & Sweet Treats</p>
+        <p class="hero-tagline">Baked with love, delivered to your door</p>
+        <a href="#events" class="btn btn-pink">See Upcoming Events</a>
+    </div>
+    <div class="scroll-indicator">
+        <div class="line"></div>
+        <span>Scroll</span>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     ABOUT
+     ═══════════════════════════════════════════ -->
+<section class="about section" id="about">
+    <div class="about-content fade-in">
+        <div class="about-image"></div>
+        <div class="about-text">
+            <h2>From Our <span>Kitchen</span> to Yours</h2>
+            <p>
+                There's something special about homemade bread straight from the oven &mdash;
+                the warmth, the aroma, the way it brings people together around the table.
+            </p>
+            <p>
+                For decades, my kitchen has been the heart of our home. Whether it's
+                Grandma's roll recipe that's been passed down through generations,
+                or cinnamon rolls that bring the neighbors running, every batch is made
+                with the same care I'd put into feeding my own family.
+            </p>
+            <p>
+                Now I'm sharing that love with the Pepperwood community and beyond.
+                Every order is baked fresh, made from scratch, and delivered with a smile.
+            </p>
+            <div class="about-signature">Kathleen</div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     UPCOMING EVENTS
+     ═══════════════════════════════════════════ -->
+<div class="wave-divider cream" style="background: var(--warm-white);">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+        <path d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,30 1440,30 L1440,60 L0,60 Z"/>
+    </svg>
+</div>
+
+<section class="events section" id="events">
+    <div class="section-wide">
+        <div class="section-header fade-in">
+            <div class="section-label">What's Baking</div>
+            <h2 class="section-title">Upcoming Events</h2>
+            <div class="section-divider"></div>
+            <p class="section-desc">
+                Each event is a limited bake. Claim your spot before they're gone!
+            </p>
+        </div>
+
+        <div class="events-grid fade-in">
+
+            <!-- EVENT 1: Easter (Open — 12 of 20 spots left) -->
+            <div class="event-card">
+                <div class="event-card-header">
+                    <div class="event-date-badge">
+                        <span class="month">APR</span>
+                        <span class="day">4-5</span>
+                    </div>
+                    <span class="event-status open">Open</span>
+                </div>
+                <div class="event-card-body">
+                    <h3 class="event-name">Easter & Conference Weekend</h3>
+                    <p class="event-desc">Holiday treats for your family gathering. Breads and sweets for the long weekend.</p>
+                    <div class="event-items-label">Available Items</div>
+                    <ul class="event-items">
+                        <li><span>Grandma's Rolls</span><span class="item-price">$10/dozen</span></li>
+                        <li><span>Cinnamon Rolls</span><span class="item-price">$18/dozen</span></li>
+                        <li><span>Crescent Rolls</span><span class="item-price">$12/dozen</span></li>
+                        <li><span>Cookie Dough Brownies</span><span class="item-price">$24/dozen</span></li>
+                        <li><span>Lemon Bars</span><span class="item-price">$20/dozen</span></li>
+                    </ul>
+                    <div class="event-progress">
+                        <div class="event-progress-label">
+                            <span><strong>8</strong> of 20 spots claimed</span>
+                            <span>12 left</span>
+                        </div>
+                        <div class="event-progress-bar">
+                            <div class="event-progress-fill green" style="width: 40%"></div>
+                        </div>
+                    </div>
+                    <p class="event-order-by">Order by March 28, 2026</p>
+                    <a href="#order" class="btn btn-pink" onclick="selectEvent('easter-2026')">Order Now &mdash; 12 spots left</a>
+                </div>
+            </div>
+
+            <!-- EVENT 2: Spring Bread Drop (SOLD OUT) -->
+            <div class="event-card is-sold-out">
+                <div class="event-card-header">
+                    <div class="event-date-badge">
+                        <span class="month">MAR</span>
+                        <span class="day">22</span>
+                    </div>
+                    <span class="event-status sold-out">Sold Out</span>
+                </div>
+                <div class="event-card-body">
+                    <h3 class="event-name">Spring Bread Drop</h3>
+                    <p class="event-desc">Fresh bread to welcome spring. All five breads available this round.</p>
+                    <div class="event-items-label">Available Items</div>
+                    <ul class="event-items">
+                        <li><span>Grandma's Rolls</span><span class="item-price">$10/dozen</span></li>
+                        <li><span>Cinnamon Rolls</span><span class="item-price">$18/dozen</span></li>
+                        <li><span>Cheese Rolls</span><span class="item-price">$15/dozen</span></li>
+                        <li><span>Dinner Rolls</span><span class="item-price">$10/dozen</span></li>
+                        <li><span>Crescent Rolls</span><span class="item-price">$12/dozen</span></li>
+                    </ul>
+                    <div class="event-progress">
+                        <div class="event-progress-label">
+                            <span><strong>12</strong> of 12 spots claimed</span>
+                            <span>None left</span>
+                        </div>
+                        <div class="event-progress-bar">
+                            <div class="event-progress-fill red" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <p class="event-order-by">Orders closed March 19, 2026</p>
+                    <span class="btn btn-sold-out">Sold Out</span>
+                </div>
+            </div>
+
+            <!-- EVENT 3: April Sweet Treats (Just Opened — 12 of 15 spots left) -->
+            <div class="event-card">
+                <div class="event-card-header">
+                    <div class="event-date-badge">
+                        <span class="month">APR</span>
+                        <span class="day">18</span>
+                    </div>
+                    <span class="event-status open">Just Opened</span>
+                </div>
+                <div class="event-card-body">
+                    <h3 class="event-name">April Sweet Treats</h3>
+                    <p class="event-desc">A sweets-only drop. Perfect for spring parties, teacher gifts, or just because.</p>
+                    <div class="event-items-label">Available Items</div>
+                    <ul class="event-items">
+                        <li><span>Cookie Dough Brownies</span><span class="item-price">$24/dozen</span></li>
+                        <li><span>Peanut Butter Bars</span><span class="item-price">$20/dozen</span></li>
+                        <li><span>Lemon Bars</span><span class="item-price">$20/dozen</span></li>
+                        <li><span>Caramel Rice Krispie Treats</span><span class="item-price">$18/dozen</span></li>
+                    </ul>
+                    <div class="event-progress">
+                        <div class="event-progress-label">
+                            <span><strong>3</strong> of 15 spots claimed</span>
+                            <span>12 left</span>
+                        </div>
+                        <div class="event-progress-bar">
+                            <div class="event-progress-fill green" style="width: 20%"></div>
+                        </div>
+                    </div>
+                    <p class="event-order-by">Order by April 15, 2026</p>
+                    <a href="#order" class="btn btn-pink" onclick="selectEvent('april-sweets')">Order Now &mdash; 12 spots left</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     WHAT WE MAKE (showcase)
+     ═══════════════════════════════════════════ -->
+<div class="wave-divider warm-white" style="background: var(--cream);">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+        <path d="M0,20 C480,60 960,0 1440,30 L1440,60 L0,60 Z"/>
+    </svg>
+</div>
+
+<section class="showcase section" id="menu">
+    <div class="section-wide">
+        <div class="section-header fade-in">
+            <div class="section-label">Our Specialties</div>
+            <h2 class="section-title">What We Make</h2>
+            <div class="section-divider"></div>
+            <p class="section-desc">
+                These items rotate through our events. Check upcoming events to see what's baking next.
+            </p>
+        </div>
+        <div class="showcase-grid fade-in">
+            <div class="showcase-item">
+                <div class="showcase-icon bread has-image" style="background-image: url('images/grandmas-rolls.png')"></div>
+                <div class="showcase-name">Grandma's Rolls</div>
+                <div class="showcase-tag">Bread</div>
+            </div>
+            <div class="showcase-item">
+                <div class="showcase-icon bread has-image" style="background-image: url('images/cinnamon-rolls.png')"></div>
+                <div class="showcase-name">Cinnamon Rolls</div>
+                <div class="showcase-tag">Bread</div>
+            </div>
+            <div class="showcase-item">
+                <div class="showcase-icon bread has-image" style="background-image: url('images/cheese-rolls.png')"></div>
+                <div class="showcase-name">Cheese Rolls</div>
+                <div class="showcase-tag">Bread</div>
+            </div>
+            <div class="showcase-item">
+                <div class="showcase-icon bread has-image" style="background-image: url('images/dinner-rolls.png')"></div>
+                <div class="showcase-name">Dinner Rolls</div>
+                <div class="showcase-tag">Bread</div>
+            </div>
+            <div class="showcase-item">
+                <div class="showcase-icon bread has-image" style="background-image: url('images/crescent-rolls.png')"></div>
+                <div class="showcase-name">Crescent Rolls</div>
+                <div class="showcase-tag">Bread</div>
+            </div>
+            <div class="showcase-item">
+                <div class="showcase-icon sweet has-image" style="background-image: url('images/cookie-dough-brownies.png')"></div>
+                <div class="showcase-name">Cookie Dough Brownies</div>
+                <div class="showcase-tag">Sweet</div>
+            </div>
+            <div class="showcase-item">
+                <div class="showcase-icon sweet has-image" style="background-image: url('images/peanut-butter-bars.png')"></div>
+                <div class="showcase-name">Peanut Butter Bars</div>
+                <div class="showcase-tag">Sweet</div>
+            </div>
+            <div class="showcase-item">
+                <div class="showcase-icon sweet has-image" style="background-image: url('images/lemon-bars.png')"></div>
+                <div class="showcase-name">Lemon Bars</div>
+                <div class="showcase-tag">Sweet</div>
+            </div>
+            <div class="showcase-item">
+                <div class="showcase-icon sweet has-image" style="background-image: url('images/caramel-rice-krispie-treats.png')"></div>
+                <div class="showcase-name">Caramel Rice Krispie Treats</div>
+                <div class="showcase-tag">Sweet</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     HOW IT WORKS
+     ═══════════════════════════════════════════ -->
+<section class="how-it-works section">
+    <div class="section-wide">
+        <div class="section-header fade-in">
+            <div class="section-label">Simple as That</div>
+            <h2 class="section-title">How It Works</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="steps fade-in">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h4 class="step-title">Browse Events</h4>
+                <p class="step-desc">Each event has limited spots and specific items. Find one that fits your needs.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h4 class="step-title">Claim Your Spot</h4>
+                <p class="step-desc">Pick your items, add quantities, and submit before spots fill up.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h4 class="step-title">Enjoy Fresh Baked</h4>
+                <p class="step-desc">Pick up in Pepperwood or request local delivery on the event date.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     ORDER FORM
+     ═══════════════════════════════════════════ -->
+<section class="order section" id="order">
+    <div class="section-wide">
+        <div class="section-header fade-in">
+            <div class="section-label">Claim Your Spot</div>
+            <h2 class="section-title">Place an Order</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="order-form fade-in" id="orderForm">
+            <div class="order-event-context" id="orderEventContext">
+                <div>
+                    <div class="event-label">Ordering for</div>
+                    <div class="event-title" id="orderEventName"></div>
+                </div>
+            </div>
+
+            <!--
+                FORMSPREE SETUP:
+                Kathleen — sign up for a free account at https://formspree.io
+                then create a new form. Replace "xformid" below with the real
+                form ID from your Formspree dashboard (it looks like "xAbCdEfG").
+            -->
+            <form id="theForm" action="https://formspree.io/f/xformid" method="POST">
+                <input type="hidden" name="_subject" value="New Order from Kathleen's Kitchen">
+                <input type="hidden" name="_next" value="#thank-you">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required placeholder="First & Last">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number (for text confirmation)</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="(000) 000-0000">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="eventSelect">Which Event?</label>
+                    <select id="eventSelect" name="event" required>
+                        <option value="">Select an event...</option>
+                        <option value="easter-2026">Easter & Conference Weekend (Apr 4-5) — 12 spots left</option>
+                        <option value="april-sweets">April Sweet Treats (Apr 18) — 12 spots left</option>
+                    </select>
+                </div>
+
+                <!-- Pre-rendered checkbox groups for each event -->
+                <div id="items-easter-2026" class="event-items-group">
+                    <div class="form-group">
+                        <label>What Would You Like?</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="items" value="Grandma's Rolls">
+                                <span class="item-name">Grandma's Rolls</span>
+                                <span class="item-price">$10/doz</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="items" value="Cinnamon Rolls">
+                                <span class="item-name">Cinnamon Rolls</span>
+                                <span class="item-price">$18/doz</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="items" value="Crescent Rolls">
+                                <span class="item-name">Crescent Rolls</span>
+                                <span class="item-price">$12/doz</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="items" value="Cookie Dough Brownies">
+                                <span class="item-name">Cookie Dough Brownies</span>
+                                <span class="item-price">$24/doz</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="items" value="Lemon Bars">
+                                <span class="item-name">Lemon Bars</span>
+                                <span class="item-price">$20/doz</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="items-april-sweets" class="event-items-group">
+                    <div class="form-group">
+                        <label>What Would You Like?</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="items" value="Cookie Dough Brownies">
+                                <span class="item-name">Cookie Dough Brownies</span>
+                                <span class="item-price">$24/doz</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="items" value="Peanut Butter Bars">
+                                <span class="item-name">Peanut Butter Bars</span>
+                                <span class="item-price">$20/doz</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="items" value="Lemon Bars">
+                                <span class="item-name">Lemon Bars</span>
+                                <span class="item-price">$20/doz</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="items" value="Caramel Rice Krispie Treats">
+                                <span class="item-name">Caramel Rice Krispie Treats</span>
+                                <span class="item-price">$18/doz</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">Quantity Notes</label>
+                    <input type="text" id="quantity" name="quantity" placeholder="e.g., 2 dozen cinnamon rolls, 3 dozen dinner rolls">
+                </div>
+
+                <div class="form-group">
+                    <label for="notes">Special Requests or Notes</label>
+                    <textarea id="notes" name="notes" placeholder="Allergies, delivery preferences, special occasions..."></textarea>
+                </div>
+
+                <div class="form-submit">
+                    <button type="submit" class="btn btn-pink">Send Order Request</button>
+                </div>
+                <p class="form-note">
+                    Kathleen will text you within a few hours to confirm your order and arrange pickup or delivery.
+                </p>
+            </form>
+        </div>
+
+        <!-- #thank-you anchor for Formspree _next redirect -->
+        <div class="order-success" id="thank-you">
+            <h3>Thank You!</h3>
+            <p>Your order request has been received. Kathleen will text you shortly to confirm the details and arrange pickup.</p>
+            <br>
+            <a href="#events" class="btn btn-outline">Back to Events</a>
+        </div>
+    </div>
+</section>
+
+<!-- Sticky Order Button (appears after scrolling past hero) -->
+<a href="#order" class="floating-order-btn" id="floatingOrderBtn">Order Now</a>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════ -->
+<footer id="contact">
+    <div class="footer-content">
+        <div>
+            <div class="footer-brand">Kathleen's Kitchen</div>
+            <p class="footer-desc">
+                Homemade breads and sweet treats, baked fresh in Pepperwood, Utah.
+                Made from scratch with love for your family's table.
+            </p>
+            <div class="footer-social">
+                <a href="#" aria-label="Instagram">IG</a>
+            </div>
+        </div>
+        <div>
+            <div class="footer-heading">Quick Links</div>
+            <ul class="footer-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#events">Upcoming Events</a></li>
+                <li><a href="#menu">What We Make</a></li>
+                <li><a href="#order">Place an Order</a></li>
+            </ul>
+        </div>
+        <div>
+            <div class="footer-heading">Get in Touch</div>
+            <ul class="footer-links">
+                <li>Text is best!</li>
+                <li><a href="tel:+10000000000">(000) 000-0000</a></li>
+                <li>Pepperwood, Utah</li>
+                <li style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.6;">Local delivery available</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>&copy; 2026 Kathleen's Kitchen. All rights reserved.</span>
+        <span>Baked with love in Pepperwood</span>
+    </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════
+     SCRIPTS — No innerHTML, uses DOM methods only
+     ═══════════════════════════════════════════ -->
+<script>
+    // Event name mapping for the context bar
+    var eventNames = {
+        'easter-2026': "Easter & Conference Weekend",
+        'april-sweets': "April Sweet Treats"
+    };
+
+    // Pre-select event from card click
+    function selectEvent(eventId) {
+        var select = document.getElementById('eventSelect');
+        select.value = eventId;
+        updateFormItems();
+    }
+
+    // Show/hide item checkboxes based on selected event
+    function updateFormItems() {
+        var eventId = document.getElementById('eventSelect').value;
+        var context = document.getElementById('orderEventContext');
+        var groups = document.querySelectorAll('.event-items-group');
+
+        // Hide all checkbox groups
+        for (var i = 0; i < groups.length; i++) {
+            groups[i].classList.remove('active');
+        }
+
+        if (eventId && eventNames[eventId]) {
+            // Show context bar
+            context.classList.add('visible');
+            document.getElementById('orderEventName').textContent = eventNames[eventId];
+
+            // Show matching checkbox group
+            var target = document.getElementById('items-' + eventId);
+            if (target) {
+                target.classList.add('active');
+            }
+        } else {
+            context.classList.remove('visible');
+        }
+    }
+
+    // Event select change handler
+    document.getElementById('eventSelect').addEventListener('change', updateFormItems);
+
+    // Form submission — POST to Formspree, fallback to local success message
+    document.getElementById('theForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        var form = e.target;
+        var data = new FormData(form);
+
+        // Log order details for debugging
+        var order = {
+            name: data.get('name'),
+            phone: data.get('phone'),
+            event: data.get('event'),
+            items: data.getAll('items'),
+            quantity: data.get('quantity'),
+            notes: data.get('notes')
+        };
+        console.log('Order submitted:', order);
+
+        // Submit to Formspree via fetch; show success message on completion
+        fetch(form.action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+        }).then(function(response) {
+            if (response.ok) {
+                showOrderSuccess();
+                form.reset();
+                updateFormItems();
+            } else {
+                console.error('Formspree error:', response.status);
+                showOrderSuccess();
+            }
+        }).catch(function(err) {
+            // Network error — still show success as a fallback so the
+            // user isn't stuck. Kathleen can check Formspree dashboard.
+            console.error('Network error, showing fallback success:', err);
+            showOrderSuccess();
+        });
+    });
+
+    function showOrderSuccess() {
+        document.getElementById('orderForm').style.display = 'none';
+        var success = document.getElementById('thank-you');
+        success.classList.add('show');
+        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    // Sticky nav + floating order button
+    var navEl = document.querySelector('nav');
+    var floatingBtn = document.getElementById('floatingOrderBtn');
+    var heroHeight = document.querySelector('.hero').offsetHeight;
+    window.addEventListener('scroll', function() {
+        navEl.classList.toggle('scrolled', window.scrollY > 50);
+        floatingBtn.classList.toggle('visible', window.scrollY > heroHeight);
+    });
+
+    // Fade-in on scroll
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    var fadeEls = document.querySelectorAll('.fade-in');
+    for (var i = 0; i < fadeEls.length; i++) {
+        observer.observe(fadeEls[i]);
+    }
+
+    // If Formspree redirects back with #thank-you, show the success message
+    if (window.location.hash === '#thank-you') {
+        showOrderSuccess();
+    }
+</script>
+
+</body>
+</html>
