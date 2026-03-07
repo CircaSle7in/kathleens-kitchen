@@ -27,6 +27,7 @@
     <!-- Inline SVG Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%23CF7A9B'/><text x='16' y='21' font-size='14' font-family='serif' font-weight='bold' fill='white' text-anchor='middle'>KK</text></svg>">
 
+    <link rel="preload" as="image" href="images/hero-bakery-spread.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Great+Vibes&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -48,7 +49,7 @@
             --green-dark: #5E8A5E;
             --green-light: #E5EDE5;
             --charcoal: #2D2D2D;
-            --taupe: #8B8578;
+            --taupe: #706B60;
             --border: #EADEE4;
         }
 
@@ -582,8 +583,6 @@
         .event-card.expanded .event-items,
         .event-card.expanded .event-progress,
         .event-card.expanded .event-order-by { display: block; }
-        .event-card.expanded .event-items { display: block; }
-        .event-card.expanded .event-progress { display: block; }
         .event-card.expanded .event-card-inline-order { display: block; }
         .event-card.expanded .event-desc {
             display: block;
@@ -1070,6 +1069,8 @@
         .footer-links li { margin-bottom: 0.6rem; }
         .footer-links a { font-size: 0.85rem; transition: color 0.3s; }
         .footer-links a:hover { color: var(--pink-light); }
+        .footer-subtle { margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.6; }
+        .footer-legal { margin-top: 0.8rem; font-size: 0.75rem; opacity: 0.5; }
 
         .footer-social { display: flex; gap: 1rem; margin-top: 1rem; }
         .footer-social a {
@@ -1116,6 +1117,7 @@
                 border-bottom: 1px solid var(--border);
             }
             .nav-toggle { display: block; }
+            .section { padding: 4rem 1.5rem; }
             .about-content { grid-template-columns: 1fr; gap: 2rem; }
             .about-image { aspect-ratio: 16/9; order: -1; }
             .events-grid { grid-template-columns: 1fr; }
@@ -1128,8 +1130,45 @@
             .showcase-filter { padding: 0.4rem 1rem; font-size: 0.65rem; }
             .event-card-inline-order .checkbox-group { grid-template-columns: 1fr; }
             .footer-content { grid-template-columns: 1fr; gap: 2rem; }
-            .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+            .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; padding-bottom: 4rem; }
             .hero-title { font-size: clamp(3rem, 12vw, 5rem); }
+        }
+
+        /* Skip to content */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 1rem;
+            z-index: 200;
+            padding: 0.8rem 1.5rem;
+            background: var(--pink);
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: top 0.2s;
+        }
+        .skip-link:focus { top: 1rem; }
+
+        /* Focus-visible styles */
+        :focus-visible {
+            outline: 2px solid var(--pink);
+            outline-offset: 2px;
+        }
+        input:focus-visible, textarea:focus-visible, select:focus-visible {
+            outline: none;
+            border-color: var(--pink);
+            box-shadow: 0 0 0 3px rgba(207,122,155,0.2);
+        }
+
+        /* Keyboard-accessible cards */
+        .event-card[tabindex],
+        .showcase-item[tabindex] {
+            outline: none;
+        }
+        .event-card[tabindex]:focus-visible,
+        .showcase-item[tabindex]:focus-visible {
+            outline: 2px solid var(--pink);
+            outline-offset: 2px;
         }
 
         /* Animations */
@@ -1225,6 +1264,7 @@
 <!-- ═══════════════════════════════════════════
      NAVIGATION
      ═══════════════════════════════════════════ -->
+<a href="#events" class="skip-link">Skip to content</a>
 <nav>
     <a href="#" class="nav-logo">Kathleen's Kitchen</a>
     <ul class="nav-links">
@@ -1935,11 +1975,11 @@
         <div>
             <div class="footer-heading">Get in Touch</div>
             <ul class="footer-links">
-                <li><a href="mailto:kathleens.kitchen.ut@gmail.com" style="color: inherit; text-decoration: none;">kathleens.kitchen.ut@gmail.com</a></li>
-                <li><a href="https://instagram.com/kathleens.kitchen.ut" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">@kathleens.kitchen.ut</a></li>
+                <li><a href="mailto:kathleens.kitchen.ut@gmail.com">kathleens.kitchen.ut@gmail.com</a></li>
+                <li><a href="https://instagram.com/kathleens.kitchen.ut" target="_blank" rel="noopener noreferrer">@kathleens.kitchen.ut</a></li>
                 <li>Sandy, Utah</li>
-                <li style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.6;">Local delivery available</li>
-                <li style="margin-top: 0.8rem; font-size: 0.75rem; opacity: 0.5;">Made in a Home Kitchen &bull; Not inspected by the Dept. of Agriculture</li>
+                <li class="footer-subtle">Local delivery available</li>
+                <li class="footer-legal">Made in a Home Kitchen &bull; Not inspected by the Dept. of Agriculture</li>
             </ul>
         </div>
     </div>
@@ -1953,6 +1993,41 @@
      SCRIPTS — No innerHTML, uses DOM methods only
      ═══════════════════════════════════════════ -->
 <script>
+    // Close mobile nav when a link is clicked
+    var navLinksEl = document.querySelector('.nav-links');
+    var navToggleEl = document.querySelector('.nav-toggle');
+    navLinksEl.addEventListener('click', function(e) {
+        if (e.target.tagName === 'A') {
+            navLinksEl.classList.remove('open');
+            navToggleEl.classList.remove('open');
+        }
+    });
+
+    // Add keyboard accessibility to event cards
+    var eventCards = document.querySelectorAll('.event-card:not(.is-sold-out)');
+    for (var i = 0; i < eventCards.length; i++) {
+        eventCards[i].setAttribute('tabindex', '0');
+        eventCards[i].setAttribute('role', 'button');
+        eventCards[i].setAttribute('aria-expanded', 'false');
+    }
+
+    // Add keyboard accessibility to showcase items
+    var showcaseItems = document.querySelectorAll('.showcase-item');
+    for (var i = 0; i < showcaseItems.length; i++) {
+        showcaseItems[i].setAttribute('tabindex', '0');
+        showcaseItems[i].setAttribute('role', 'button');
+        showcaseItems[i].setAttribute('aria-expanded', 'false');
+    }
+
+    // Keyboard handler for Enter/Space on cards
+    document.addEventListener('keydown', function(e) {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        var card = e.target.closest('.event-card, .showcase-item');
+        if (!card) return;
+        e.preventDefault();
+        card.click();
+    });
+
     // Event name mapping for the context bar
     var eventNames = {
         'stpatricks-2026': "St. Patrick's Day Bake",
@@ -2080,6 +2155,7 @@
         for (var i = 0; i < allCards.length; i++) {
             if (allCards[i] !== card) {
                 allCards[i].classList.remove('expanded');
+                allCards[i].setAttribute('aria-expanded', 'false');
                 resetInlineOrder(allCards[i]);
             }
         }
@@ -2088,6 +2164,7 @@
             var cardRect = card.getBoundingClientRect();
             var scrollBefore = window.scrollY;
             card.classList.remove('expanded');
+            card.setAttribute('aria-expanded', 'false');
             resetInlineOrder(card);
             // Scroll back so the collapsed card stays in view
             setTimeout(function() {
@@ -2095,6 +2172,7 @@
             }, 50);
         } else {
             card.classList.add('expanded');
+            card.setAttribute('aria-expanded', 'true');
             setTimeout(function() {
                 card.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 100);
@@ -2282,6 +2360,7 @@
         // Collapse all and reset order
         for (var i = 0; i < allItems.length; i++) {
             allItems[i].classList.remove('expanded');
+            allItems[i].setAttribute('aria-expanded', 'false');
             allItems[i].style.order = '';
         }
 
@@ -2289,6 +2368,7 @@
             // Move expanded card to top of grid via CSS order
             item.style.order = '-1';
             item.classList.add('expanded');
+            item.setAttribute('aria-expanded', 'true');
             setTimeout(function() {
                 item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }, 100);
