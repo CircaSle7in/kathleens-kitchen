@@ -706,6 +706,14 @@
         }
         .showcase-item.expanded .showcase-icon {
             height: 250px;
+            position: relative;
+        }
+        .showcase-item.expanded .showcase-icon.has-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, transparent 40%, rgba(253,248,250,0.6) 100%);
+            pointer-events: none;
         }
         .showcase-icon.bread { background-color: var(--pink-light); }
         .showcase-icon.sweet { background-color: var(--purple-light); }
@@ -1725,7 +1733,7 @@
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone Number (for text confirmation)</label>
-                        <input type="tel" id="phone" name="phone" required placeholder="(801) 808-9888">
+                        <input type="tel" id="phone" name="phone" required placeholder="(801) 555-1234">
                     </div>
                 </div>
 
@@ -1927,8 +1935,8 @@
         <div>
             <div class="footer-heading">Get in Touch</div>
             <ul class="footer-links">
-                <li>Text is best!</li>
-                <li><a href="tel:+18018089888">(801) 808-9888</a></li>
+                <li><a href="mailto:kathleens.kitchen.ut@gmail.com" style="color: inherit; text-decoration: none;">kathleens.kitchen.ut@gmail.com</a></li>
+                <li><a href="https://instagram.com/kathleens.kitchen.ut" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">@kathleens.kitchen.ut</a></li>
                 <li>Sandy, Utah</li>
                 <li style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.6;">Local delivery available</li>
                 <li style="margin-top: 0.8rem; font-size: 0.75rem; opacity: 0.5;">Made in a Home Kitchen &bull; Not inspected by the Dept. of Agriculture</li>
@@ -2077,13 +2085,18 @@
         }
 
         if (wasExpanded) {
+            var cardRect = card.getBoundingClientRect();
+            var scrollBefore = window.scrollY;
             card.classList.remove('expanded');
             resetInlineOrder(card);
+            // Scroll back so the collapsed card stays in view
+            setTimeout(function() {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 50);
         } else {
             card.classList.add('expanded');
-            // Scroll expanded card into view smoothly
             setTimeout(function() {
-                card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                card.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 100);
         }
     });
@@ -2249,26 +2262,32 @@
                 }
             }
             // Collapse any expanded showcase item when switching filters
-            var expanded = document.querySelector('.showcase-item.expanded');
-            if (expanded) expanded.classList.remove('expanded');
+            var allShowcaseItems = document.querySelectorAll('.showcase-item');
+            for (var m = 0; m < allShowcaseItems.length; m++) {
+                allShowcaseItems[m].classList.remove('expanded');
+                allShowcaseItems[m].style.order = '';
+            }
         });
     }
 
     // --- Showcase card accordion (event delegation) ---
-    document.querySelector('.showcase-grid').addEventListener('click', function(e) {
+    var showcaseGrid = document.querySelector('.showcase-grid');
+    showcaseGrid.addEventListener('click', function(e) {
         var item = e.target.closest('.showcase-item');
         if (!item) return;
 
         var allItems = document.querySelectorAll('.showcase-item');
         var wasExpanded = item.classList.contains('expanded');
 
-        // Collapse all
+        // Collapse all and reset order
         for (var i = 0; i < allItems.length; i++) {
             allItems[i].classList.remove('expanded');
+            allItems[i].style.order = '';
         }
 
-        // Toggle clicked
         if (!wasExpanded) {
+            // Move expanded card to top of grid via CSS order
+            item.style.order = '-1';
             item.classList.add('expanded');
             setTimeout(function() {
                 item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
