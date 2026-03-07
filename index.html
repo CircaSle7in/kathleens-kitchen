@@ -743,6 +743,73 @@
         .checkbox-item .item-name { font-size: 0.9rem; font-weight: 400; }
         .checkbox-item .item-price { font-size: 0.8rem; color: var(--taupe); margin-left: auto; }
 
+        .qty-wrapper {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            margin-left: 12px;
+        }
+        .checkbox-item input[type="checkbox"]:checked ~ .qty-wrapper { display: flex; }
+        .qty-wrapper label { font-size: 0.75rem; color: var(--taupe); }
+        .qty-wrapper select {
+            padding: 4px 8px;
+            border: 1.5px solid var(--border);
+            border-radius: 6px;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.85rem;
+            background: white;
+            cursor: pointer;
+        }
+        .qty-wrapper select:focus {
+            outline: none;
+            border-color: var(--pink);
+        }
+
+        .order-total {
+            text-align: right;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding: 1rem 0;
+            border-top: 1px solid var(--border);
+            margin-top: 1rem;
+            display: none;
+        }
+        .order-total span { color: var(--pink-dark); font-weight: 600; }
+
+        .btn-checkout {
+            background: linear-gradient(135deg, var(--pink), var(--purple));
+            color: white;
+            border: none;
+            font-size: 0.8rem;
+        }
+        .btn-checkout:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(207,122,155,0.4);
+        }
+        .btn-checkout:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .payment-badges {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        .payment-badge {
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            padding: 6px 12px;
+            border-radius: 6px;
+            background: var(--purple-light);
+            color: var(--purple-dark);
+        }
+
         .form-submit { text-align: center; margin-top: 2rem; }
 
         .form-note {
@@ -1288,15 +1355,7 @@
                 </div>
             </div>
 
-            <!--
-                FORMSPREE SETUP:
-                Kathleen — sign up for a free account at https://formspree.io
-                then create a new form. Replace "xformid" below with the real
-                form ID from your Formspree dashboard (it looks like "xAbCdEfG").
-            -->
-            <form id="theForm" action="https://formspree.io/f/xformid" method="POST">
-                <input type="hidden" name="_subject" value="New Order from Kathleen's Kitchen">
-                <input type="hidden" name="_next" value="#thank-you">
+            <form id="theForm">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="name">Your Name</label>
@@ -1327,26 +1386,31 @@
                                 <input type="checkbox" name="items" value="Grandma's Rolls">
                                 <span class="item-name">Grandma's Rolls</span>
                                 <span class="item-price">$22/doz</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select name="qty-Grandma's Rolls" class="qty-select" data-price="22"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
                             </label>
                             <label class="checkbox-item">
                                 <input type="checkbox" name="items" value="Cinnamon Rolls">
                                 <span class="item-name">Cinnamon Rolls</span>
                                 <span class="item-price">$48/doz</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select name="qty-Cinnamon Rolls" class="qty-select" data-price="48"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
                             </label>
                             <label class="checkbox-item">
                                 <input type="checkbox" name="items" value="Dinner Rolls">
                                 <span class="item-name">Dinner Rolls</span>
                                 <span class="item-price">$20/doz</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select name="qty-Dinner Rolls" class="qty-select" data-price="20"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
                             </label>
                             <label class="checkbox-item">
                                 <input type="checkbox" name="items" value="Lemon Bars">
                                 <span class="item-name">Lemon Bars</span>
                                 <span class="item-price">$42/doz</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select name="qty-Lemon Bars" class="qty-select" data-price="42"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
                             </label>
                             <label class="checkbox-item">
                                 <input type="checkbox" name="items" value="Caramel Rice Krispie Treats">
                                 <span class="item-name">Caramel Rice Krispie Treats</span>
                                 <span class="item-price">$36/doz</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select name="qty-Caramel Rice Krispie Treats" class="qty-select" data-price="36"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
                             </label>
                         </div>
                     </div>
@@ -1360,26 +1424,31 @@
                                 <input type="checkbox" name="items" value="Grandma's Rolls">
                                 <span class="item-name">Grandma's Rolls</span>
                                 <span class="item-price">$22/doz</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select name="qty-Grandma's Rolls" class="qty-select" data-price="22"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
                             </label>
                             <label class="checkbox-item">
                                 <input type="checkbox" name="items" value="Cinnamon Rolls">
                                 <span class="item-name">Cinnamon Rolls</span>
                                 <span class="item-price">$48/doz</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select name="qty-Cinnamon Rolls" class="qty-select" data-price="48"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
                             </label>
                             <label class="checkbox-item">
                                 <input type="checkbox" name="items" value="Crescent Rolls">
                                 <span class="item-name">Crescent Rolls</span>
                                 <span class="item-price">$24/doz</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select name="qty-Crescent Rolls" class="qty-select" data-price="24"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
                             </label>
                             <label class="checkbox-item">
                                 <input type="checkbox" name="items" value="Cookie Dough Brownies">
                                 <span class="item-name">Cookie Dough Brownies</span>
                                 <span class="item-price">$48/doz</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select name="qty-Cookie Dough Brownies" class="qty-select" data-price="48"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
                             </label>
                             <label class="checkbox-item">
                                 <input type="checkbox" name="items" value="Lemon Bars">
                                 <span class="item-name">Lemon Bars</span>
                                 <span class="item-price">$42/doz</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select name="qty-Lemon Bars" class="qty-select" data-price="42"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
                             </label>
                         </div>
                     </div>
@@ -1393,34 +1462,34 @@
                                 <input type="checkbox" name="items" value="Grandma's Rolls">
                                 <span class="item-name">Grandma's Rolls</span>
                                 <span class="item-price">$22/doz</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select name="qty-Grandma's Rolls" class="qty-select" data-price="22"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
                             </label>
                             <label class="checkbox-item">
                                 <input type="checkbox" name="items" value="Cheese Rolls">
                                 <span class="item-name">Cheese Rolls</span>
                                 <span class="item-price">$28/doz</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select name="qty-Cheese Rolls" class="qty-select" data-price="28"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
                             </label>
                             <label class="checkbox-item">
                                 <input type="checkbox" name="items" value="Cookie Dough Brownies">
                                 <span class="item-name">Cookie Dough Brownies</span>
                                 <span class="item-price">$48/doz</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select name="qty-Cookie Dough Brownies" class="qty-select" data-price="48"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
                             </label>
                             <label class="checkbox-item">
                                 <input type="checkbox" name="items" value="Peanut Butter Bars">
                                 <span class="item-name">Peanut Butter Bars</span>
                                 <span class="item-price">$42/doz</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select name="qty-Peanut Butter Bars" class="qty-select" data-price="42"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
                             </label>
                             <label class="checkbox-item">
                                 <input type="checkbox" name="items" value="Caramel Rice Krispie Treats">
                                 <span class="item-name">Caramel Rice Krispie Treats</span>
                                 <span class="item-price">$36/doz</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select name="qty-Caramel Rice Krispie Treats" class="qty-select" data-price="36"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
                             </label>
                         </div>
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="quantity">Quantity Notes</label>
-                    <input type="text" id="quantity" name="quantity" placeholder="e.g., 2 dozen cinnamon rolls, 3 dozen dinner rolls">
                 </div>
 
                 <div class="form-group">
@@ -1428,11 +1497,21 @@
                     <textarea id="notes" name="notes" placeholder="Allergies, delivery preferences, special occasions..."></textarea>
                 </div>
 
+                <div class="order-total" id="orderTotal">
+                    Order Total: <span id="orderTotalAmount">$0</span>
+                </div>
+
                 <div class="form-submit">
-                    <button type="submit" class="btn btn-pink">Send Order Request</button>
+                    <button type="submit" class="btn btn-checkout" id="checkoutBtn" disabled>Checkout &mdash; Secure Payment</button>
+                </div>
+                <div class="payment-badges">
+                    <span class="payment-badge">Apple Pay</span>
+                    <span class="payment-badge">Google Pay</span>
+                    <span class="payment-badge">Venmo</span>
+                    <span class="payment-badge">Card</span>
                 </div>
                 <p class="form-note">
-                    Kathleen will text you within a few hours to confirm your order and arrange pickup or delivery.
+                    You'll be redirected to a secure Square checkout to complete payment. Kathleen will text you to confirm pickup details.
                 </p>
             </form>
         </div>
@@ -1537,43 +1616,96 @@
     // Event select change handler
     document.getElementById('eventSelect').addEventListener('change', updateFormItems);
 
-    // Form submission — POST to Formspree, fallback to local success message
+    // --- Live order total calculation ---
+    function updateOrderTotal() {
+        var activeGroup = document.querySelector('.event-items-group.active');
+        if (!activeGroup) {
+            document.getElementById('orderTotal').style.display = 'none';
+            document.getElementById('checkoutBtn').disabled = true;
+            return;
+        }
+        var checked = activeGroup.querySelectorAll('input[type="checkbox"]:checked');
+        var total = 0;
+        for (var i = 0; i < checked.length; i++) {
+            var row = checked[i].closest('.checkbox-item');
+            var select = row.querySelector('.qty-select');
+            var price = parseFloat(select.getAttribute('data-price')) || 0;
+            var qty = parseInt(select.value) || 1;
+            total += price * qty;
+        }
+        var totalEl = document.getElementById('orderTotal');
+        var btnEl = document.getElementById('checkoutBtn');
+        if (total > 0) {
+            totalEl.style.display = 'block';
+            document.getElementById('orderTotalAmount').textContent = '$' + total;
+            btnEl.disabled = false;
+            btnEl.textContent = 'Checkout — $' + total;
+        } else {
+            totalEl.style.display = 'none';
+            btnEl.disabled = true;
+            btnEl.textContent = 'Checkout — Secure Payment';
+        }
+    }
+
+    // Attach listeners to all checkboxes and qty selectors
+    document.addEventListener('change', function(e) {
+        if (e.target.matches('.checkbox-item input[type="checkbox"]') || e.target.matches('.qty-select')) {
+            updateOrderTotal();
+        }
+    });
+
+    // --- Form submission → Square Checkout ---
     document.getElementById('theForm').addEventListener('submit', function(e) {
         e.preventDefault();
 
         var form = e.target;
-        var data = new FormData(form);
+        var btn = document.getElementById('checkoutBtn');
+        var activeGroup = document.querySelector('.event-items-group.active');
 
-        // Log order details for debugging
-        var order = {
-            name: data.get('name'),
-            phone: data.get('phone'),
-            event: data.get('event'),
-            items: data.getAll('items'),
-            quantity: data.get('quantity'),
-            notes: data.get('notes')
-        };
-        console.log('Order submitted:', order);
+        if (!activeGroup) return;
 
-        // Submit to Formspree via fetch; show success message on completion
-        fetch(form.action, {
+        var checked = activeGroup.querySelectorAll('input[type="checkbox"]:checked');
+        if (checked.length === 0) return;
+
+        var items = [];
+        var quantities = [];
+        for (var i = 0; i < checked.length; i++) {
+            var row = checked[i].closest('.checkbox-item');
+            items.push(checked[i].value);
+            quantities.push(row.querySelector('.qty-select').value);
+        }
+
+        btn.disabled = true;
+        btn.textContent = 'Redirecting to payment...';
+
+        fetch('/api/create-checkout', {
             method: 'POST',
-            body: data,
-            headers: { 'Accept': 'application/json' }
-        }).then(function(response) {
-            if (response.ok) {
-                showOrderSuccess();
-                form.reset();
-                updateFormItems();
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name: form.querySelector('#name').value,
+                phone: form.querySelector('#phone').value,
+                event: form.querySelector('#eventSelect').value,
+                items: items,
+                quantities: quantities,
+                notes: form.querySelector('#notes').value
+            })
+        })
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+            if (data.checkoutUrl) {
+                window.location.href = data.checkoutUrl;
             } else {
-                console.error('Formspree error:', response.status);
-                showOrderSuccess();
+                btn.disabled = false;
+                updateOrderTotal();
+                alert('Something went wrong creating checkout. Please try again or text Kathleen directly.');
+                console.error('Checkout error:', data);
             }
-        }).catch(function(err) {
-            // Network error — still show success as a fallback so the
-            // user isn't stuck. Kathleen can check Formspree dashboard.
-            console.error('Network error, showing fallback success:', err);
-            showOrderSuccess();
+        })
+        .catch(function(err) {
+            btn.disabled = false;
+            updateOrderTotal();
+            alert('Connection error. Please try again or text Kathleen directly.');
+            console.error('Network error:', err);
         });
     });
 

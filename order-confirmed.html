@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed — Kathleen's Kitchen</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%23CF7A9B'/><text x='16' y='21' font-size='14' font-family='serif' font-weight='bold' fill='white' text-anchor='middle'>KK</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Great+Vibes&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FDF8FA;
+            --pink: #CF7A9B;
+            --pink-dark: #B86485;
+            --pink-light: #F5E0EA;
+            --purple: #A893C2;
+            --green: #7BA37B;
+            --green-light: #E5EDE5;
+            --charcoal: #2D2D2D;
+            --taupe: #8B8578;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+        .success-icon {
+            width: 80px; height: 80px;
+            background: var(--green-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+        }
+        .success-icon svg {
+            width: 40px; height: 40px;
+            stroke: var(--green);
+            fill: none;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: var(--pink-dark);
+            margin-bottom: 0.5rem;
+        }
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+        }
+        p {
+            color: var(--taupe);
+            max-width: 500px;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        .next-steps {
+            background: white;
+            border: 1px solid var(--pink-light);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            max-width: 500px;
+            text-align: left;
+        }
+        .next-steps h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: var(--pink-dark);
+            margin-bottom: 1rem;
+        }
+        .next-steps ol {
+            padding-left: 1.5rem;
+            color: var(--taupe);
+            font-size: 0.9rem;
+        }
+        .next-steps li { margin-bottom: 0.5rem; }
+        .btn {
+            display: inline-block;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 1rem 2.5rem;
+            border: 1px solid var(--pink);
+            color: var(--pink);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+        .btn:hover {
+            background: var(--pink);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-icon">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    </div>
+    <h1>Thank You!</h1>
+    <h2>Your order has been placed</h2>
+    <p>Payment received! You'll get a receipt from Square shortly. Kathleen will text you to confirm pickup details.</p>
+    <div class="next-steps">
+        <h3>What happens next</h3>
+        <ol>
+            <li>You'll receive a <strong>payment receipt</strong> via email/text from Square</li>
+            <li>Kathleen will <strong>text you</strong> within a few hours to confirm your order and arrange pickup or delivery</li>
+            <li>Pick up your fresh-baked goodies on the event date in <strong>Pepperwood</strong></li>
+        </ol>
+    </div>
+    <a href="/" class="btn">Back to Kathleen's Kitchen</a>
+</body>
+</html>
