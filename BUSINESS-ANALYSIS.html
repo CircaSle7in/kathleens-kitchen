@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kathleen's Kitchen — Business Analysis</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --pink: #CF7A9B;
+    --pink-light: #e8b5c8;
+    --pink-dark: #a85f7a;
+    --purple: #A893C2;
+    --purple-light: #c9bfdb;
+    --purple-dark: #7d6a9e;
+    --green: #7BA37B;
+    --green-light: #a8c5a8;
+    --green-dark: #5a7e5a;
+    --cream: #FDF8FA;
+    --cream-dark: #f5eef1;
+    --text: #2d2a33;
+    --text-light: #5c566a;
+    --text-muted: #8a8498;
+    --white: #ffffff;
+    --border: #e8dfe4;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---- HEADER ---- */
+  .header {
+    background: linear-gradient(135deg, var(--pink) 0%, var(--purple) 50%, var(--green) 100%);
+    color: var(--white);
+    padding: 60px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+  }
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    position: relative;
+    letter-spacing: 0.02em;
+  }
+  .header .subtitle {
+    font-size: 1.15rem;
+    font-weight: 300;
+    opacity: 0.92;
+    position: relative;
+    margin-bottom: 4px;
+  }
+  .header .date {
+    font-size: 0.9rem;
+    font-weight: 400;
+    opacity: 0.75;
+    position: relative;
+    margin-top: 12px;
+  }
+  .header .tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    opacity: 0.88;
+    position: relative;
+    margin-top: 6px;
+  }
+
+  /* ---- CONTAINER ---- */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---- TABLE OF CONTENTS ---- */
+  .toc {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px 40px;
+    margin: 40px auto;
+    max-width: 700px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .toc h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--purple-dark);
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .toc ol {
+    list-style: none;
+    counter-reset: toc-counter;
+    padding: 0;
+  }
+  .toc ol li {
+    counter-increment: toc-counter;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--cream-dark);
+    font-size: 1rem;
+  }
+  .toc ol li:last-child { border-bottom: none; }
+  .toc ol li::before {
+    content: counter(toc-counter);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--pink);
+    color: var(--white);
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-right: 14px;
+  }
+  .toc ol li a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .toc ol li a:hover { color: var(--pink); }
+
+  /* ---- SECTIONS ---- */
+  .section {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 40px;
+    margin: 32px 0;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    page-break-inside: avoid;
+  }
+  .section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.85rem;
+    color: var(--pink-dark);
+    margin-bottom: 8px;
+    padding-bottom: 16px;
+    border-bottom: 3px solid var(--pink-light);
+  }
+  .section h2 .section-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--pink);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-right: 14px;
+    vertical-align: middle;
+  }
+  .section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--purple-dark);
+    margin: 28px 0 14px;
+  }
+  .section h4 {
+    font-size: 1.05rem;
+    color: var(--green-dark);
+    margin: 20px 0 10px;
+    font-weight: 600;
+  }
+  .section p {
+    margin: 10px 0;
+    color: var(--text-light);
+    line-height: 1.75;
+  }
+
+  /* ---- TABLES ---- */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 24px;
+    font-size: 0.92rem;
+  }
+  thead th {
+    background: linear-gradient(135deg, var(--pink) 0%, var(--purple) 100%);
+    color: var(--white);
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  thead th:first-child { border-radius: 8px 0 0 0; }
+  thead th:last-child { border-radius: 0 8px 0 0; }
+  tbody td {
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--cream-dark);
+    vertical-align: middle;
+  }
+  tbody tr:nth-child(even) { background: var(--cream); }
+  tbody tr:hover { background: #f3eaf0; }
+  tbody tr:last-child td:first-child { border-radius: 0 0 0 8px; }
+  tbody tr:last-child td:last-child { border-radius: 0 0 8px 0; }
+
+  .price-old {
+    color: var(--text-muted);
+    text-decoration: line-through;
+  }
+  .price-new {
+    color: var(--green-dark);
+    font-weight: 700;
+    font-size: 1.05em;
+  }
+  .price-arrow {
+    color: var(--pink);
+    font-weight: 700;
+    margin: 0 4px;
+  }
+  .increase-pct {
+    background: var(--green-light);
+    color: var(--green-dark);
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* ---- BAR CHARTS ---- */
+  .chart-container {
+    margin: 24px 0;
+  }
+  .bar-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .bar-label {
+    width: 180px;
+    text-align: right;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-light);
+    flex-shrink: 0;
+  }
+  .bar-track {
+    flex: 1;
+    height: 28px;
+    background: var(--cream-dark);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--white);
+    transition: width 0.6s ease;
+    min-width: 50px;
+  }
+  .bar-fill.pink { background: linear-gradient(90deg, var(--pink), var(--pink-light)); }
+  .bar-fill.purple { background: linear-gradient(90deg, var(--purple), var(--purple-light)); }
+  .bar-fill.green { background: linear-gradient(90deg, var(--green), var(--green-light)); }
+
+  /* ---- STAT CARDS ---- */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .stat-card {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+  .stat-card .stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+  }
+  .stat-card .stat-label {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 4px;
+  }
+  .stat-card.pink .stat-value { color: var(--pink); }
+  .stat-card.purple .stat-value { color: var(--purple-dark); }
+  .stat-card.green .stat-value { color: var(--green-dark); }
+
+  /* ---- SCENARIO CARDS ---- */
+  .scenario-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin: 24px 0;
+  }
+  .scenario-card {
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .scenario-card .scenario-header {
+    padding: 16px 20px;
+    color: var(--white);
+    font-weight: 700;
+    font-size: 1.1rem;
+    font-family: 'Playfair Display', serif;
+  }
+  .scenario-card.a .scenario-header { background: var(--purple); }
+  .scenario-card.b .scenario-header { background: var(--pink); }
+  .scenario-card.c .scenario-header { background: var(--green); }
+  .scenario-card .scenario-body {
+    padding: 20px;
+  }
+  .scenario-card .scenario-body .line-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--cream-dark);
+    font-size: 0.9rem;
+  }
+  .scenario-card .scenario-body .line-item:last-child { border-bottom: none; }
+  .scenario-card .scenario-body .line-item .li-label { color: var(--text-light); }
+  .scenario-card .scenario-body .line-item .li-value { font-weight: 700; color: var(--text); }
+  .scenario-card .scenario-body .line-item.highlight {
+    background: var(--cream);
+    margin: 4px -20px;
+    padding: 10px 20px;
+    border-radius: 6px;
+    border-bottom: none;
+  }
+  .scenario-card .scenario-body .line-item.highlight .li-value { color: var(--green-dark); font-size: 1.1rem; }
+
+  /* ---- RANKING TABLE ACCENTS ---- */
+  .rank-1 { background: linear-gradient(90deg, #fef3c7, var(--white)) !important; }
+  .rank-2 { background: linear-gradient(90deg, #f3f4f6, var(--white)) !important; }
+  .rank-3 { background: linear-gradient(90deg, #fde8d8, var(--white)) !important; }
+  .rank-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: var(--white);
+  }
+  .rank-badge.gold { background: #d4a017; }
+  .rank-badge.silver { background: #9ca3af; }
+  .rank-badge.bronze { background: #c97a3a; }
+
+  /* ---- CALLOUT BOXES ---- */
+  .callout {
+    border-left: 4px solid var(--pink);
+    background: var(--cream);
+    padding: 18px 24px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+  }
+  .callout.green { border-left-color: var(--green); }
+  .callout.purple { border-left-color: var(--purple); }
+  .callout strong { color: var(--text); }
+  .callout p { margin: 4px 0; color: var(--text-light); font-size: 0.92rem; }
+
+  /* ---- INSIGHTS LIST ---- */
+  .insight-list {
+    list-style: none;
+    padding: 0;
+  }
+  .insight-list li {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--cream-dark);
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .insight-list li:last-child { border-bottom: none; }
+  .insight-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1rem;
+    margin-top: 2px;
+  }
+  .insight-icon.pink { background: var(--pink-light); color: var(--pink-dark); }
+  .insight-icon.purple { background: var(--purple-light); color: var(--purple-dark); }
+  .insight-icon.green { background: var(--green-light); color: var(--green-dark); }
+
+  /* ---- COMPETITOR TABLE ACCENTS ---- */
+  .competitor-name {
+    font-weight: 600;
+    color: var(--text);
+  }
+  .competitor-location {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  /* ---- FOOTER ---- */
+  .footer {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border);
+    margin-top: 48px;
+  }
+  .footer .brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--pink);
+    margin-bottom: 6px;
+  }
+
+  /* ---- PRINT STYLES ---- */
+  @media print {
+    body { background: white; }
+    .header { padding: 30px 20px; }
+    .header h1 { font-size: 2.2rem; }
+    .section { box-shadow: none; border: 1px solid #ddd; padding: 24px; margin: 16px 0; page-break-inside: avoid; }
+    .toc { page-break-after: always; }
+    .scenario-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    .header { padding: 36px 20px; }
+    .header h1 { font-size: 2rem; }
+    .section { padding: 24px 20px; }
+    .bar-label { width: 100px; font-size: 0.75rem; }
+    .scenario-grid { grid-template-columns: 1fr; }
+    table { font-size: 0.82rem; }
+    thead th, tbody td { padding: 8px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================ -->
+<!-- HEADER                                        -->
+<!-- ============================================ -->
+<header class="header">
+  <h1>Kathleen's Kitchen</h1>
+  <div class="subtitle">Comprehensive Business Analysis</div>
+  <div class="tagline">Premium Home Bakery &mdash; Pepperwood, Utah</div>
+  <div class="date">Prepared March 6, 2026 &nbsp;|&nbsp; Salt Lake County Market</div>
+</header>
+
+<div class="container">
+
+<!-- ============================================ -->
+<!-- TABLE OF CONTENTS                             -->
+<!-- ============================================ -->
+<nav class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#pricing">Market Pricing Analysis</a></li>
+    <li><a href="#costs">Estimated Cost of Materials per Recipe</a></li>
+    <li><a href="#profit">Profit per Dozen (at Recommended Pricing)</a></li>
+    <li><a href="#scaling">Profit Scaling &amp; Forecasting</a></li>
+    <li><a href="#ranking">Most Valuable Items Analysis</a></li>
+    <li><a href="#insights">Key Insights &amp; Recommendations</a></li>
+  </ol>
+</nav>
+
+<!-- ============================================ -->
+<!-- SECTION 1: MARKET PRICING ANALYSIS            -->
+<!-- ============================================ -->
+<section class="section" id="pricing">
+  <h2><span class="section-number">1</span> Market Pricing Analysis</h2>
+
+  <p>Kathleen's Kitchen is currently pricing well below the prevailing market rates for premium home-baked goods in the Salt Lake County area. The table below shows current prices alongside recommended pricing that reflects the quality, care, and premium ingredients that define the brand &mdash; while still remaining competitive against local artisan bakeries.</p>
+
+  <h3>Current vs. Recommended Pricing</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Current Price</th>
+        <th></th>
+        <th>Recommended Price</th>
+        <th>Increase</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Grandma's Rolls</strong> <br><small style="color:var(--text-muted)">per dozen</small></td>
+        <td class="price-old">$10.00</td>
+        <td class="price-arrow">&rarr;</td>
+        <td class="price-new">$22.00</td>
+        <td><span class="increase-pct">+120%</span></td>
+      </tr>
+      <tr>
+        <td><strong>Cinnamon Rolls</strong> <br><small style="color:var(--text-muted)">per dozen</small></td>
+        <td class="price-old">$18.00</td>
+        <td class="price-arrow">&rarr;</td>
+        <td class="price-new">$48.00</td>
+        <td><span class="increase-pct">+167%</span></td>
+      </tr>
+      <tr>
+        <td><strong>Crescent Rolls</strong> <br><small style="color:var(--text-muted)">per dozen</small></td>
+        <td class="price-old">$12.00</td>
+        <td class="price-arrow">&rarr;</td>
+        <td class="price-new">$24.00</td>
+        <td><span class="increase-pct">+100%</span></td>
+      </tr>
+      <tr>
+        <td><strong>Cheese Rolls</strong> <br><small style="color:var(--text-muted)">per dozen</small></td>
+        <td class="price-old">$15.00</td>
+        <td class="price-arrow">&rarr;</td>
+        <td class="price-new">$28.00</td>
+        <td><span class="increase-pct">+87%</span></td>
+      </tr>
+      <tr>
+        <td><strong>Dinner Rolls</strong> <br><small style="color:var(--text-muted)">per dozen</small></td>
+        <td class="price-old">$10.00</td>
+        <td class="price-arrow">&rarr;</td>
+        <td class="price-new">$20.00</td>
+        <td><span class="increase-pct">+100%</span></td>
+      </tr>
+      <tr>
+        <td><strong>Cookie Dough Brownies</strong> <br><small style="color:var(--text-muted)">per dozen</small></td>
+        <td class="price-old">$24.00</td>
+        <td class="price-arrow">&rarr;</td>
+        <td class="price-new">$48.00</td>
+        <td><span class="increase-pct">+100%</span></td>
+      </tr>
+      <tr>
+        <td><strong>Peanut Butter Bars</strong> <br><small style="color:var(--text-muted)">per dozen</small></td>
+        <td class="price-old">$20.00</td>
+        <td class="price-arrow">&rarr;</td>
+        <td class="price-new">$42.00</td>
+        <td><span class="increase-pct">+110%</span></td>
+      </tr>
+      <tr>
+        <td><strong>Lemon Bars</strong> <br><small style="color:var(--text-muted)">per dozen</small></td>
+        <td class="price-old">$20.00</td>
+        <td class="price-arrow">&rarr;</td>
+        <td class="price-new">$42.00</td>
+        <td><span class="increase-pct">+110%</span></td>
+      </tr>
+      <tr>
+        <td><strong>Caramel Rice Krispie Treats</strong> <br><small style="color:var(--text-muted)">per dozen</small></td>
+        <td class="price-old">$18.00</td>
+        <td class="price-arrow">&rarr;</td>
+        <td class="price-new">$36.00</td>
+        <td><span class="increase-pct">+100%</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <strong>Why these increases are justified:</strong>
+    <p>Even at the recommended prices, Kathleen's Kitchen remains at or below competitors in the Salt Lake County market. The current pricing leaves significant revenue on the table and undervalues the quality of the product, the premium ingredients used, and the labor invested.</p>
+  </div>
+
+  <h3>Local Competitor Pricing</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Competitor</th>
+        <th>Location</th>
+        <th>Product</th>
+        <th>Price Point</th>
+        <th>Per Dozen Equiv.</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <span class="competitor-name">The Dough Lady</span>
+        </td>
+        <td><span class="competitor-location">Millcreek</span></td>
+        <td>Cinnamon Rolls</td>
+        <td>$4.50 &ndash; $5.00 each</td>
+        <td><strong>$54 &ndash; $60</strong></td>
+      </tr>
+      <tr>
+        <td>
+          <span class="competitor-name">Forty Three Bakery</span>
+        </td>
+        <td><span class="competitor-location">Salt Lake City</span></td>
+        <td>Dozen Pastries</td>
+        <td>Box of 12</td>
+        <td><strong>$50.00</strong></td>
+      </tr>
+      <tr>
+        <td>
+          <span class="competitor-name">Tulie Bakery</span>
+        </td>
+        <td><span class="competitor-location">Salt Lake City</span></td>
+        <td>Individual Pastries</td>
+        <td>$5 &ndash; $7 each</td>
+        <td><strong>$60 &ndash; $84</strong></td>
+      </tr>
+      <tr>
+        <td>
+          <span class="competitor-name">Village Baker</span>
+        </td>
+        <td><span class="competitor-location">Sandy</span></td>
+        <td>Cinnamon Rolls</td>
+        <td>~$2.65 each</td>
+        <td><strong>~$32.00</strong></td>
+      </tr>
+      <tr>
+        <td>
+          <span class="competitor-name">Village Baker</span>
+        </td>
+        <td><span class="competitor-location">Sandy</span></td>
+        <td>Brownies</td>
+        <td>~$2.60 each</td>
+        <td><strong>~$31.00</strong></td>
+      </tr>
+      <tr>
+        <td>
+          <span class="competitor-name">Kneaders</span>
+        </td>
+        <td><span class="competitor-location">Chain / Utah</span></td>
+        <td>Cinnamon Rolls</td>
+        <td>~$3.00 each</td>
+        <td><strong>~$36.00</strong></td>
+      </tr>
+      <tr>
+        <td>
+          <span class="competitor-name">Kneaders</span>
+        </td>
+        <td><span class="competitor-location">Chain / Utah</span></td>
+        <td>Brownie Bars</td>
+        <td>$17.99/doz</td>
+        <td><strong>$17.99</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Visual: Cinnamon Roll Price Comparison (per dozen)</h3>
+  <div class="chart-container">
+    <div class="bar-chart">
+      <div class="bar-row">
+        <div class="bar-label">Kathleen's (Current)</div>
+        <div class="bar-track">
+          <div class="bar-fill pink" style="width: 21%;">$18</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Kneaders</div>
+        <div class="bar-track">
+          <div class="bar-fill purple" style="width: 43%;">$36</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label" style="font-weight:700; color:var(--green-dark);">Kathleen's (New)</div>
+        <div class="bar-track">
+          <div class="bar-fill green" style="width: 57%;">$48</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Forty Three Bakery</div>
+        <div class="bar-track">
+          <div class="bar-fill purple" style="width: 60%;">$50</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">The Dough Lady</div>
+        <div class="bar-track">
+          <div class="bar-fill purple" style="width: 67%;">$54&ndash;60</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Tulie Bakery</div>
+        <div class="bar-track">
+          <div class="bar-fill pink" style="width: 86%;">$60&ndash;84</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout green">
+    <strong>Takeaway:</strong>
+    <p>At the recommended $48/dozen, Kathleen's cinnamon rolls are still 11&ndash;43% below premium local competitors. There is room for further increases as the brand matures, especially for holiday and special-occasion orders.</p>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 2: COST OF MATERIALS                  -->
+<!-- ============================================ -->
+<section class="section" id="costs">
+  <h2><span class="section-number">2</span> Estimated Cost of Materials per Recipe</h2>
+
+  <p>All cost estimates assume bulk purchasing through Costco or equivalent wholesale sources in the Salt Lake County area. Prices are based on current 2025&ndash;2026 market data. Packaging assumes quality windowed bakery boxes, labels, and tissue paper at approximately $1.00&ndash;$1.50 per dozen order.</p>
+
+  <h3>Bulk Ingredient Reference Prices (Costco / Wholesale, Utah 2026)</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Ingredient</th>
+        <th>Package</th>
+        <th>Price</th>
+        <th>Unit Cost</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>All-Purpose Flour</td><td>25 lb bag</td><td>$8.79</td><td>$0.35/lb</td></tr>
+      <tr><td>Granulated Sugar</td><td>25 lb bag</td><td>$15.99</td><td>$0.64/lb</td></tr>
+      <tr><td>Brown Sugar</td><td>7 lb bag</td><td>$6.49</td><td>$0.93/lb</td></tr>
+      <tr><td>Butter (Kirkland)</td><td>4 lb pack</td><td>$13.99</td><td>$3.50/lb</td></tr>
+      <tr><td>Eggs (Cage Free)</td><td>5 dozen</td><td>$11.00</td><td>$0.18/egg</td></tr>
+      <tr><td>Active Dry Yeast</td><td>2 lb (SAF)</td><td>$7.49</td><td>$0.10/tbsp</td></tr>
+      <tr><td>Cream Cheese</td><td>4 x 8 oz (Kirkland)</td><td>$8.99</td><td>$2.25/8oz block</td></tr>
+      <tr><td>Chocolate Chips</td><td>4.5 lb (Kirkland)</td><td>$10.99</td><td>$2.44/lb</td></tr>
+      <tr><td>Peanut Butter</td><td>2 x 40 oz (Kirkland)</td><td>$11.49</td><td>$2.30/lb</td></tr>
+      <tr><td>Powdered Sugar</td><td>7 lb bag</td><td>$5.99</td><td>$0.86/lb</td></tr>
+      <tr><td>Cinnamon (ground)</td><td>10.7 oz</td><td>$5.49</td><td>$0.51/oz</td></tr>
+      <tr><td>Vanilla Extract</td><td>16 oz</td><td>$9.99</td><td>$0.62/oz</td></tr>
+      <tr><td>Lemons</td><td>5 lb bag</td><td>$5.99</td><td>$1.20/lb</td></tr>
+      <tr><td>Marshmallows</td><td>3 lb bag</td><td>$4.99</td><td>$1.66/lb</td></tr>
+      <tr><td>Rice Krispies Cereal</td><td>2 x 18 oz</td><td>$7.89</td><td>$3.51/lb</td></tr>
+      <tr><td>Caramel Sauce/Bits</td><td>2 lb bag</td><td>$6.99</td><td>$3.50/lb</td></tr>
+      <tr><td>Milk (whole)</td><td>1 gallon</td><td>$4.29</td><td>$0.27/cup</td></tr>
+      <tr><td>Cheddar/Cheese</td><td>2 lb block</td><td>$7.99</td><td>$4.00/lb</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Cost Breakdown per Dozen</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Key Ingredients</th>
+        <th>Ingredient Cost</th>
+        <th>Packaging</th>
+        <th>Total Cost/Doz</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Grandma's Rolls</strong></td>
+        <td>Flour (1.5 lb), butter (4 oz), sugar (3 oz), eggs (2), yeast, milk</td>
+        <td>$2.85</td>
+        <td>$1.25</td>
+        <td><strong>$4.10</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Cinnamon Rolls</strong></td>
+        <td>Flour (2 lb), butter (8 oz), brown sugar (6 oz), cinnamon (1 oz), cream cheese (4 oz), powdered sugar (4 oz), eggs (2), yeast, milk</td>
+        <td>$5.40</td>
+        <td>$1.50</td>
+        <td><strong>$6.90</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Crescent Rolls</strong></td>
+        <td>Flour (1.5 lb), butter (8 oz &mdash; butter-heavy), sugar (2 oz), eggs (2), yeast, milk</td>
+        <td>$3.65</td>
+        <td>$1.25</td>
+        <td><strong>$4.90</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Cheese Rolls</strong></td>
+        <td>Flour (1.5 lb), butter (4 oz), cheese (6 oz), eggs (2), yeast, milk</td>
+        <td>$4.35</td>
+        <td>$1.25</td>
+        <td><strong>$5.60</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Dinner Rolls</strong></td>
+        <td>Flour (1.5 lb), butter (3 oz), sugar (2 oz), eggs (2), yeast, milk</td>
+        <td>$2.55</td>
+        <td>$1.25</td>
+        <td><strong>$3.80</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Cookie Dough Brownies</strong></td>
+        <td>Flour (12 oz), butter (8 oz), sugar (8 oz), cocoa (3 oz), eggs (4), choc chips (6 oz), brown sugar (4 oz), vanilla</td>
+        <td>$6.80</td>
+        <td>$1.50</td>
+        <td><strong>$8.30</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Peanut Butter Bars</strong></td>
+        <td>Peanut butter (12 oz), butter (4 oz), powdered sugar (8 oz), chocolate chips (8 oz), graham cracker crumbs (6 oz)</td>
+        <td>$5.90</td>
+        <td>$1.50</td>
+        <td><strong>$7.40</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Lemon Bars</strong></td>
+        <td>Flour (8 oz), butter (8 oz), sugar (10 oz), eggs (6), lemons (6&ndash;8), powdered sugar (2 oz)</td>
+        <td>$5.10</td>
+        <td>$1.50</td>
+        <td><strong>$6.60</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Caramel Rice Krispie Treats</strong></td>
+        <td>Rice Krispies (6 oz), marshmallows (10 oz), butter (3 oz), caramel (6 oz), salt</td>
+        <td>$4.15</td>
+        <td>$1.25</td>
+        <td><strong>$5.40</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout purple">
+    <strong>Note on cost estimates:</strong>
+    <p>These figures represent direct ingredient and packaging costs only. They do not include utilities (oven gas/electric), vehicle delivery costs, or time/labor. Actual costs may vary by +/-15% depending on specific recipe proportions, seasonal ingredient pricing, and sourcing. These estimates use Costco bulk pricing, which is the most cost-effective approach for a home bakery operation.</p>
+  </div>
+
+  <h3>Visual: Material Cost per Dozen</h3>
+  <div class="chart-container">
+    <div class="bar-chart">
+      <div class="bar-row">
+        <div class="bar-label">Dinner Rolls</div>
+        <div class="bar-track">
+          <div class="bar-fill green" style="width: 38%;">$3.80</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Grandma's Rolls</div>
+        <div class="bar-track">
+          <div class="bar-fill green" style="width: 41%;">$4.10</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Crescent Rolls</div>
+        <div class="bar-track">
+          <div class="bar-fill green" style="width: 49%;">$4.90</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Caramel Rice Krispies</div>
+        <div class="bar-track">
+          <div class="bar-fill purple" style="width: 54%;">$5.40</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Cheese Rolls</div>
+        <div class="bar-track">
+          <div class="bar-fill purple" style="width: 56%;">$5.60</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Lemon Bars</div>
+        <div class="bar-track">
+          <div class="bar-fill purple" style="width: 66%;">$6.60</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Cinnamon Rolls</div>
+        <div class="bar-track">
+          <div class="bar-fill pink" style="width: 69%;">$6.90</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">PB Bars</div>
+        <div class="bar-track">
+          <div class="bar-fill pink" style="width: 74%;">$7.40</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Cookie Dough Brownies</div>
+        <div class="bar-track">
+          <div class="bar-fill pink" style="width: 83%;">$8.30</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 3: PROFIT PER DOZEN                   -->
+<!-- ============================================ -->
+<section class="section" id="profit">
+  <h2><span class="section-number">3</span> Profit per Dozen (at Recommended Pricing)</h2>
+
+  <p>Gross profit and margin calculations below reflect the recommended pricing against estimated material costs. Labor is excluded from these figures to show the raw contribution margin of each product.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Revenue/Doz</th>
+        <th>Material Cost</th>
+        <th>Gross Profit</th>
+        <th>Gross Margin</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Cinnamon Rolls</strong></td>
+        <td>$48.00</td>
+        <td>$6.90</td>
+        <td class="price-new">$41.10</td>
+        <td><span class="increase-pct">85.6%</span></td>
+      </tr>
+      <tr>
+        <td><strong>Cookie Dough Brownies</strong></td>
+        <td>$48.00</td>
+        <td>$8.30</td>
+        <td class="price-new">$39.70</td>
+        <td><span class="increase-pct">82.7%</span></td>
+      </tr>
+      <tr>
+        <td><strong>Lemon Bars</strong></td>
+        <td>$42.00</td>
+        <td>$6.60</td>
+        <td class="price-new">$35.40</td>
+        <td><span class="increase-pct">84.3%</span></td>
+      </tr>
+      <tr>
+        <td><strong>Peanut Butter Bars</strong></td>
+        <td>$42.00</td>
+        <td>$7.40</td>
+        <td class="price-new">$34.60</td>
+        <td><span class="increase-pct">82.4%</span></td>
+      </tr>
+      <tr>
+        <td><strong>Caramel Rice Krispie Treats</strong></td>
+        <td>$36.00</td>
+        <td>$5.40</td>
+        <td class="price-new">$30.60</td>
+        <td><span class="increase-pct">85.0%</span></td>
+      </tr>
+      <tr>
+        <td><strong>Cheese Rolls</strong></td>
+        <td>$28.00</td>
+        <td>$5.60</td>
+        <td class="price-new">$22.40</td>
+        <td><span class="increase-pct">80.0%</span></td>
+      </tr>
+      <tr>
+        <td><strong>Crescent Rolls</strong></td>
+        <td>$24.00</td>
+        <td>$4.90</td>
+        <td class="price-new">$19.10</td>
+        <td><span class="increase-pct">79.6%</span></td>
+      </tr>
+      <tr>
+        <td><strong>Grandma's Rolls</strong></td>
+        <td>$22.00</td>
+        <td>$4.10</td>
+        <td class="price-new">$17.90</td>
+        <td><span class="increase-pct">81.4%</span></td>
+      </tr>
+      <tr>
+        <td><strong>Dinner Rolls</strong></td>
+        <td>$20.00</td>
+        <td>$3.80</td>
+        <td class="price-new">$16.20</td>
+        <td><span class="increase-pct">81.0%</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="stat-grid">
+    <div class="stat-card green">
+      <div class="stat-value">$28.56</div>
+      <div class="stat-label">Avg. Gross Profit per Dozen</div>
+    </div>
+    <div class="stat-card pink">
+      <div class="stat-value">82.4%</div>
+      <div class="stat-label">Avg. Gross Margin</div>
+    </div>
+    <div class="stat-card purple">
+      <div class="stat-value">$41.10</div>
+      <div class="stat-label">Highest Profit (Cinnamon Rolls)</div>
+    </div>
+  </div>
+
+  <h3>Visual: Gross Profit per Dozen</h3>
+  <div class="chart-container">
+    <div class="bar-chart">
+      <div class="bar-row">
+        <div class="bar-label">Cinnamon Rolls</div>
+        <div class="bar-track">
+          <div class="bar-fill green" style="width: 100%;">$41.10</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Cookie Dough Brownies</div>
+        <div class="bar-track">
+          <div class="bar-fill green" style="width: 97%;">$39.70</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Lemon Bars</div>
+        <div class="bar-track">
+          <div class="bar-fill green" style="width: 86%;">$35.40</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Peanut Butter Bars</div>
+        <div class="bar-track">
+          <div class="bar-fill green" style="width: 84%;">$34.60</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Caramel Rice Krispies</div>
+        <div class="bar-track">
+          <div class="bar-fill purple" style="width: 74%;">$30.60</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Cheese Rolls</div>
+        <div class="bar-track">
+          <div class="bar-fill purple" style="width: 55%;">$22.40</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Crescent Rolls</div>
+        <div class="bar-track">
+          <div class="bar-fill pink" style="width: 46%;">$19.10</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Grandma's Rolls</div>
+        <div class="bar-track">
+          <div class="bar-fill pink" style="width: 44%;">$17.90</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Dinner Rolls</div>
+        <div class="bar-track">
+          <div class="bar-fill pink" style="width: 39%;">$16.20</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 4: PROFIT SCALING & FORECASTING       -->
+<!-- ============================================ -->
+<section class="section" id="scaling">
+  <h2><span class="section-number">4</span> Profit Scaling &amp; Forecasting</h2>
+
+  <p>The following scenarios model revenue and profit at different weekly order volumes. All scenarios assume a product mix of approximately 60% rolls and 40% sweets/bars, with an average order size of 2 dozen items.</p>
+
+  <h3>Weighted Average Calculations</h3>
+
+  <div class="callout">
+    <strong>Product Mix Assumptions:</strong>
+    <p><strong>Rolls (60% of orders):</strong> Weighted avg. revenue = $22.80/doz &nbsp;|&nbsp; Weighted avg. cost = $4.68/doz &nbsp;|&nbsp; Weighted avg. profit = $18.12/doz</p>
+    <p><strong>Sweets (40% of orders):</strong> Weighted avg. revenue = $43.20/doz &nbsp;|&nbsp; Weighted avg. cost = $6.94/doz &nbsp;|&nbsp; Weighted avg. profit = $36.26/doz</p>
+    <p><strong>Blended average per dozen:</strong> Revenue = $30.96 &nbsp;|&nbsp; Cost = $5.58 &nbsp;|&nbsp; Profit = $25.38</p>
+    <p><strong>Average order (2 dozen):</strong> Revenue = $61.92 &nbsp;|&nbsp; Cost = $11.16 &nbsp;|&nbsp; Profit = $50.76</p>
+  </div>
+
+  <div class="scenario-grid">
+    <!-- SCENARIO A -->
+    <div class="scenario-card a">
+      <div class="scenario-header">Scenario A: Conservative &mdash; 10 Orders/Week</div>
+      <div class="scenario-body">
+        <div class="line-item">
+          <span class="li-label">Dozens per week</span>
+          <span class="li-value">20 dozen</span>
+        </div>
+        <div class="line-item">
+          <span class="li-label">Weekly Revenue</span>
+          <span class="li-value">$619</span>
+        </div>
+        <div class="line-item">
+          <span class="li-label">Weekly Material Cost</span>
+          <span class="li-value">$112</span>
+        </div>
+        <div class="line-item highlight">
+          <span class="li-label">Weekly Gross Profit</span>
+          <span class="li-value">$508</span>
+        </div>
+        <div class="line-item">
+          <span class="li-label">Monthly Revenue</span>
+          <span class="li-value">$2,477</span>
+        </div>
+        <div class="line-item highlight">
+          <span class="li-label">Monthly Gross Profit</span>
+          <span class="li-value">$2,030</span>
+        </div>
+        <div class="line-item">
+          <span class="li-label">Annual Revenue</span>
+          <span class="li-value">$32,198</span>
+        </div>
+        <div class="line-item highlight">
+          <span class="li-label">Annual Gross Profit</span>
+          <span class="li-value">$26,394</span>
+        </div>
+        <div class="line-item">
+          <span class="li-label">Est. Hours/Week</span>
+          <span class="li-value">~13 hrs</span>
+        </div>
+        <div class="line-item">
+          <span class="li-label">Effective Hourly Rate</span>
+          <span class="li-value" style="color:var(--green-dark)">$39/hr</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCENARIO B -->
+    <div class="scenario-card b">
+      <div class="scenario-header">Scenario B: Growth &mdash; 20 Orders/Week</div>
+      <div class="scenario-body">
+        <div class="line-item">
+          <span class="li-label">Dozens per week</span>
+          <span class="li-value">40 dozen</span>
+        </div>
+        <div class="line-item">
+          <span class="li-label">Weekly Revenue</span>
+          <span class="li-value">$1,238</span>
+        </div>
+        <div class="line-item">
+          <span class="li-label">Weekly Material Cost</span>
+          <span class="li-value">$223</span>
+        </div>
+        <div class="line-item highlight">
+          <span class="li-label">Weekly Gross Profit</span>
+          <span class="li-value">$1,015</span>
+        </div>
+        <div class="line-item">
+          <span class="li-label">Monthly Revenue</span>
+          <span class="li-value">$4,954</span>
+        </div>
+        <div class="line-item highlight">
+          <span class="li-label">Monthly Gross Profit</span>
+          <span class="li-value">$4,061</span>
+        </div>
+        <div class="line-item">
+          <span class="li-label">Annual Revenue</span>
+          <span class="li-value">$64,397</span>
+        </div>
+        <div class="line-item highlight">
+          <span class="li-label">Annual Gross Profit</span>
+          <span class="li-value">$52,788</span>
+        </div>
+        <div class="line-item">
+          <span class="li-label">Est. Hours/Week</span>
+          <span class="li-value">~26 hrs</span>
+        </div>
+        <div class="line-item">
+          <span class="li-label">Effective Hourly Rate</span>
+          <span class="li-value" style="color:var(--green-dark)">$39/hr</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCENARIO C -->
+    <div class="scenario-card c">
+      <div class="scenario-header">Scenario C: Full Capacity &mdash; 30 Orders/Week</div>
+      <div class="scenario-body">
+        <div class="line-item">
+          <span class="li-label">Dozens per week</span>
+          <span class="li-value">60 dozen</span>
+        </div>
+        <div class="line-item">
+          <span class="li-label">Weekly Revenue</span>
+          <span class="li-value">$1,858</span>
+        </div>
+        <div class="line-item">
+          <span class="li-label">Weekly Material Cost</span>
+          <span class="li-value">$335</span>
+        </div>
+        <div class="line-item highlight">
+          <span class="li-label">Weekly Gross Profit</span>
+          <span class="li-value">$1,523</span>
+        </div>
+        <div class="line-item">
+          <span class="li-label">Monthly Revenue</span>
+          <span class="li-value">$7,430</span>
+        </div>
+        <div class="line-item highlight">
+          <span class="li-label">Monthly Gross Profit</span>
+          <span class="li-value">$6,091</span>
+        </div>
+        <div class="line-item">
+          <span class="li-label">Annual Revenue</span>
+          <span class="li-value">$96,596</span>
+        </div>
+        <div class="line-item highlight">
+          <span class="li-label">Annual Gross Profit</span>
+          <span class="li-value">$79,182</span>
+        </div>
+        <div class="line-item">
+          <span class="li-label">Est. Hours/Week</span>
+          <span class="li-value">~40 hrs</span>
+        </div>
+        <div class="line-item">
+          <span class="li-label">Effective Hourly Rate</span>
+          <span class="li-value" style="color:var(--green-dark)">$38/hr</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout" style="border-left-color: #d4a017; background: #fef9ee;">
+    <strong>Utah Cottage Food Cap Warning:</strong>
+    <p>Under Utah's Traditional Cottage Food path, annual revenue is capped at <strong>$50,000</strong>. Scenario B ($64K) and Scenario C ($97K) exceed this cap. To operate at those levels, Kathleen's Kitchen would need to either:</p>
+    <p>&bull; Register under Utah's <strong>Food Freedom Act</strong> (no revenue cap, but direct-to-consumer sales only), or</p>
+    <p>&bull; Obtain a commercial food establishment license.</p>
+    <p>At Scenario A volumes ($32K), the business comfortably operates within the Traditional Cottage Food framework.</p>
+  </div>
+
+  <h3>Annual Revenue Path to $50K Cap</h3>
+
+  <p>To maximize revenue within the $50K cottage food cap, Kathleen's Kitchen would need approximately <strong>15&ndash;16 orders per week</strong> (avg. 2 dozen/order at blended pricing). This represents the sweet spot: ~$960/week revenue, ~$49,900 annual, with an estimated 20 hours/week of baking time.</p>
+
+  <div class="stat-grid">
+    <div class="stat-card pink">
+      <div class="stat-value">15&ndash;16</div>
+      <div class="stat-label">Orders/Week at $50K Cap</div>
+    </div>
+    <div class="stat-card green">
+      <div class="stat-value">$40,920</div>
+      <div class="stat-label">Annual Profit at Cap</div>
+    </div>
+    <div class="stat-card purple">
+      <div class="stat-value">~20 hrs</div>
+      <div class="stat-label">Weekly Hours at Cap</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 5: MOST VALUABLE ITEMS                -->
+<!-- ============================================ -->
+<section class="section" id="ranking">
+  <h2><span class="section-number">5</span> Most Valuable Items Analysis</h2>
+
+  <p>Not all products are created equal. This section ranks every item across three dimensions: absolute profit, margin efficiency, and profit per hour of labor &mdash; the metric that matters most for a solo home baker.</p>
+
+  <h3>Labor Time Estimates per Dozen</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Active Prep</th>
+        <th>Rise/Bake (Passive)</th>
+        <th>Total Time</th>
+        <th>Active Hands-On</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Caramel Rice Krispie Treats</td><td>20 min</td><td>30 min (set/cool)</td><td>50 min</td><td><strong>20 min</strong></td></tr>
+      <tr><td>Peanut Butter Bars</td><td>25 min</td><td>30 min (chill/set)</td><td>55 min</td><td><strong>25 min</strong></td></tr>
+      <tr><td>Lemon Bars</td><td>25 min</td><td>40 min (bake/cool)</td><td>65 min</td><td><strong>25 min</strong></td></tr>
+      <tr><td>Cookie Dough Brownies</td><td>35 min</td><td>40 min (bake/cool)</td><td>75 min</td><td><strong>35 min</strong></td></tr>
+      <tr><td>Dinner Rolls</td><td>25 min</td><td>90 min (rise/bake)</td><td>115 min</td><td><strong>25 min</strong></td></tr>
+      <tr><td>Grandma's Rolls</td><td>30 min</td><td>90 min (rise/bake)</td><td>120 min</td><td><strong>30 min</strong></td></tr>
+      <tr><td>Crescent Rolls</td><td>35 min</td><td>90 min (rise/bake)</td><td>125 min</td><td><strong>35 min</strong></td></tr>
+      <tr><td>Cheese Rolls</td><td>35 min</td><td>90 min (rise/bake)</td><td>125 min</td><td><strong>35 min</strong></td></tr>
+      <tr><td>Cinnamon Rolls</td><td>40 min</td><td>100 min (rise/bake)</td><td>140 min</td><td><strong>40 min</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Ranking by Gross Profit per Dozen</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Product</th>
+        <th>Gross Profit/Doz</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="rank-1"><td><span class="rank-badge gold">1</span></td><td>Cinnamon Rolls</td><td><strong>$41.10</strong></td></tr>
+      <tr class="rank-2"><td><span class="rank-badge silver">2</span></td><td>Cookie Dough Brownies</td><td><strong>$39.70</strong></td></tr>
+      <tr class="rank-3"><td><span class="rank-badge bronze">3</span></td><td>Lemon Bars</td><td><strong>$35.40</strong></td></tr>
+      <tr><td>4</td><td>Peanut Butter Bars</td><td>$34.60</td></tr>
+      <tr><td>5</td><td>Caramel Rice Krispie Treats</td><td>$30.60</td></tr>
+      <tr><td>6</td><td>Cheese Rolls</td><td>$22.40</td></tr>
+      <tr><td>7</td><td>Crescent Rolls</td><td>$19.10</td></tr>
+      <tr><td>8</td><td>Grandma's Rolls</td><td>$17.90</td></tr>
+      <tr><td>9</td><td>Dinner Rolls</td><td>$16.20</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Ranking by Gross Margin (%)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Product</th>
+        <th>Margin %</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="rank-1"><td><span class="rank-badge gold">1</span></td><td>Cinnamon Rolls</td><td><strong>85.6%</strong></td></tr>
+      <tr class="rank-2"><td><span class="rank-badge silver">2</span></td><td>Caramel Rice Krispie Treats</td><td><strong>85.0%</strong></td></tr>
+      <tr class="rank-3"><td><span class="rank-badge bronze">3</span></td><td>Lemon Bars</td><td><strong>84.3%</strong></td></tr>
+      <tr><td>4</td><td>Cookie Dough Brownies</td><td>82.7%</td></tr>
+      <tr><td>5</td><td>Peanut Butter Bars</td><td>82.4%</td></tr>
+      <tr><td>6</td><td>Grandma's Rolls</td><td>81.4%</td></tr>
+      <tr><td>7</td><td>Dinner Rolls</td><td>81.0%</td></tr>
+      <tr><td>8</td><td>Cheese Rolls</td><td>80.0%</td></tr>
+      <tr><td>9</td><td>Crescent Rolls</td><td>79.6%</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Ranking by Profit per Hour of Active Labor (The Most Important Metric)</h3>
+
+  <p>This is the metric that matters most for a home baker: how much money each product earns for every hour of hands-on work. Passive rise and bake time is excluded because it allows batching of other products.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Product</th>
+        <th>Profit/Doz</th>
+        <th>Active Time</th>
+        <th>Profit/Hour</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="rank-1">
+        <td><span class="rank-badge gold">1</span></td>
+        <td>Caramel Rice Krispie Treats</td>
+        <td>$30.60</td>
+        <td>20 min</td>
+        <td><strong>$91.80/hr</strong></td>
+      </tr>
+      <tr class="rank-2">
+        <td><span class="rank-badge silver">2</span></td>
+        <td>Lemon Bars</td>
+        <td>$35.40</td>
+        <td>25 min</td>
+        <td><strong>$84.96/hr</strong></td>
+      </tr>
+      <tr class="rank-3">
+        <td><span class="rank-badge bronze">3</span></td>
+        <td>Peanut Butter Bars</td>
+        <td>$34.60</td>
+        <td>25 min</td>
+        <td><strong>$83.04/hr</strong></td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Cookie Dough Brownies</td>
+        <td>$39.70</td>
+        <td>35 min</td>
+        <td><strong>$68.06/hr</strong></td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Cinnamon Rolls</td>
+        <td>$41.10</td>
+        <td>40 min</td>
+        <td><strong>$61.65/hr</strong></td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>Dinner Rolls</td>
+        <td>$16.20</td>
+        <td>25 min</td>
+        <td><strong>$38.88/hr</strong></td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>Cheese Rolls</td>
+        <td>$22.40</td>
+        <td>35 min</td>
+        <td><strong>$38.40/hr</strong></td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>Grandma's Rolls</td>
+        <td>$17.90</td>
+        <td>30 min</td>
+        <td><strong>$35.80/hr</strong></td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>Crescent Rolls</td>
+        <td>$19.10</td>
+        <td>35 min</td>
+        <td><strong>$32.74/hr</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Visual: Profit per Hour of Active Labor</h3>
+  <div class="chart-container">
+    <div class="bar-chart">
+      <div class="bar-row">
+        <div class="bar-label">Caramel Rice Krispies</div>
+        <div class="bar-track">
+          <div class="bar-fill green" style="width: 100%;">$91.80/hr</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Lemon Bars</div>
+        <div class="bar-track">
+          <div class="bar-fill green" style="width: 93%;">$84.96/hr</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Peanut Butter Bars</div>
+        <div class="bar-track">
+          <div class="bar-fill green" style="width: 90%;">$83.04/hr</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Cookie Dough Brownies</div>
+        <div class="bar-track">
+          <div class="bar-fill purple" style="width: 74%;">$68.06/hr</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Cinnamon Rolls</div>
+        <div class="bar-track">
+          <div class="bar-fill purple" style="width: 67%;">$61.65/hr</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Dinner Rolls</div>
+        <div class="bar-track">
+          <div class="bar-fill pink" style="width: 42%;">$38.88/hr</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Cheese Rolls</div>
+        <div class="bar-track">
+          <div class="bar-fill pink" style="width: 42%;">$38.40/hr</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Grandma's Rolls</div>
+        <div class="bar-track">
+          <div class="bar-fill pink" style="width: 39%;">$35.80/hr</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Crescent Rolls</div>
+        <div class="bar-track">
+          <div class="bar-fill pink" style="width: 36%;">$32.74/hr</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Promotion Recommendations</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Tier</th>
+        <th>Products</th>
+        <th>Strategy</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background: linear-gradient(90deg, #e6f5e6, var(--white));">
+        <td><strong style="color:var(--green-dark)">Push Hard</strong></td>
+        <td>Caramel Rice Krispie Treats, Lemon Bars, Peanut Butter Bars</td>
+        <td>Highest profit per hour. Feature prominently on social media. Fast to make, excellent for large-batch production days. Ideal for farmer's market or event orders.</td>
+      </tr>
+      <tr style="background: linear-gradient(90deg, #f0ebf5, var(--white));">
+        <td><strong style="color:var(--purple-dark)">Signature Items</strong></td>
+        <td>Cinnamon Rolls, Cookie Dough Brownies</td>
+        <td>Highest absolute profit. These are the hero products that build brand recognition. Worth the extra labor because of premium pricing potential and customer loyalty.</td>
+      </tr>
+      <tr style="background: linear-gradient(90deg, #fce8ef, var(--white));">
+        <td><strong style="color:var(--pink-dark)">Maintain / Bundle</strong></td>
+        <td>Grandma's Rolls, Dinner Rolls, Crescent Rolls, Cheese Rolls</td>
+        <td>Lower profit per hour, but essential for a complete menu. Offer as add-ons or bundles with sweet items. Holiday dinner roll bundles are an opportunity for volume orders.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 6: KEY INSIGHTS & RECOMMENDATIONS     -->
+<!-- ============================================ -->
+<section class="section" id="insights">
+  <h2><span class="section-number">6</span> Key Insights &amp; Recommendations</h2>
+
+  <h3>Utah Cottage Food Law Considerations</h3>
+
+  <ul class="insight-list">
+    <li>
+      <div class="insight-icon pink">1</div>
+      <div>
+        <strong>Two paths are available under Utah law.</strong>
+        <p>The <strong>Traditional Cottage Food</strong> path caps annual revenue at $50,000 but allows sales at farmer's markets, online orders, and delivery. The <strong>Food Freedom Act</strong> path has no revenue cap but limits you to direct-to-consumer sales only (no wholesale, no farmer's markets in some interpretations). Evaluate which path best fits the business model as it scales.</p>
+      </div>
+    </li>
+    <li>
+      <div class="insight-icon purple">2</div>
+      <div>
+        <strong>Registration and compliance.</strong>
+        <p>Traditional Cottage Food requires a $50 annual registration fee, food handler permit, and kitchen consultation. All products must be shelf-stable (no refrigeration required). Cream cheese frosting on cinnamon rolls may require careful formulation &mdash; consider shelf-stable frosting alternatives or selling with a "refrigerate upon receipt" advisory per Utah guidelines.</p>
+      </div>
+    </li>
+    <li>
+      <div class="insight-icon green">3</div>
+      <div>
+        <strong>At the recommended pricing, the $50K cap is reached at ~16 orders/week.</strong>
+        <p>This means the Traditional Cottage Food path is viable for conservative to moderate growth. If demand exceeds that level, transition planning to Food Freedom or a commercial license should begin.</p>
+      </div>
+    </li>
+  </ul>
+
+  <h3>Holiday Premium Pricing Opportunity</h3>
+
+  <ul class="insight-list">
+    <li>
+      <div class="insight-icon pink">$</div>
+      <div>
+        <strong>Thanksgiving &amp; Christmas are peak revenue windows.</strong>
+        <p>Demand for dinner rolls, cinnamon rolls, and dessert bars surges 3&ndash;5x during November and December. Implement a <strong>15&ndash;25% holiday surcharge</strong> and require orders 1 week in advance. A $58 holiday cinnamon roll dozen is still well below Tulie Bakery's pricing.</p>
+      </div>
+    </li>
+    <li>
+      <div class="insight-icon purple">$</div>
+      <div>
+        <strong>Easter, Mother's Day, and Valentine's Day</strong> present additional premium opportunities, especially for sweet items. Consider seasonal flavors (pumpkin cinnamon rolls, peppermint brownies, lemon-lavender bars) at a $5&ndash;8/dozen premium.</p>
+      </div>
+    </li>
+    <li>
+      <div class="insight-icon green">$</div>
+      <div>
+        <strong>Holiday bundles increase average order value.</strong>
+        <p>A "Holiday Dinner Package" (2 dozen dinner rolls + 1 dozen cinnamon rolls) at $85 is a compelling offer that nets ~$67 in gross profit. Create 3&ndash;4 preset bundles each season to simplify ordering and increase cart size.</p>
+      </div>
+    </li>
+  </ul>
+
+  <h3>Instagram &amp; Social Media Marketing</h3>
+
+  <ul class="insight-list">
+    <li>
+      <div class="insight-icon pink">1</div>
+      <div>
+        <strong>Instagram is the #1 channel for home bakeries.</strong>
+        <p>In the Pepperwood/SLC affluent market, visual content drives purchasing decisions. Post 3&ndash;4 times per week: process shots (dough rising, fresh-from-oven moments), finished product photography, and customer testimonials. Reels showing the baking process consistently outperform static posts for bakery accounts.</p>
+      </div>
+    </li>
+    <li>
+      <div class="insight-icon purple">2</div>
+      <div>
+        <strong>Cost of customer acquisition is near zero.</strong>
+        <p>Unlike paid advertising, organic Instagram growth for home bakeries costs only time. Each new follower in the local area is a potential recurring customer worth $50&ndash;100+/month. Focus on local hashtags (#PepperwoodUtah #SaltLakeBakery #UtahFoodie #HomeBakedSLC) and engage with local community accounts.</p>
+      </div>
+    </li>
+    <li>
+      <div class="insight-icon green">3</div>
+      <div>
+        <strong>Word-of-mouth amplification.</strong>
+        <p>Include a small card in every order encouraging customers to share photos and tag Kathleen's Kitchen. Offer a $5 discount on their next order for every referral that converts. In an affluent community like Pepperwood, one neighborhood post can generate 5&ndash;10 new customers.</p>
+      </div>
+    </li>
+  </ul>
+
+  <h3>Scaling Strategy Roadmap</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Phase</th>
+        <th>Timeline</th>
+        <th>Weekly Orders</th>
+        <th>Annual Revenue</th>
+        <th>Key Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong style="color:var(--purple)">Phase 1: Foundation</strong></td>
+        <td>Months 1&ndash;3</td>
+        <td>5&ndash;10</td>
+        <td>$16K&ndash;$32K</td>
+        <td>Implement new pricing. Build Instagram presence. Establish ordering system. Register under Traditional Cottage Food.</td>
+      </tr>
+      <tr>
+        <td><strong style="color:var(--pink)">Phase 2: Growth</strong></td>
+        <td>Months 4&ndash;8</td>
+        <td>10&ndash;16</td>
+        <td>$32K&ndash;$50K</td>
+        <td>Optimize production batching. Push high-profit items (bars, sweets). Leverage holiday seasons. Build repeat customer base.</td>
+      </tr>
+      <tr>
+        <td><strong style="color:var(--green)">Phase 3: Optimization</strong></td>
+        <td>Months 9&ndash;12</td>
+        <td>16 (at cap)</td>
+        <td>$50K (cap)</td>
+        <td>Maximize profit within revenue cap by shifting mix toward highest-margin items. Evaluate transition to Food Freedom Act or commercial license for continued growth.</td>
+      </tr>
+      <tr>
+        <td><strong style="color:var(--text)">Phase 4: Expansion</strong></td>
+        <td>Year 2+</td>
+        <td>20&ndash;30</td>
+        <td>$65K&ndash;$97K</td>
+        <td>Transition legal framework. Consider commercial kitchen rental for peak production. Explore wholesale partnerships with local cafes. Hire part-time help.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Final Summary</h3>
+
+  <div class="stat-grid">
+    <div class="stat-card pink">
+      <div class="stat-value">2.5x</div>
+      <div class="stat-label">Avg. Price Increase Multiplier</div>
+    </div>
+    <div class="stat-card green">
+      <div class="stat-value">82%</div>
+      <div class="stat-label">Avg. Gross Margin</div>
+    </div>
+    <div class="stat-card purple">
+      <div class="stat-value">$91.80</div>
+      <div class="stat-label">Peak Profit/Hr (Rice Krispies)</div>
+    </div>
+  </div>
+
+  <div class="callout green">
+    <strong>Bottom Line:</strong>
+    <p>Kathleen's Kitchen has been significantly underpricing its products. At recommended pricing, every item earns a gross margin above 79%, and even the lowest-earning product (crescent rolls) generates over $32/hour in profit per hour of active labor. The sweet items &mdash; especially Caramel Rice Krispie Treats, Lemon Bars, and Peanut Butter Bars &mdash; are the most efficient uses of time, earning $83&ndash;$92/hour. Cinnamon Rolls and Cookie Dough Brownies are the brand's hero products with the highest absolute profit per dozen. A blended strategy of promoting high-efficiency sweets while maintaining beloved roll products positions the business for sustainable, profitable growth within Utah's cottage food framework.</p>
+  </div>
+</section>
+
+</div><!-- /.container -->
+
+<!-- ============================================ -->
+<!-- FOOTER                                        -->
+<!-- ============================================ -->
+<footer class="footer">
+  <div class="brand">Kathleen's Kitchen</div>
+  <p>Prepared March 6, 2026 &nbsp;&bull;&nbsp; Premium Home Bakery &nbsp;&bull;&nbsp; Pepperwood, Utah</p>
+  <p style="margin-top:8px; font-size:0.78rem;">This document contains estimates and projections based on publicly available market data and current bulk ingredient pricing. Actual results may vary. Consult with a tax professional regarding cottage food income reporting requirements.</p>
+  <p style="margin-top:16px; font-size:0.75rem; color:#bbb;">Sources: BakeProfit.com, BakeMargin.com, BakingSubs.com, Costco.com, Queen Bee Today, Warehouse Wanderer, StandScout.com, Utah Dept. of Agriculture &amp; Food, Institute for Justice, Forrager.com</p>
+</footer>
+
+</body>
+</html>
