@@ -536,6 +536,108 @@
 
         .event-card .btn { width: 100%; text-align: center; }
 
+        /* ── Event Card Accordion ── */
+        .event-card {
+            cursor: pointer;
+            transition: all 0.4s ease, grid-column 0s;
+        }
+        .event-card.expanded {
+            grid-column: 1 / -1;
+            border-color: var(--pink);
+            box-shadow: 0 8px 30px rgba(207,122,155,0.15);
+            cursor: default;
+        }
+        .event-card.expanded:hover {
+            transform: none;
+        }
+
+        /* Collapsed: hide details */
+        .event-card .event-items-label,
+        .event-card .event-items,
+        .event-card .event-progress,
+        .event-card .event-order-by,
+        .event-card .event-card-inline-order,
+        .event-card .btn { display: none; }
+
+        /* Collapsed: show short desc + view link */
+        .event-card .event-desc {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .event-card .event-view-link {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--pink);
+            letter-spacing: 0.05em;
+            margin-top: 0.3rem;
+            transition: color 0.3s;
+        }
+        .event-card .event-view-link:hover { color: var(--pink-dark); }
+
+        /* Expanded: reveal everything */
+        .event-card.expanded .event-items-label,
+        .event-card.expanded .event-items,
+        .event-card.expanded .event-progress,
+        .event-card.expanded .event-order-by { display: block; }
+        .event-card.expanded .event-items { display: block; }
+        .event-card.expanded .event-progress { display: block; }
+        .event-card.expanded .event-card-inline-order { display: block; }
+        .event-card.expanded .event-desc {
+            display: block;
+            -webkit-line-clamp: unset;
+            overflow: visible;
+        }
+        .event-card.expanded .event-view-link { display: none; }
+
+        /* Inline order section inside expanded event card */
+        .event-card-inline-order {
+            display: none;
+            border-top: 1px solid var(--border);
+            padding-top: 1.2rem;
+            margin-top: 1rem;
+        }
+        .event-card-inline-order .checkbox-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .event-card-inline-order .inline-order-total {
+            text-align: right;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.8rem 0;
+            border-top: 1px solid var(--border);
+        }
+        .event-card-inline-order .inline-order-total span {
+            color: var(--pink-dark);
+            font-weight: 600;
+        }
+        .event-card-inline-order .btn-proceed {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            margin-top: 0.8rem;
+            background: linear-gradient(135deg, var(--pink), var(--purple));
+            color: white;
+            border: none;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 1rem 2.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .event-card-inline-order .btn-proceed:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(207,122,155,0.4);
+        }
+
         /* ═══════════════════════════════════════════
            SHOWCASE (What We Make)
            ═══════════════════════════════════════════ */
@@ -579,13 +681,18 @@
             padding: 0;
             background: var(--cream);
             border: 1px solid var(--border);
-            transition: all 0.3s;
+            transition: all 0.4s ease, grid-column 0s;
             overflow: hidden;
             cursor: pointer;
         }
         .showcase-item.hidden { display: none; }
+        .showcase-item.expanded {
+            grid-column: 1 / -1;
+            border-color: var(--pink);
+            box-shadow: 0 8px 30px rgba(207,122,155,0.15);
+        }
 
-        .showcase-item:hover {
+        .showcase-item:not(.expanded):hover {
             border-color: var(--pink);
             transform: translateY(-2px);
         }
@@ -595,7 +702,10 @@
             overflow: hidden;
             background-size: cover;
             background-position: center;
-            transition: transform 0.4s ease;
+            transition: height 0.4s ease, transform 0.4s ease;
+        }
+        .showcase-item.expanded .showcase-icon {
+            height: 250px;
         }
         .showcase-icon.bread { background-color: var(--pink-light); }
         .showcase-icon.sweet { background-color: var(--purple-light); }
@@ -631,8 +741,8 @@
             padding: 0 1rem;
         }
         .showcase-item.expanded .showcase-desc {
-            max-height: 120px;
-            padding: 0 1rem 1.2rem;
+            max-height: 200px;
+            padding: 0.8rem 1.5rem 1.5rem;
         }
         .showcase-expand {
             font-size: 0.65rem;
@@ -644,6 +754,7 @@
             transition: opacity 0.3s;
         }
         .showcase-item:hover .showcase-expand { opacity: 1; }
+        .showcase-item.expanded .showcase-expand { display: none; }
 
         /* ═══════════════════════════════════════════
            HOW IT WORKS
@@ -954,13 +1065,26 @@
 
         .footer-social { display: flex; gap: 1rem; margin-top: 1rem; }
         .footer-social a {
-            padding: 0.5rem 1rem;
-            border: 1px solid rgba(255,255,255,0.2);
-            display: inline-flex; align-items: center;
-            transition: all 0.3s; font-size: 0.75rem;
-            text-decoration: none; color: inherit;
+            padding: 0.7rem 1.5rem;
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 50px;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            transition: all 0.3s; font-size: 0.85rem;
+            font-weight: 400;
+            text-decoration: none; color: rgba(255,255,255,0.9);
+            background: rgba(255,255,255,0.05);
         }
-        .footer-social a:hover { border-color: var(--pink-light); color: var(--pink-light); }
+        .footer-social a:hover {
+            border-color: var(--pink);
+            color: white;
+            background: linear-gradient(135deg, rgba(207,122,155,0.3), rgba(168,147,194,0.2));
+            box-shadow: 0 4px 15px rgba(207,122,155,0.25);
+            transform: translateY(-1px);
+        }
+        .footer-social a svg {
+            width: 20px; height: 20px;
+            vertical-align: middle;
+        }
 
         .footer-bottom {
             max-width: 1100px; margin: 0 auto;
@@ -991,8 +1115,10 @@
             .form-row { grid-template-columns: 1fr; }
             .checkbox-group { grid-template-columns: 1fr; }
             .showcase-grid { grid-template-columns: repeat(2, 1fr); }
+            .showcase-item.expanded .showcase-icon { height: 180px; }
             .showcase-filters { gap: 0.3rem; }
             .showcase-filter { padding: 0.4rem 1rem; font-size: 0.65rem; }
+            .event-card-inline-order .checkbox-group { grid-template-columns: 1fr; }
             .footer-content { grid-template-columns: 1fr; gap: 2rem; }
             .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
             .hero-title { font-size: clamp(3rem, 12vw, 5rem); }
@@ -1196,7 +1322,7 @@
         <div class="events-grid fade-in">
 
             <!-- EVENT 1: St. Patrick's Day Bake (Almost Full) -->
-            <div class="event-card">
+            <div class="event-card" data-event="stpatricks-2026">
                 <div class="event-card-header">
                     <div class="event-date-badge">
                         <span class="month">MAR</span>
@@ -1207,6 +1333,7 @@
                 <div class="event-card-body">
                     <h3 class="event-name">St. Patrick's Day Bake</h3>
                     <p class="event-desc">Festive treats to celebrate the luck of the Irish. Breads and sweets for your St. Paddy's gathering.</p>
+                    <span class="event-view-link">View Menu & Order &rarr;</span>
                     <div class="event-items-label">Available Items</div>
                     <ul class="event-items">
                         <li><span>Grandma's Rolls</span><span class="item-price">$22/dozen</span></li>
@@ -1225,12 +1352,49 @@
                         </div>
                     </div>
                     <p class="event-order-by">Order by March 13, 2026</p>
-                    <a href="#order" class="btn btn-pink" onclick="selectEvent('stpatricks-2026')">Order Now &mdash; 4 spots left</a>
+
+                    <div class="event-card-inline-order">
+                        <div class="event-items-label">Select Your Items</div>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item">
+                                <input type="checkbox" data-item="Grandma's Rolls" data-price="22">
+                                <span class="item-name">Grandma's Rolls</span>
+                                <span class="item-price">$22/doz</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select class="inline-qty-select" data-price="22"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" data-item="Cinnamon Rolls" data-price="48">
+                                <span class="item-name">Cinnamon Rolls</span>
+                                <span class="item-price">$48/doz</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select class="inline-qty-select" data-price="48"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" data-item="Wheat Bread" data-price="10">
+                                <span class="item-name">Wheat Bread</span>
+                                <span class="item-price">$10/loaf</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select class="inline-qty-select" data-price="10"><option value="1">1 loaf</option><option value="2">2 loaves</option><option value="3">3 loaves</option><option value="4">4 loaves</option><option value="5">5 loaves</option></select></span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" data-item="Lemon Bars" data-price="42">
+                                <span class="item-name">Lemon Bars</span>
+                                <span class="item-price">$42/doz</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select class="inline-qty-select" data-price="42"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" data-item="Caramel Rice Krispie Treats" data-price="36">
+                                <span class="item-name">Caramel Rice Krispie Treats</span>
+                                <span class="item-price">$36/doz</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select class="inline-qty-select" data-price="36"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
+                            </label>
+                        </div>
+                        <div class="inline-order-total">Total: <span>$0</span></div>
+                        <button type="button" class="btn-proceed">Proceed to Checkout</button>
+                    </div>
                 </div>
             </div>
 
             <!-- EVENT 2: Easter & General Conference Weekend (Open) -->
-            <div class="event-card">
+            <div class="event-card" data-event="easter-2026">
                 <div class="event-card-header">
                     <div class="event-date-badge">
                         <span class="month">APR</span>
@@ -1241,6 +1405,7 @@
                 <div class="event-card-body">
                     <h3 class="event-name">Easter & Conference Weekend</h3>
                     <p class="event-desc">Holiday treats for your family gathering. Breads and sweets for the long weekend.</p>
+                    <span class="event-view-link">View Menu & Order &rarr;</span>
                     <div class="event-items-label">Available Items</div>
                     <ul class="event-items">
                         <li><span>Grandma's Rolls</span><span class="item-price">$22/dozen</span></li>
@@ -1259,12 +1424,49 @@
                         </div>
                     </div>
                     <p class="event-order-by">Order by March 28, 2026</p>
-                    <a href="#order" class="btn btn-pink" onclick="selectEvent('easter-2026')">Order Now &mdash; 15 spots left</a>
+
+                    <div class="event-card-inline-order">
+                        <div class="event-items-label">Select Your Items</div>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item">
+                                <input type="checkbox" data-item="Grandma's Rolls" data-price="22">
+                                <span class="item-name">Grandma's Rolls</span>
+                                <span class="item-price">$22/doz</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select class="inline-qty-select" data-price="22"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" data-item="Cinnamon Rolls" data-price="48">
+                                <span class="item-name">Cinnamon Rolls</span>
+                                <span class="item-price">$48/doz</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select class="inline-qty-select" data-price="48"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" data-item="Crescent Rolls" data-price="24">
+                                <span class="item-name">Crescent Rolls</span>
+                                <span class="item-price">$24/doz</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select class="inline-qty-select" data-price="24"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" data-item="Cookie Dough Brownies" data-price="48">
+                                <span class="item-name">Cookie Dough Brownies</span>
+                                <span class="item-price">$48/doz</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select class="inline-qty-select" data-price="48"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" data-item="Lemon Bars" data-price="42">
+                                <span class="item-name">Lemon Bars</span>
+                                <span class="item-price">$42/doz</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select class="inline-qty-select" data-price="42"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
+                            </label>
+                        </div>
+                        <div class="inline-order-total">Total: <span>$0</span></div>
+                        <button type="button" class="btn-proceed">Proceed to Checkout</button>
+                    </div>
                 </div>
             </div>
 
             <!-- EVENT 3: Spring Batch (Just Opened) -->
-            <div class="event-card">
+            <div class="event-card" data-event="spring-batch">
                 <div class="event-card-header">
                     <div class="event-date-badge">
                         <span class="month">APR</span>
@@ -1275,6 +1477,7 @@
                 <div class="event-card-body">
                     <h3 class="event-name">Spring Batch</h3>
                     <p class="event-desc">A full spring drop with all breads and sweets. Perfect for spring parties, teacher gifts, or just because.</p>
+                    <span class="event-view-link">View Menu & Order &rarr;</span>
                     <div class="event-items-label">Available Items</div>
                     <ul class="event-items">
                         <li><span>Grandma's Rolls</span><span class="item-price">$22/dozen</span></li>
@@ -1294,7 +1497,50 @@
                         </div>
                     </div>
                     <p class="event-order-by">Order by April 21, 2026</p>
-                    <a href="#order" class="btn btn-pink" onclick="selectEvent('spring-batch')">Order Now &mdash; 15 spots left</a>
+
+                    <div class="event-card-inline-order">
+                        <div class="event-items-label">Select Your Items</div>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item">
+                                <input type="checkbox" data-item="Grandma's Rolls" data-price="22">
+                                <span class="item-name">Grandma's Rolls</span>
+                                <span class="item-price">$22/doz</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select class="inline-qty-select" data-price="22"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" data-item="Cheese Rolls" data-price="28">
+                                <span class="item-name">Cheese Rolls</span>
+                                <span class="item-price">$28/doz</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select class="inline-qty-select" data-price="28"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" data-item="Wheat Bread" data-price="10">
+                                <span class="item-name">Wheat Bread</span>
+                                <span class="item-price">$10/loaf</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select class="inline-qty-select" data-price="10"><option value="1">1 loaf</option><option value="2">2 loaves</option><option value="3">3 loaves</option><option value="4">4 loaves</option><option value="5">5 loaves</option></select></span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" data-item="Soft French Bread" data-price="8">
+                                <span class="item-name">Soft French Bread</span>
+                                <span class="item-price">$8/loaf</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select class="inline-qty-select" data-price="8"><option value="1">1 loaf</option><option value="2">2 loaves</option><option value="3">3 loaves</option><option value="4">4 loaves</option><option value="5">5 loaves</option></select></span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" data-item="Cookie Dough Brownies" data-price="48">
+                                <span class="item-name">Cookie Dough Brownies</span>
+                                <span class="item-price">$48/doz</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select class="inline-qty-select" data-price="48"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" data-item="Caramel Rice Krispie Treats" data-price="36">
+                                <span class="item-name">Caramel Rice Krispie Treats</span>
+                                <span class="item-price">$36/doz</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select class="inline-qty-select" data-price="36"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
+                            </label>
+                        </div>
+                        <div class="inline-order-total">Total: <span>$0</span></div>
+                        <button type="button" class="btn-proceed">Proceed to Checkout</button>
+                    </div>
                 </div>
             </div>
 
@@ -1328,7 +1574,7 @@
             <button class="showcase-filter" data-filter="sweets">Bars & Treats</button>
         </div>
         <div class="showcase-grid fade-in">
-            <div class="showcase-item" data-category="rolls" onclick="this.classList.toggle('expanded')">
+            <div class="showcase-item" data-category="rolls">
                 <div class="showcase-icon bread has-image" style="background-image: url('images/grandmas-rolls.png')"></div>
                 <div class="showcase-info">
                     <div class="showcase-name">Grandma's Rolls</div>
@@ -1337,7 +1583,7 @@
                 </div>
                 <div class="showcase-desc">Kathleen's famous family recipe, passed down from Grandma. Soft, buttery, and perfect for Sunday dinner or any gathering.</div>
             </div>
-            <div class="showcase-item" data-category="rolls" onclick="this.classList.toggle('expanded')">
+            <div class="showcase-item" data-category="rolls">
                 <div class="showcase-icon bread has-image" style="background-image: url('images/cinnamon-rolls.png')"></div>
                 <div class="showcase-info">
                     <div class="showcase-name">Cinnamon Rolls</div>
@@ -1346,7 +1592,7 @@
                 </div>
                 <div class="showcase-desc">Warm, gooey, and generously frosted. Made from scratch with real cinnamon and cream cheese icing.</div>
             </div>
-            <div class="showcase-item" data-category="rolls" onclick="this.classList.toggle('expanded')">
+            <div class="showcase-item" data-category="rolls">
                 <div class="showcase-icon bread has-image" style="background-image: url('images/cheese-rolls.png')"></div>
                 <div class="showcase-info">
                     <div class="showcase-name">Cheese Rolls</div>
@@ -1355,7 +1601,7 @@
                 </div>
                 <div class="showcase-desc">Golden-brown rolls stuffed with savory melted cheese. A crowd favorite at every gathering.</div>
             </div>
-            <div class="showcase-item" data-category="rolls" onclick="this.classList.toggle('expanded')">
+            <div class="showcase-item" data-category="rolls">
                 <div class="showcase-icon bread has-image" style="background-image: url('images/crescent-rolls.png')"></div>
                 <div class="showcase-info">
                     <div class="showcase-name">Crescent Rolls</div>
@@ -1364,7 +1610,7 @@
                 </div>
                 <div class="showcase-desc">Flaky, buttery layers that melt in your mouth. Light as air and perfect alongside any meal.</div>
             </div>
-            <div class="showcase-item" data-category="breads" onclick="this.classList.toggle('expanded')">
+            <div class="showcase-item" data-category="breads">
                 <div class="showcase-icon bread has-image" style="background-image: url('images/wheat-bread.png')"></div>
                 <div class="showcase-info">
                     <div class="showcase-name">Wheat Bread</div>
@@ -1373,7 +1619,7 @@
                 </div>
                 <div class="showcase-desc">Hearty homemade wheat bread with a golden crust and soft interior. Perfect for sandwiches or toasting.</div>
             </div>
-            <div class="showcase-item" data-category="breads" onclick="this.classList.toggle('expanded')">
+            <div class="showcase-item" data-category="breads">
                 <div class="showcase-icon bread has-image" style="background-image: url('images/french-bread.png')"></div>
                 <div class="showcase-info">
                     <div class="showcase-name">Soft French Bread</div>
@@ -1382,7 +1628,7 @@
                 </div>
                 <div class="showcase-desc">A soft, pillowy French loaf with a light golden crust. Great with soup, pasta, or slathered in butter.</div>
             </div>
-            <div class="showcase-item" data-category="sweets" onclick="this.classList.toggle('expanded')">
+            <div class="showcase-item" data-category="sweets">
                 <div class="showcase-icon sweet has-image" style="background-image: url('images/cookie-dough-brownies.png')"></div>
                 <div class="showcase-info">
                     <div class="showcase-name">Cookie Dough Brownies</div>
@@ -1391,7 +1637,7 @@
                 </div>
                 <div class="showcase-desc">Rich fudgy brownies topped with a thick layer of edible cookie dough. Two desserts in one.</div>
             </div>
-            <div class="showcase-item" data-category="sweets" onclick="this.classList.toggle('expanded')">
+            <div class="showcase-item" data-category="sweets">
                 <div class="showcase-icon sweet has-image" style="background-image: url('images/peanut-butter-bars.png')"></div>
                 <div class="showcase-info">
                     <div class="showcase-name">Peanut Butter Bars</div>
@@ -1400,7 +1646,7 @@
                 </div>
                 <div class="showcase-desc">Thick peanut butter filling with a chocolate topping. Like a homemade Reese's, but better.</div>
             </div>
-            <div class="showcase-item" data-category="sweets" onclick="this.classList.toggle('expanded')">
+            <div class="showcase-item" data-category="sweets">
                 <div class="showcase-icon sweet has-image" style="background-image: url('images/lemon-bars.png')"></div>
                 <div class="showcase-info">
                     <div class="showcase-name">Lemon Bars</div>
@@ -1409,7 +1655,7 @@
                 </div>
                 <div class="showcase-desc">Tangy lemon curd on a buttery shortbread crust, dusted with powdered sugar. Bright and refreshing.</div>
             </div>
-            <div class="showcase-item" data-category="sweets" onclick="this.classList.toggle('expanded')">
+            <div class="showcase-item" data-category="sweets">
                 <div class="showcase-icon sweet has-image" style="background-image: url('images/caramel-rice-krispie-treats.png')"></div>
                 <div class="showcase-info">
                     <div class="showcase-name">Caramel Rice Krispie Treats</div>
@@ -1664,7 +1910,7 @@
             </p>
             <div class="footer-social">
                 <a href="https://instagram.com/kathleens.kitchen.ut" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 0.4rem;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
                     @kathleens.kitchen.ut
                 </a>
             </div>
@@ -1773,14 +2019,131 @@
         }
     }
 
-    // Attach listeners to all checkboxes and qty selectors
+    // Attach listeners to all checkboxes and qty selectors in the ORDER FORM
     document.addEventListener('change', function(e) {
-        if (e.target.matches('.checkbox-item input[type="checkbox"]') || e.target.matches('.qty-select')) {
+        if (e.target.matches('.event-items-group .checkbox-item input[type="checkbox"]') || e.target.matches('.event-items-group .qty-select')) {
             updateOrderTotal();
+        }
+        // Inline event card totals
+        if (e.target.matches('.event-card-inline-order input[type="checkbox"]') || e.target.matches('.inline-qty-select')) {
+            var card = e.target.closest('.event-card');
+            if (card) updateInlineTotal(card);
         }
     });
 
-    // --- Form submission → Square Checkout ---
+    // --- Inline event card total ---
+    function updateInlineTotal(card) {
+        var orderSection = card.querySelector('.event-card-inline-order');
+        if (!orderSection) return;
+        var checked = orderSection.querySelectorAll('input[type="checkbox"]:checked');
+        var total = 0;
+        for (var i = 0; i < checked.length; i++) {
+            var row = checked[i].closest('.checkbox-item');
+            var sel = row.querySelector('.inline-qty-select');
+            var price = parseFloat(sel.getAttribute('data-price')) || 0;
+            var qty = parseInt(sel.value) || 1;
+            total += price * qty;
+        }
+        var totalSpan = orderSection.querySelector('.inline-order-total span');
+        totalSpan.textContent = '$' + total;
+    }
+
+    // --- Event card accordion + inline ordering ---
+    document.querySelector('.events-grid').addEventListener('click', function(e) {
+        var card = e.target.closest('.event-card');
+        if (!card) return;
+        if (card.classList.contains('is-sold-out')) return;
+
+        // If clicking inside inline-order area checkboxes/selects, don't collapse
+        if (e.target.closest('.event-card-inline-order') && !e.target.closest('.btn-proceed')) return;
+
+        // Handle "Proceed to Checkout" button
+        if (e.target.closest('.btn-proceed')) {
+            e.preventDefault();
+            e.stopPropagation();
+            proceedToCheckout(card);
+            return;
+        }
+
+        var allCards = document.querySelectorAll('.event-card');
+        var wasExpanded = card.classList.contains('expanded');
+
+        // Collapse all cards and reset their inline checkboxes
+        for (var i = 0; i < allCards.length; i++) {
+            if (allCards[i] !== card) {
+                allCards[i].classList.remove('expanded');
+                resetInlineOrder(allCards[i]);
+            }
+        }
+
+        if (wasExpanded) {
+            card.classList.remove('expanded');
+            resetInlineOrder(card);
+        } else {
+            card.classList.add('expanded');
+            // Scroll expanded card into view smoothly
+            setTimeout(function() {
+                card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        }
+    });
+
+    function resetInlineOrder(card) {
+        var checks = card.querySelectorAll('.event-card-inline-order input[type="checkbox"]');
+        for (var i = 0; i < checks.length; i++) checks[i].checked = false;
+        var selects = card.querySelectorAll('.inline-qty-select');
+        for (var i = 0; i < selects.length; i++) selects[i].selectedIndex = 0;
+        var totalSpan = card.querySelector('.inline-order-total span');
+        if (totalSpan) totalSpan.textContent = '$0';
+    }
+
+    function proceedToCheckout(card) {
+        var eventId = card.getAttribute('data-event');
+        if (!eventId) return;
+
+        // Get checked items from inline order
+        var inlineSection = card.querySelector('.event-card-inline-order');
+        var checked = inlineSection.querySelectorAll('input[type="checkbox"]:checked');
+
+        // 1. Set event in the order form
+        selectEvent(eventId);
+
+        // 2. Match and check items in the order form
+        var formGroup = document.getElementById('items-' + eventId);
+        if (formGroup) {
+            // Uncheck all first
+            var formChecks = formGroup.querySelectorAll('input[type="checkbox"]');
+            for (var i = 0; i < formChecks.length; i++) formChecks[i].checked = false;
+
+            // Check matching items and set quantities
+            for (var i = 0; i < checked.length; i++) {
+                var itemName = checked[i].getAttribute('data-item');
+                var row = checked[i].closest('.checkbox-item');
+                var inlineQty = row.querySelector('.inline-qty-select').value;
+
+                // Find matching checkbox in order form
+                var formCheckboxes = formGroup.querySelectorAll('input[type="checkbox"]');
+                for (var j = 0; j < formCheckboxes.length; j++) {
+                    if (formCheckboxes[j].value === itemName) {
+                        formCheckboxes[j].checked = true;
+                        // Set qty
+                        var formRow = formCheckboxes[j].closest('.checkbox-item');
+                        var formQty = formRow.querySelector('.qty-select');
+                        if (formQty) formQty.value = inlineQty;
+                        break;
+                    }
+                }
+            }
+        }
+
+        // 3. Update order total
+        updateOrderTotal();
+
+        // 4. Scroll to order form
+        document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // --- Form submission -> Square Checkout ---
     document.getElementById('theForm').addEventListener('submit', function(e) {
         e.preventDefault();
 
@@ -1885,8 +2248,33 @@
                     items[k].classList.add('hidden');
                 }
             }
+            // Collapse any expanded showcase item when switching filters
+            var expanded = document.querySelector('.showcase-item.expanded');
+            if (expanded) expanded.classList.remove('expanded');
         });
     }
+
+    // --- Showcase card accordion (event delegation) ---
+    document.querySelector('.showcase-grid').addEventListener('click', function(e) {
+        var item = e.target.closest('.showcase-item');
+        if (!item) return;
+
+        var allItems = document.querySelectorAll('.showcase-item');
+        var wasExpanded = item.classList.contains('expanded');
+
+        // Collapse all
+        for (var i = 0; i < allItems.length; i++) {
+            allItems[i].classList.remove('expanded');
+        }
+
+        // Toggle clicked
+        if (!wasExpanded) {
+            item.classList.add('expanded');
+            setTimeout(function() {
+                item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        }
+    });
 </script>
 
 </body>
