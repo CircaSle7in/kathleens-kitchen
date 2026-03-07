@@ -541,6 +541,33 @@
            ═══════════════════════════════════════════ */
         .showcase { background: var(--warm-white); }
 
+        .showcase-filters {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+        .showcase-filter {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 0.5rem 1.5rem;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--taupe);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .showcase-filter:hover { border-color: var(--pink); color: var(--pink); }
+        .showcase-filter.active {
+            background: var(--pink);
+            color: white;
+            border-color: var(--pink);
+        }
+
         .showcase-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -549,12 +576,14 @@
 
         .showcase-item {
             text-align: center;
-            padding: 2rem 1rem;
+            padding: 0;
             background: var(--cream);
             border: 1px solid var(--border);
             transition: all 0.3s;
             overflow: hidden;
+            cursor: pointer;
         }
+        .showcase-item.hidden { display: none; }
 
         .showcase-item:hover {
             border-color: var(--pink);
@@ -563,7 +592,6 @@
 
         .showcase-icon {
             width: 100%; height: 140px;
-            margin: 0 0 1rem;
             overflow: hidden;
             background-size: cover;
             background-position: center;
@@ -576,6 +604,8 @@
         .showcase-item:hover .showcase-icon.has-image {
             transform: scale(1.05);
         }
+
+        .showcase-info { padding: 1.2rem 1rem; }
 
         .showcase-name {
             font-family: 'Cormorant Garamond', serif;
@@ -590,6 +620,30 @@
             text-transform: uppercase;
             color: var(--purple);
         }
+
+        .showcase-desc {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            font-size: 0.85rem;
+            color: var(--taupe);
+            line-height: 1.6;
+            padding: 0 1rem;
+        }
+        .showcase-item.expanded .showcase-desc {
+            max-height: 120px;
+            padding: 0 1rem 1.2rem;
+        }
+        .showcase-expand {
+            font-size: 0.65rem;
+            color: var(--pink);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-top: 0.4rem;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+        .showcase-item:hover .showcase-expand { opacity: 1; }
 
         /* ═══════════════════════════════════════════
            HOW IT WORKS
@@ -936,6 +990,8 @@
             .form-row { grid-template-columns: 1fr; }
             .checkbox-group { grid-template-columns: 1fr; }
             .showcase-grid { grid-template-columns: repeat(2, 1fr); }
+            .showcase-filters { gap: 0.3rem; }
+            .showcase-filter { padding: 0.4rem 1rem; font-size: 0.65rem; }
             .footer-content { grid-template-columns: 1fr; gap: 2rem; }
             .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
             .hero-title { font-size: clamp(3rem, 12vw, 5rem); }
@@ -1150,7 +1206,7 @@
                     <ul class="event-items">
                         <li><span>Grandma's Rolls</span><span class="item-price">$22/dozen</span></li>
                         <li><span>Cinnamon Rolls</span><span class="item-price">$48/dozen</span></li>
-                        <li><span>Dinner Rolls</span><span class="item-price">$20/dozen</span></li>
+                        <li><span>Wheat Bread</span><span class="item-price">$10/loaf</span></li>
                         <li><span>Lemon Bars</span><span class="item-price">$42/dozen</span></li>
                         <li><span>Caramel Rice Krispie Treats</span><span class="item-price">$36/dozen</span></li>
                     </ul>
@@ -1218,8 +1274,9 @@
                     <ul class="event-items">
                         <li><span>Grandma's Rolls</span><span class="item-price">$22/dozen</span></li>
                         <li><span>Cheese Rolls</span><span class="item-price">$28/dozen</span></li>
+                        <li><span>Wheat Bread</span><span class="item-price">$10/loaf</span></li>
+                        <li><span>Soft French Bread</span><span class="item-price">$8/loaf</span></li>
                         <li><span>Cookie Dough Brownies</span><span class="item-price">$48/dozen</span></li>
-                        <li><span>Peanut Butter Bars</span><span class="item-price">$42/dozen</span></li>
                         <li><span>Caramel Rice Krispie Treats</span><span class="item-price">$36/dozen</span></li>
                     </ul>
                     <div class="event-progress">
@@ -1259,51 +1316,102 @@
                 These items rotate through our events. Check upcoming events to see what's baking next.
             </p>
         </div>
+        <div class="showcase-filters fade-in">
+            <button class="showcase-filter active" data-filter="all">All</button>
+            <button class="showcase-filter" data-filter="rolls">Rolls</button>
+            <button class="showcase-filter" data-filter="breads">Breads</button>
+            <button class="showcase-filter" data-filter="sweets">Bars & Treats</button>
+        </div>
         <div class="showcase-grid fade-in">
-            <div class="showcase-item">
+            <div class="showcase-item" data-category="rolls" onclick="this.classList.toggle('expanded')">
                 <div class="showcase-icon bread has-image" style="background-image: url('images/grandmas-rolls.png')"></div>
-                <div class="showcase-name">Grandma's Rolls</div>
-                <div class="showcase-tag">Bread</div>
+                <div class="showcase-info">
+                    <div class="showcase-name">Grandma's Rolls</div>
+                    <div class="showcase-tag">Rolls</div>
+                    <div class="showcase-expand">tap for details</div>
+                </div>
+                <div class="showcase-desc">Kathleen's famous family recipe, passed down from Grandma. Soft, buttery, and perfect for Sunday dinner or any gathering.</div>
             </div>
-            <div class="showcase-item">
+            <div class="showcase-item" data-category="rolls" onclick="this.classList.toggle('expanded')">
                 <div class="showcase-icon bread has-image" style="background-image: url('images/cinnamon-rolls.png')"></div>
-                <div class="showcase-name">Cinnamon Rolls</div>
-                <div class="showcase-tag">Bread</div>
+                <div class="showcase-info">
+                    <div class="showcase-name">Cinnamon Rolls</div>
+                    <div class="showcase-tag">Rolls</div>
+                    <div class="showcase-expand">tap for details</div>
+                </div>
+                <div class="showcase-desc">Warm, gooey, and generously frosted. Made from scratch with real cinnamon and cream cheese icing.</div>
             </div>
-            <div class="showcase-item">
+            <div class="showcase-item" data-category="rolls" onclick="this.classList.toggle('expanded')">
                 <div class="showcase-icon bread has-image" style="background-image: url('images/cheese-rolls.png')"></div>
-                <div class="showcase-name">Cheese Rolls</div>
-                <div class="showcase-tag">Bread</div>
+                <div class="showcase-info">
+                    <div class="showcase-name">Cheese Rolls</div>
+                    <div class="showcase-tag">Rolls</div>
+                    <div class="showcase-expand">tap for details</div>
+                </div>
+                <div class="showcase-desc">Golden-brown rolls stuffed with savory melted cheese. A crowd favorite at every gathering.</div>
             </div>
-            <div class="showcase-item">
-                <div class="showcase-icon bread has-image" style="background-image: url('images/dinner-rolls.png')"></div>
-                <div class="showcase-name">Dinner Rolls</div>
-                <div class="showcase-tag">Bread</div>
-            </div>
-            <div class="showcase-item">
+            <div class="showcase-item" data-category="rolls" onclick="this.classList.toggle('expanded')">
                 <div class="showcase-icon bread has-image" style="background-image: url('images/crescent-rolls.png')"></div>
-                <div class="showcase-name">Crescent Rolls</div>
-                <div class="showcase-tag">Bread</div>
+                <div class="showcase-info">
+                    <div class="showcase-name">Crescent Rolls</div>
+                    <div class="showcase-tag">Rolls</div>
+                    <div class="showcase-expand">tap for details</div>
+                </div>
+                <div class="showcase-desc">Flaky, buttery layers that melt in your mouth. Light as air and perfect alongside any meal.</div>
             </div>
-            <div class="showcase-item">
+            <div class="showcase-item" data-category="breads" onclick="this.classList.toggle('expanded')">
+                <div class="showcase-icon bread has-image" style="background-image: url('images/wheat-bread.png')"></div>
+                <div class="showcase-info">
+                    <div class="showcase-name">Wheat Bread</div>
+                    <div class="showcase-tag">Bread</div>
+                    <div class="showcase-expand">tap for details</div>
+                </div>
+                <div class="showcase-desc">Hearty homemade wheat bread with a golden crust and soft interior. Perfect for sandwiches or toasting.</div>
+            </div>
+            <div class="showcase-item" data-category="breads" onclick="this.classList.toggle('expanded')">
+                <div class="showcase-icon bread has-image" style="background-image: url('images/french-bread.png')"></div>
+                <div class="showcase-info">
+                    <div class="showcase-name">Soft French Bread</div>
+                    <div class="showcase-tag">Bread</div>
+                    <div class="showcase-expand">tap for details</div>
+                </div>
+                <div class="showcase-desc">A soft, pillowy French loaf with a light golden crust. Great with soup, pasta, or slathered in butter.</div>
+            </div>
+            <div class="showcase-item" data-category="sweets" onclick="this.classList.toggle('expanded')">
                 <div class="showcase-icon sweet has-image" style="background-image: url('images/cookie-dough-brownies.png')"></div>
-                <div class="showcase-name">Cookie Dough Brownies</div>
-                <div class="showcase-tag">Sweet</div>
+                <div class="showcase-info">
+                    <div class="showcase-name">Cookie Dough Brownies</div>
+                    <div class="showcase-tag">Sweet</div>
+                    <div class="showcase-expand">tap for details</div>
+                </div>
+                <div class="showcase-desc">Rich fudgy brownies topped with a thick layer of edible cookie dough. Two desserts in one.</div>
             </div>
-            <div class="showcase-item">
+            <div class="showcase-item" data-category="sweets" onclick="this.classList.toggle('expanded')">
                 <div class="showcase-icon sweet has-image" style="background-image: url('images/peanut-butter-bars.png')"></div>
-                <div class="showcase-name">Peanut Butter Bars</div>
-                <div class="showcase-tag">Sweet</div>
+                <div class="showcase-info">
+                    <div class="showcase-name">Peanut Butter Bars</div>
+                    <div class="showcase-tag">Sweet</div>
+                    <div class="showcase-expand">tap for details</div>
+                </div>
+                <div class="showcase-desc">Thick peanut butter filling with a chocolate topping. Like a homemade Reese's, but better.</div>
             </div>
-            <div class="showcase-item">
+            <div class="showcase-item" data-category="sweets" onclick="this.classList.toggle('expanded')">
                 <div class="showcase-icon sweet has-image" style="background-image: url('images/lemon-bars.png')"></div>
-                <div class="showcase-name">Lemon Bars</div>
-                <div class="showcase-tag">Sweet</div>
+                <div class="showcase-info">
+                    <div class="showcase-name">Lemon Bars</div>
+                    <div class="showcase-tag">Sweet</div>
+                    <div class="showcase-expand">tap for details</div>
+                </div>
+                <div class="showcase-desc">Tangy lemon curd on a buttery shortbread crust, dusted with powdered sugar. Bright and refreshing.</div>
             </div>
-            <div class="showcase-item">
+            <div class="showcase-item" data-category="sweets" onclick="this.classList.toggle('expanded')">
                 <div class="showcase-icon sweet has-image" style="background-image: url('images/caramel-rice-krispie-treats.png')"></div>
-                <div class="showcase-name">Caramel Rice Krispie Treats</div>
-                <div class="showcase-tag">Sweet</div>
+                <div class="showcase-info">
+                    <div class="showcase-name">Caramel Rice Krispie Treats</div>
+                    <div class="showcase-tag">Sweet</div>
+                    <div class="showcase-expand">tap for details</div>
+                </div>
+                <div class="showcase-desc">Classic rice krispie treats elevated with a homemade caramel drizzle. Gooey, crunchy, and irresistible.</div>
             </div>
         </div>
     </div>
@@ -1398,10 +1506,10 @@
                                 <span class="qty-wrapper"><label>Qty:</label><select name="qty-Cinnamon Rolls" class="qty-select" data-price="48"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
                             </label>
                             <label class="checkbox-item">
-                                <input type="checkbox" name="items" value="Dinner Rolls">
-                                <span class="item-name">Dinner Rolls</span>
-                                <span class="item-price">$20/doz</span>
-                                <span class="qty-wrapper"><label>Qty:</label><select name="qty-Dinner Rolls" class="qty-select" data-price="20"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
+                                <input type="checkbox" name="items" value="Wheat Bread">
+                                <span class="item-name">Wheat Bread</span>
+                                <span class="item-price">$10/loaf</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select name="qty-Wheat Bread" class="qty-select" data-price="10"><option value="1">1 loaf</option><option value="2">2 loaves</option><option value="3">3 loaves</option><option value="4">4 loaves</option><option value="5">5 loaves</option></select></span>
                             </label>
                             <label class="checkbox-item">
                                 <input type="checkbox" name="items" value="Lemon Bars">
@@ -1474,16 +1582,22 @@
                                 <span class="qty-wrapper"><label>Qty:</label><select name="qty-Cheese Rolls" class="qty-select" data-price="28"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
                             </label>
                             <label class="checkbox-item">
+                                <input type="checkbox" name="items" value="Wheat Bread">
+                                <span class="item-name">Wheat Bread</span>
+                                <span class="item-price">$10/loaf</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select name="qty-Wheat Bread" class="qty-select" data-price="10"><option value="1">1 loaf</option><option value="2">2 loaves</option><option value="3">3 loaves</option><option value="4">4 loaves</option><option value="5">5 loaves</option></select></span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="items" value="Soft French Bread">
+                                <span class="item-name">Soft French Bread</span>
+                                <span class="item-price">$8/loaf</span>
+                                <span class="qty-wrapper"><label>Qty:</label><select name="qty-Soft French Bread" class="qty-select" data-price="8"><option value="1">1 loaf</option><option value="2">2 loaves</option><option value="3">3 loaves</option><option value="4">4 loaves</option><option value="5">5 loaves</option></select></span>
+                            </label>
+                            <label class="checkbox-item">
                                 <input type="checkbox" name="items" value="Cookie Dough Brownies">
                                 <span class="item-name">Cookie Dough Brownies</span>
                                 <span class="item-price">$48/doz</span>
                                 <span class="qty-wrapper"><label>Qty:</label><select name="qty-Cookie Dough Brownies" class="qty-select" data-price="48"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="items" value="Peanut Butter Bars">
-                                <span class="item-name">Peanut Butter Bars</span>
-                                <span class="item-price">$42/doz</span>
-                                <span class="qty-wrapper"><label>Qty:</label><select name="qty-Peanut Butter Bars" class="qty-select" data-price="42"><option value="1">1 doz</option><option value="2">2 doz</option><option value="3">3 doz</option><option value="4">4 doz</option><option value="5">5 doz</option></select></span>
                             </label>
                             <label class="checkbox-item">
                                 <input type="checkbox" name="items" value="Caramel Rice Krispie Treats">
@@ -1746,6 +1860,24 @@
     // If Formspree redirects back with #thank-you, show the success message
     if (window.location.hash === '#thank-you') {
         showOrderSuccess();
+    }
+
+    // Showcase category filters
+    var filterBtns = document.querySelectorAll('.showcase-filter');
+    for (var f = 0; f < filterBtns.length; f++) {
+        filterBtns[f].addEventListener('click', function() {
+            var filter = this.getAttribute('data-filter');
+            for (var j = 0; j < filterBtns.length; j++) filterBtns[j].classList.remove('active');
+            this.classList.add('active');
+            var items = document.querySelectorAll('.showcase-item');
+            for (var k = 0; k < items.length; k++) {
+                if (filter === 'all' || items[k].getAttribute('data-category') === filter) {
+                    items[k].classList.remove('hidden');
+                } else {
+                    items[k].classList.add('hidden');
+                }
+            }
+        });
     }
 </script>
 
