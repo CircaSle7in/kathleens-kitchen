@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /ADMIN-GUIDE.html
+Disallow: /INSTAGRAM-GUIDE.html
+Disallow: /BUSINESS-ANALYSIS.html
+Disallow: /analysis-calculator.html
+Disallow: /analysis-competitors.html
+Disallow: /analysis-insights.html
+
+Sitemap: https://kathleens.kitchen/sitemap.xml
