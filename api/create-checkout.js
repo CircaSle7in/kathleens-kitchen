@@ -62,7 +62,7 @@ module.exports = async function handler(req, res) {
     : `https://${req.headers.host}`;
 
   try {
-    const response = await client.checkout.createPaymentLink({
+    const response = await client.checkout.paymentLinks.create({
       idempotencyKey: crypto.randomUUID(),
       order: {
         locationId: process.env.SQUARE_LOCATION_ID,
@@ -90,10 +90,10 @@ module.exports = async function handler(req, res) {
       orderId: response.paymentLink.orderId,
     });
   } catch (error) {
-    console.error('Square Checkout Error:', error);
+    console.error('Square Checkout Error:', JSON.stringify(error, null, 2));
     return res.status(500).json({
       error: 'Failed to create checkout session',
-      details: isSandbox ? error.message : undefined,
+      details: isSandbox ? (error.message || JSON.stringify(error)) : undefined,
     });
   }
 };
