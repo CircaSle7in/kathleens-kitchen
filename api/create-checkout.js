@@ -67,12 +67,10 @@ module.exports = async function handler(req, res) {
       order: {
         locationId: process.env.SQUARE_LOCATION_ID,
         lineItems: lineItems,
-        metadata: {
-          customer_name: name,
-          customer_phone: phone,
-          event: event,
-          notes: notes || '',
-        },
+        metadata: Object.assign(
+          { customer_name: name, customer_phone: phone, event: event },
+          notes ? { notes: notes } : {}
+        ),
       },
       checkoutOptions: {
         redirectUrl: `${baseUrl}/order-confirmed.html`,
