@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kathleen's Kitchen — Brand Assets</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --cream: #FDF8FA;
+        --warm-white: #FFFAFC;
+        --pink: #CF7A9B;
+        --pink-dark: #B86485;
+        --pink-light: #F5E0EA;
+        --pink-pale: #FBF0F4;
+        --purple: #A893C2;
+        --purple-dark: #8F7AAD;
+        --purple-light: #EDE8F3;
+        --green: #7BA37B;
+        --green-dark: #5E8A5E;
+        --green-light: #E5EDE5;
+        --charcoal: #2D2D2D;
+        --taupe: #706B60;
+        --border: #EADEE4;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+        font-family: 'Work Sans', sans-serif;
+        font-weight: 300;
+        color: var(--charcoal);
+        background: var(--cream);
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3 {
+        font-family: 'Cormorant Garamond', serif;
+        font-weight: 500;
+    }
+
+    /* Header */
+    .page-header {
+        text-align: center;
+        padding: 4rem 2rem 3rem;
+        background: linear-gradient(135deg, var(--pink-pale) 0%, var(--purple-light) 50%, var(--green-light) 100%);
+        border-bottom: 1px solid var(--border);
+    }
+    .page-header h1 {
+        font-family: 'Great Vibes', cursive;
+        font-size: 3rem;
+        color: var(--pink-dark);
+        margin-bottom: 0.3rem;
+    }
+    .page-header p {
+        color: var(--taupe);
+        font-size: 0.95rem;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    /* Navigation */
+    .asset-nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(255,255,255,0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        justify-content: center;
+        gap: 0;
+        padding: 0;
+    }
+    .asset-nav a {
+        padding: 1rem 1.8rem;
+        font-size: 0.78rem;
+        font-weight: 400;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--taupe);
+        text-decoration: none;
+        border-bottom: 2px solid transparent;
+        transition: all 0.3s;
+    }
+    .asset-nav a:hover {
+        color: var(--pink-dark);
+        border-bottom-color: var(--pink);
+    }
+
+    /* Container */
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+
+    /* Section */
+    .section {
+        padding: 4rem 0;
+        border-bottom: 1px solid var(--border);
+    }
+    .section:last-child { border-bottom: none; }
+
+    .section-label {
+        font-size: 0.7rem;
+        font-weight: 400;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--purple);
+        margin-bottom: 0.8rem;
+    }
+    .section-title {
+        font-size: 2rem;
+        color: var(--charcoal);
+        margin-bottom: 0.5rem;
+    }
+    .section-desc {
+        color: var(--taupe);
+        font-size: 0.9rem;
+        margin-bottom: 2.5rem;
+    }
+
+    /* Asset Grid */
+    .asset-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+
+    .asset-card {
+        background: white;
+        border: 1px solid var(--border);
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.3s;
+    }
+    .asset-card:hover {
+        border-color: var(--pink);
+        box-shadow: 0 4px 20px rgba(207,122,155,0.12);
+    }
+
+    .asset-preview {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 180px;
+        margin-bottom: 1.5rem;
+    }
+    .asset-preview img, .asset-preview svg {
+        max-width: 100%;
+        max-height: 180px;
+    }
+
+    .asset-name {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.15rem;
+        font-weight: 500;
+        margin-bottom: 0.3rem;
+    }
+    .asset-desc {
+        font-size: 0.78rem;
+        color: var(--taupe);
+        margin-bottom: 1rem;
+    }
+
+    .btn-download {
+        display: inline-block;
+        font-family: 'Work Sans', sans-serif;
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        padding: 0.6rem 1.5rem;
+        border: 1px solid var(--pink);
+        color: var(--pink-dark);
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-decoration: none;
+        margin: 0 0.3rem;
+    }
+    .btn-download:hover {
+        background: var(--pink);
+        color: white;
+    }
+    .btn-download.filled {
+        background: var(--pink);
+        color: white;
+        border-color: var(--pink);
+    }
+    .btn-download.filled:hover {
+        background: var(--pink-dark);
+        border-color: var(--pink-dark);
+    }
+
+    /* QR Code specific */
+    .qr-card .asset-preview {
+        background: white;
+        padding: 1rem;
+    }
+    .qr-card .asset-preview img {
+        max-height: 160px;
+        width: 160px;
+        image-rendering: pixelated;
+    }
+    .qr-url {
+        font-size: 0.72rem;
+        color: var(--purple);
+        font-weight: 400;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.8rem;
+        word-break: break-all;
+    }
+
+    /* Sticker Previews */
+    .sticker-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+
+    .sticker-card {
+        background: white;
+        border: 1px solid var(--border);
+        padding: 2.5rem;
+        text-align: center;
+        transition: all 0.3s;
+    }
+    .sticker-card:hover {
+        border-color: var(--pink);
+        box-shadow: 0 4px 20px rgba(207,122,155,0.12);
+    }
+
+    .sticker-preview {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Round sticker */
+    .round-sticker {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        border: 2px solid var(--pink);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+        position: relative;
+    }
+    .round-sticker::before {
+        content: '';
+        position: absolute;
+        inset: 4px;
+        border-radius: 50%;
+        border: 1px solid var(--pink-light);
+    }
+    .round-sticker .sticker-brand {
+        font-family: 'Great Vibes', cursive;
+        font-size: 1.6rem;
+        color: var(--pink-dark);
+        line-height: 1.1;
+    }
+    .round-sticker .sticker-tagline {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 0.7rem;
+        font-style: italic;
+        color: var(--purple-dark);
+        margin: 0.3rem 0;
+    }
+    .round-sticker .sticker-location {
+        font-size: 0.55rem;
+        font-weight: 400;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--taupe);
+    }
+
+    /* Rectangle label */
+    .rect-label {
+        width: 280px;
+        padding: 1.2rem 1.5rem;
+        border: 1.5px solid var(--pink);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    .rect-label-left {
+        flex: 1;
+        text-align: left;
+    }
+    .rect-label .label-brand {
+        font-family: 'Great Vibes', cursive;
+        font-size: 1.3rem;
+        color: var(--pink-dark);
+        line-height: 1.1;
+    }
+    .rect-label .label-tagline {
+        font-size: 0.6rem;
+        font-style: italic;
+        color: var(--purple-dark);
+        font-family: 'Cormorant Garamond', serif;
+    }
+    .rect-label .label-location {
+        font-size: 0.5rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--taupe);
+        margin-top: 0.2rem;
+    }
+    .rect-label .label-qr {
+        width: 55px;
+        height: 55px;
+        flex-shrink: 0;
+    }
+    .rect-label .label-qr img {
+        width: 100%;
+        height: 100%;
+        image-rendering: pixelated;
+    }
+
+    /* Thank you sticker */
+    .thankyou-sticker {
+        width: 220px;
+        padding: 1.5rem;
+        border: 1.5px solid var(--pink);
+        text-align: center;
+        position: relative;
+    }
+    .thankyou-sticker::before {
+        content: '';
+        position: absolute;
+        inset: 3px;
+        border: 1px solid var(--pink-light);
+    }
+    .thankyou-sticker .ty-text {
+        font-family: 'Great Vibes', cursive;
+        font-size: 1.8rem;
+        color: var(--pink-dark);
+        line-height: 1.1;
+    }
+    .thankyou-sticker .ty-sub {
+        font-size: 0.6rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--taupe);
+        margin-top: 0.4rem;
+    }
+    .thankyou-sticker .ty-ig {
+        font-size: 0.6rem;
+        color: var(--purple);
+        margin-top: 0.5rem;
+        font-weight: 400;
+    }
+
+    /* QR sticker (round with QR inside) */
+    .qr-sticker {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        border: 2px solid var(--pink);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        position: relative;
+    }
+    .qr-sticker::before {
+        content: '';
+        position: absolute;
+        inset: 4px;
+        border-radius: 50%;
+        border: 1px solid var(--pink-light);
+    }
+    .qr-sticker .qs-label {
+        font-size: 0.5rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--taupe);
+        margin-bottom: 0.3rem;
+        position: relative;
+    }
+    .qr-sticker .qs-qr {
+        width: 80px;
+        height: 80px;
+        position: relative;
+    }
+    .qr-sticker .qs-qr img {
+        width: 100%;
+        height: 100%;
+        image-rendering: pixelated;
+    }
+    .qr-sticker .qs-brand {
+        font-family: 'Great Vibes', cursive;
+        font-size: 1rem;
+        color: var(--pink-dark);
+        margin-top: 0.3rem;
+        position: relative;
+    }
+
+    /* Color Palette */
+    .palette-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 1rem;
+    }
+    .color-swatch {
+        text-align: center;
+    }
+    .swatch-circle {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin: 0 auto 0.8rem;
+        border: 1px solid rgba(0,0,0,0.08);
+    }
+    .swatch-name {
+        font-size: 0.8rem;
+        font-weight: 500;
+        margin-bottom: 0.2rem;
+    }
+    .swatch-hex {
+        font-size: 0.72rem;
+        color: var(--taupe);
+        font-family: 'Work Sans', monospace;
+    }
+
+    /* Typography Reference */
+    .type-sample {
+        background: white;
+        border: 1px solid var(--border);
+        padding: 2rem;
+        margin-bottom: 1.5rem;
+    }
+    .type-name {
+        font-size: 0.65rem;
+        font-weight: 500;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--purple);
+        margin-bottom: 0.5rem;
+    }
+    .type-display {
+        margin-bottom: 0.5rem;
+    }
+    .type-usage {
+        font-size: 0.78rem;
+        color: var(--taupe);
+    }
+
+    /* Print tip */
+    .print-tip {
+        background: var(--green-light);
+        border-left: 3px solid var(--green);
+        padding: 1rem 1.5rem;
+        margin: 2rem 0;
+        font-size: 0.85rem;
+        color: var(--charcoal);
+    }
+    .print-tip strong { color: var(--green-dark); }
+
+    /* Footer */
+    .page-footer {
+        text-align: center;
+        padding: 3rem 2rem;
+        font-size: 0.78rem;
+        color: var(--taupe);
+        border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 768px) {
+        .asset-grid { grid-template-columns: 1fr; }
+        .sticker-grid { grid-template-columns: 1fr; }
+        .palette-grid { grid-template-columns: repeat(3, 1fr); }
+        .asset-nav { flex-wrap: wrap; }
+        .asset-nav a { padding: 0.8rem 1rem; font-size: 0.68rem; }
+        .section { padding: 3rem 0; }
+    }
+
+    @media print {
+        .asset-nav, .btn-download, .print-tip, .page-footer { display: none !important; }
+        .page-header { padding: 2rem; }
+        .section { page-break-inside: avoid; padding: 2rem 0; }
+        .sticker-card, .asset-card { box-shadow: none; break-inside: avoid; }
+    }
+</style>
+</head>
+<body>
+
+<header class="page-header">
+    <h1>Kathleen's Kitchen</h1>
+    <p>Brand assets for packaging, printing, and marketing. Everything you need to put the brand in the real world.</p>
+</header>
+
+<nav class="asset-nav">
+    <a href="#logos">Logos</a>
+    <a href="#qr-codes">QR Codes</a>
+    <a href="#stickers">Stickers</a>
+    <a href="#colors">Colors</a>
+    <a href="#typography">Typography</a>
+</nav>
+
+<div class="container">
+
+<!-- ═══════════════════════════════════════════
+     LOGOS
+     ═══════════════════════════════════════════ -->
+<section class="section" id="logos">
+    <div class="section-label">Brand Identity</div>
+    <h2 class="section-title">Logos</h2>
+    <p class="section-desc">Use these for packaging, social media, flyers, or anything that needs the brand mark. SVG files scale to any size without losing quality.</p>
+
+    <div class="asset-grid">
+        <!-- Full Logo -->
+        <div class="asset-card">
+            <div class="asset-preview">
+                <div style="font-family: 'Great Vibes', cursive; font-size: 3rem; color: var(--pink-dark); line-height: 1.1;">
+                    Kathleen's Kitchen
+                </div>
+            </div>
+            <div class="asset-name">Full Brand Name</div>
+            <div class="asset-desc">Great Vibes script. Use at large sizes for signs, banners, headers.</div>
+        </div>
+
+        <!-- KK Monogram Circle -->
+        <div class="asset-card">
+            <div class="asset-preview">
+                <svg width="140" height="140" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="70" cy="70" r="68" fill="#CF7A9B" stroke="#B86485" stroke-width="2"/>
+                    <circle cx="70" cy="70" r="60" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                    <text x="70" y="82" font-family="'Great Vibes', cursive" font-size="52" fill="white" text-anchor="middle">KK</text>
+                </svg>
+            </div>
+            <div class="asset-name">KK Monogram</div>
+            <div class="asset-desc">Circle mark. Perfect for stickers, profile photos, favicon, wax seals.</div>
+        </div>
+
+        <!-- KK Monogram - Outline -->
+        <div class="asset-card">
+            <div class="asset-preview">
+                <svg width="140" height="140" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="70" cy="70" r="67" fill="none" stroke="#CF7A9B" stroke-width="2"/>
+                    <circle cx="70" cy="70" r="60" fill="none" stroke="#F5E0EA" stroke-width="1"/>
+                    <text x="70" y="82" font-family="'Great Vibes', cursive" font-size="52" fill="#B86485" text-anchor="middle">KK</text>
+                </svg>
+            </div>
+            <div class="asset-name">KK Monogram — Outline</div>
+            <div class="asset-desc">Light version for stamps, embossing, or light backgrounds.</div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     QR CODES
+     ═══════════════════════════════════════════ -->
+<section class="section" id="qr-codes">
+    <div class="section-label">Scan to Connect</div>
+    <h2 class="section-title">QR Codes</h2>
+    <p class="section-desc">Print these on packaging, business cards, flyers, or table displays. Customers scan with their phone camera to go directly to your page.</p>
+
+    <div class="print-tip">
+        <strong>Print tip:</strong> QR codes should be at least 1 inch (2.5 cm) square to scan reliably. For best results, keep a white border around them and avoid printing on very dark or busy backgrounds.
+    </div>
+
+    <div class="asset-grid">
+        <!-- Website QR -->
+        <div class="asset-card qr-card">
+            <div class="asset-preview">
+                <img src="images/qr-website.png" alt="QR code for kathleens.kitchen" width="160" height="160">
+            </div>
+            <div class="asset-name">Website</div>
+            <div class="qr-url">kathleens.kitchen</div>
+            <div class="asset-desc">Goes straight to your main website with events, menu, and ordering.</div>
+            <div>
+                <a href="images/qr-website.png" download="kathleens-kitchen-qr-website.png" class="btn-download">PNG</a>
+                <a href="images/qr-website.svg" download="kathleens-kitchen-qr-website.svg" class="btn-download">SVG</a>
+            </div>
+        </div>
+
+        <!-- Instagram QR -->
+        <div class="asset-card qr-card">
+            <div class="asset-preview">
+                <img src="images/qr-instagram.png" alt="QR code for Instagram" width="160" height="160">
+            </div>
+            <div class="asset-name">Instagram</div>
+            <div class="qr-url">@kathleens.kitchen.ut</div>
+            <div class="asset-desc">Opens your Instagram profile. Great for packaging so customers can follow you.</div>
+            <div>
+                <a href="images/qr-instagram.png" download="kathleens-kitchen-qr-instagram.png" class="btn-download">PNG</a>
+                <a href="images/qr-instagram.svg" download="kathleens-kitchen-qr-instagram.svg" class="btn-download">SVG</a>
+            </div>
+        </div>
+
+        <!-- Link in Bio QR -->
+        <div class="asset-card qr-card">
+            <div class="asset-preview">
+                <img src="images/qr-linkinbio.png" alt="QR code for link-in-bio page" width="160" height="160">
+            </div>
+            <div class="asset-name">Link-in-Bio</div>
+            <div class="qr-url">kathleens.kitchen/links.html</div>
+            <div class="asset-desc">Quick-access page with order link, events, and text contact. Best for flyers and handouts.</div>
+            <div>
+                <a href="images/qr-linkinbio.png" download="kathleens-kitchen-qr-linkinbio.png" class="btn-download">PNG</a>
+                <a href="images/qr-linkinbio.svg" download="kathleens-kitchen-qr-linkinbio.svg" class="btn-download">SVG</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PACKAGING STICKERS
+     ═══════════════════════════════════════════ -->
+<section class="section" id="stickers">
+    <div class="section-label">Packaging & Print</div>
+    <h2 class="section-title">Sticker Designs</h2>
+    <p class="section-desc">Ready-to-print sticker layouts for packaging, bags, and boxes. Print these on sticker paper from any home printer or send to a print shop like Sticker Mule or Avery.</p>
+
+    <div class="print-tip">
+        <strong>How to print:</strong> Use Avery round labels (2" diameter, template 22807) for the round stickers. For rectangles, use Avery address labels (2" x 4", template 5163). Print on any inkjet or laser printer. For professional results, order custom stickers from StickerMule.com or Stickergiant.com.
+    </div>
+
+    <div class="sticker-grid">
+        <!-- Round Seal Sticker -->
+        <div class="sticker-card">
+            <div class="sticker-preview">
+                <div class="round-sticker">
+                    <div class="sticker-brand">Kathleen's Kitchen</div>
+                    <div class="sticker-tagline">Homemade with Love</div>
+                    <div class="sticker-location">Sandy, Utah</div>
+                </div>
+            </div>
+            <div class="asset-name">Brand Seal</div>
+            <div class="asset-desc">2" round sticker for sealing bags, boxes, and packaging. Classic and clean.</div>
+        </div>
+
+        <!-- Round QR Sticker -->
+        <div class="sticker-card">
+            <div class="sticker-preview">
+                <div class="qr-sticker">
+                    <div class="qs-label">Order Online</div>
+                    <div class="qs-qr"><img src="images/qr-website.png" alt="QR"></div>
+                    <div class="qs-brand">Kathleen's Kitchen</div>
+                </div>
+            </div>
+            <div class="asset-name">QR Seal</div>
+            <div class="asset-desc">2" round sticker with scannable QR code. Customers scan to reorder.</div>
+        </div>
+
+        <!-- Rectangle Label -->
+        <div class="sticker-card">
+            <div class="sticker-preview">
+                <div class="rect-label">
+                    <div class="rect-label-left">
+                        <div class="label-brand">Kathleen's Kitchen</div>
+                        <div class="label-tagline">Homemade Breads & Sweet Treats</div>
+                        <div class="label-location">Sandy, Utah</div>
+                    </div>
+                    <div class="label-qr">
+                        <img src="images/qr-instagram.png" alt="QR">
+                    </div>
+                </div>
+            </div>
+            <div class="asset-name">Product Label</div>
+            <div class="asset-desc">Rectangle label with brand + QR code. Stick on containers, bags, or boxes.</div>
+        </div>
+
+        <!-- Thank You Sticker -->
+        <div class="sticker-card">
+            <div class="sticker-preview">
+                <div class="thankyou-sticker">
+                    <div class="ty-text">Thank You!</div>
+                    <div class="ty-sub">From Kathleen's Kitchen</div>
+                    <div class="ty-ig">@kathleens.kitchen.ut</div>
+                </div>
+            </div>
+            <div class="asset-name">Thank You Card</div>
+            <div class="asset-desc">Include with every order. Encourages follows and repeat customers.</div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     COLOR PALETTE
+     ═══════════════════════════════════════════ -->
+<section class="section" id="colors">
+    <div class="section-label">Visual Identity</div>
+    <h2 class="section-title">Color Palette</h2>
+    <p class="section-desc">These are the official brand colors. Use them for any printed materials, social media graphics, or signage to keep everything consistent.</p>
+
+    <div class="palette-grid">
+        <div class="color-swatch">
+            <div class="swatch-circle" style="background: #CF7A9B;"></div>
+            <div class="swatch-name">Rose Pink</div>
+            <div class="swatch-hex">#CF7A9B</div>
+        </div>
+        <div class="color-swatch">
+            <div class="swatch-circle" style="background: #B86485;"></div>
+            <div class="swatch-name">Deep Rose</div>
+            <div class="swatch-hex">#B86485</div>
+        </div>
+        <div class="color-swatch">
+            <div class="swatch-circle" style="background: #F5E0EA;"></div>
+            <div class="swatch-name">Blush</div>
+            <div class="swatch-hex">#F5E0EA</div>
+        </div>
+        <div class="color-swatch">
+            <div class="swatch-circle" style="background: #A893C2;"></div>
+            <div class="swatch-name">Lavender</div>
+            <div class="swatch-hex">#A893C2</div>
+        </div>
+        <div class="color-swatch">
+            <div class="swatch-circle" style="background: #8F7AAD;"></div>
+            <div class="swatch-name">Deep Lavender</div>
+            <div class="swatch-hex">#8F7AAD</div>
+        </div>
+        <div class="color-swatch">
+            <div class="swatch-circle" style="background: #7BA37B;"></div>
+            <div class="swatch-name">Sage Green</div>
+            <div class="swatch-hex">#7BA37B</div>
+        </div>
+        <div class="color-swatch">
+            <div class="swatch-circle" style="background: #FDF8FA;"></div>
+            <div class="swatch-name">Cream</div>
+            <div class="swatch-hex">#FDF8FA</div>
+        </div>
+        <div class="color-swatch">
+            <div class="swatch-circle" style="background: #2D2D2D;"></div>
+            <div class="swatch-name">Charcoal</div>
+            <div class="swatch-hex">#2D2D2D</div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     TYPOGRAPHY
+     ═══════════════════════════════════════════ -->
+<section class="section" id="typography">
+    <div class="section-label">Type System</div>
+    <h2 class="section-title">Typography</h2>
+    <p class="section-desc">Three fonts make up the brand. All are free from Google Fonts.</p>
+
+    <div class="type-sample">
+        <div class="type-name">Display / Logo</div>
+        <div class="type-display" style="font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: var(--pink-dark);">
+            Kathleen's Kitchen
+        </div>
+        <div class="type-usage"><strong>Great Vibes</strong> — Used for the logo, event names, and decorative headings. Free on Google Fonts.</div>
+    </div>
+
+    <div class="type-sample">
+        <div class="type-name">Headings / Elegant Text</div>
+        <div class="type-display" style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--charcoal);">
+            Homemade Breads & Sweet Treats
+        </div>
+        <div class="type-usage"><strong>Cormorant Garamond</strong> — Used for section titles and elegant body text. Weights: 400, 500, 600. Free on Google Fonts.</div>
+    </div>
+
+    <div class="type-sample">
+        <div class="type-name">Body / UI Text</div>
+        <div class="type-display" style="font-family: 'Work Sans', sans-serif; font-size: 1rem; font-weight: 300; color: var(--charcoal);">
+            Baked with love in Sandy, Utah. Every order is made from scratch with the same care I'd put into feeding my own family.
+        </div>
+        <div class="type-usage"><strong>Work Sans</strong> — Used for body text, buttons, and labels. Weights: 300, 400, 500. Free on Google Fonts.</div>
+    </div>
+</section>
+
+</div><!-- /.container -->
+
+<footer class="page-footer">
+    Kathleen's Kitchen Brand Assets &mdash; For internal use only<br>
+    Sandy, Utah &bull; 2026
+</footer>
+
+</body>
+</html>
