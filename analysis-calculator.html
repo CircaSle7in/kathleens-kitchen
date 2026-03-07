@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kathleen's Kitchen — Interactive Calculator</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --pink: #CF7A9B;
+    --pink-light: #e8b5c8;
+    --pink-dark: #a85f7a;
+    --purple: #A893C2;
+    --purple-light: #c9bfdb;
+    --purple-dark: #7d6a9e;
+    --green: #7BA37B;
+    --green-light: #a8c5a8;
+    --green-dark: #5a7e5a;
+    --cream: #FDF8FA;
+    --cream-dark: #f5eef1;
+    --text: #2d2a33;
+    --text-light: #5c566a;
+    --text-muted: #8a8498;
+    --white: #ffffff;
+    --border: #e8dfe4;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---- HEADER ---- */
+  .header {
+    background: linear-gradient(135deg, var(--pink) 0%, var(--purple) 50%, var(--green) 100%);
+    color: var(--white);
+    padding: 40px 40px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+  }
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    position: relative;
+    letter-spacing: 0.02em;
+  }
+  .header .subtitle {
+    font-size: 1rem;
+    font-weight: 300;
+    opacity: 0.92;
+    position: relative;
+  }
+
+  /* ---- NAVIGATION ---- */
+  .nav-bar {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+  }
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 28px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-light);
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+  }
+  .nav-btn:hover {
+    color: var(--pink-dark);
+    background: var(--cream);
+  }
+  .nav-btn.active {
+    color: var(--pink-dark);
+    border-bottom-color: var(--pink);
+    font-weight: 600;
+    background: var(--cream);
+  }
+  .nav-icon {
+    font-size: 1.1rem;
+  }
+
+  /* ---- CONTAINER ---- */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---- SECTIONS ---- */
+  .section {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 40px;
+    margin: 32px 0;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    page-break-inside: avoid;
+  }
+  .section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.85rem;
+    color: var(--pink-dark);
+    margin-bottom: 8px;
+    padding-bottom: 16px;
+    border-bottom: 3px solid var(--pink-light);
+  }
+  .section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--purple-dark);
+    margin: 28px 0 14px;
+  }
+  .section p {
+    margin: 10px 0;
+    color: var(--text-light);
+    line-height: 1.75;
+  }
+
+  /* ---- STAT CARDS ---- */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .stat-card {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+  .stat-card .stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+  }
+  .stat-card .stat-label {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 4px;
+  }
+  .stat-card.pink .stat-value { color: var(--pink); }
+  .stat-card.purple .stat-value { color: var(--purple-dark); }
+  .stat-card.green .stat-value { color: var(--green-dark); }
+
+  /* ---- CALLOUT BOXES ---- */
+  .callout {
+    border-left: 4px solid var(--pink);
+    background: var(--cream);
+    padding: 18px 24px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+  }
+  .callout.green { border-left-color: var(--green); }
+  .callout.purple { border-left-color: var(--purple); }
+  .callout.pink { border-left-color: var(--pink); }
+  .callout strong { color: var(--text); }
+  .callout p { margin: 4px 0; color: var(--text-light); font-size: 0.92rem; }
+
+  /* ---- FOOTER ---- */
+  .footer {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border);
+    margin-top: 48px;
+  }
+  .footer .brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--pink);
+    margin-bottom: 6px;
+  }
+
+  /* ---- CALCULATOR STYLES ---- */
+  .section-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--pink) 0%, var(--purple) 100%);
+    color: var(--white);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.85rem;
+    color: var(--pink-dark);
+    margin-bottom: 8px;
+    padding-bottom: 16px;
+    border-bottom: 3px solid var(--pink-light);
+  }
+  .section-intro {
+    color: var(--text-light);
+    line-height: 1.75;
+    margin: 10px 0;
+  }
+
+  .calc-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin: 2rem 0;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--white);
+  }
+  .calc-header {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr 1.2fr 1fr 1fr 0.8fr;
+    gap: 0;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, var(--pink) 0%, var(--purple) 100%);
+    color: var(--white);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .calc-row {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr 1.2fr 1fr 1fr 0.8fr;
+    gap: 0;
+    padding: 12px 20px;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .calc-row:last-child { border-bottom: none; }
+  .calc-row:hover { background: var(--cream); }
+  .calc-row .item-name {
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+  .calc-row .item-tag {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+  .calc-row input {
+    width: 90px;
+    padding: 8px 10px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: right;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: var(--white);
+  }
+  .calc-row input:focus {
+    outline: none;
+    border-color: var(--pink);
+    box-shadow: 0 0 0 3px rgba(207,122,155,0.15);
+  }
+  .calc-row input.cost-input { color: var(--pink-dark); }
+  .calc-row input.price-input { color: var(--green-dark); }
+  .calc-profit {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--green-dark);
+  }
+  .calc-margin {
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 4px 8px;
+    border-radius: 20px;
+    text-align: center;
+    display: inline-block;
+  }
+  .margin-great { background: #e5ede5; color: var(--green-dark); }
+  .margin-good { background: #fff8e1; color: #e65100; }
+  .margin-low { background: #fce4ec; color: #c62828; }
+
+  /* Forecast section */
+  .forecast-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 2rem 0 1rem;
+    padding: 24px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    flex-wrap: wrap;
+  }
+  .forecast-controls label {
+    font-weight: 500;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+  .forecast-controls input[type="range"] {
+    flex: 1;
+    min-width: 200px;
+    accent-color: var(--pink);
+    height: 6px;
+  }
+  .forecast-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--pink-dark);
+    min-width: 120px;
+    text-align: right;
+  }
+  .forecast-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 1rem 0 2rem;
+  }
+  .forecast-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+  .forecast-card .fc-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .forecast-card .fc-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+  .forecast-card .fc-sub {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    margin-top: 4px;
+  }
+  .fc-revenue { color: var(--purple-dark); }
+  .fc-profit { color: var(--green-dark); }
+  .fc-margin { color: var(--pink-dark); }
+  .fc-hourly { color: var(--text); }
+
+  /* Summary bar */
+  .calc-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 1.5rem 0;
+  }
+  .calc-summary .stat-card {
+    padding: 20px;
+    text-align: center;
+  }
+
+  /* ---- PRINT STYLES ---- */
+  @media print {
+    body { background: white; }
+    .header { padding: 20px; }
+    .header h1 { font-size: 1.8rem; }
+    .nav-bar { display: none; }
+    .section { box-shadow: none; border: 1px solid #ddd; padding: 24px; margin: 16px 0; page-break-inside: avoid; }
+    .calc-row input {
+      border: none;
+      background: transparent;
+      font-weight: 600;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .header { padding: 24px 20px 16px; }
+    .header h1 { font-size: 1.8rem; }
+    .section { padding: 24px 20px; }
+    .nav-btn { padding: 12px 16px; font-size: 0.8rem; }
+    .calc-header, .calc-row {
+      grid-template-columns: 1.5fr 1fr 1fr 0.8fr 0.8fr 0.7fr;
+      padding: 10px 12px;
+      font-size: 0.8rem;
+    }
+    .calc-row input { width: 70px; padding: 6px 8px; font-size: 0.8rem; }
+    .forecast-grid { grid-template-columns: repeat(2, 1fr); }
+    .calc-summary { grid-template-columns: 1fr; }
+    .forecast-controls { flex-direction: column; align-items: stretch; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <h1>Kathleen's Kitchen</h1>
+  <div class="subtitle">Business Analysis</div>
+</header>
+
+<!-- NAVIGATION -->
+<nav class="nav-bar">
+  <div class="nav-inner">
+    <a href="analysis-calculator.html" class="nav-btn active">
+      <span class="nav-icon">&#9998;</span> Calculator
+    </a>
+    <a href="analysis-competitors.html" class="nav-btn">
+      <span class="nav-icon">&#9878;</span> Competitor Analysis
+    </a>
+    <a href="analysis-insights.html" class="nav-btn">
+      <span class="nav-icon">&#9733;</span> Insights
+    </a>
+  </div>
+</nav>
+
+<div class="container">
+
+<!-- INTERACTIVE CALCULATOR -->
+<section class="section" id="calculator">
+  <div class="section-badge">Interactive Calculator</div>
+  <h2 class="section-title">Your Numbers</h2>
+  <p class="section-intro">Adjust ingredient costs and selling prices to see how your margins and projections change in real-time. All fields are pre-filled with our researched estimates — tweak anything to match your actual numbers.</p>
+
+  <!-- Product Calculator Table -->
+  <div class="calc-grid">
+    <div class="calc-header">
+      <span>Product</span>
+      <span>Cost/Dozen</span>
+      <span>Price/Dozen</span>
+      <span>Profit</span>
+      <span>Margin</span>
+      <span>$/Hr</span>
+    </div>
+    <div class="calc-row" data-hours="1.5">
+      <div><div class="item-name">Grandma's Rolls</div><div class="item-tag">Bread</div></div>
+      <div><input type="number" class="cost-input" value="4.20" step="0.10" min="0"></div>
+      <div><input type="number" class="price-input" value="22" step="1" min="0"></div>
+      <div class="calc-profit">&mdash;</div>
+      <div class="calc-margin">&mdash;</div>
+      <div class="calc-hourly">&mdash;</div>
+    </div>
+    <div class="calc-row" data-hours="2.0">
+      <div><div class="item-name">Cinnamon Rolls</div><div class="item-tag">Bread</div></div>
+      <div><input type="number" class="cost-input" value="6.90" step="0.10" min="0"></div>
+      <div><input type="number" class="price-input" value="48" step="1" min="0"></div>
+      <div class="calc-profit">&mdash;</div>
+      <div class="calc-margin">&mdash;</div>
+      <div class="calc-hourly">&mdash;</div>
+    </div>
+    <div class="calc-row" data-hours="1.5">
+      <div><div class="item-name">Crescent Rolls</div><div class="item-tag">Bread</div></div>
+      <div><input type="number" class="cost-input" value="4.80" step="0.10" min="0"></div>
+      <div><input type="number" class="price-input" value="24" step="1" min="0"></div>
+      <div class="calc-profit">&mdash;</div>
+      <div class="calc-margin">&mdash;</div>
+      <div class="calc-hourly">&mdash;</div>
+    </div>
+    <div class="calc-row" data-hours="1.75">
+      <div><div class="item-name">Cheese Rolls</div><div class="item-tag">Bread</div></div>
+      <div><input type="number" class="cost-input" value="5.80" step="0.10" min="0"></div>
+      <div><input type="number" class="price-input" value="28" step="1" min="0"></div>
+      <div class="calc-profit">&mdash;</div>
+      <div class="calc-margin">&mdash;</div>
+      <div class="calc-hourly">&mdash;</div>
+    </div>
+    <div class="calc-row" data-hours="1.5">
+      <div><div class="item-name">Dinner Rolls</div><div class="item-tag">Bread</div></div>
+      <div><input type="number" class="cost-input" value="3.80" step="0.10" min="0"></div>
+      <div><input type="number" class="price-input" value="20" step="1" min="0"></div>
+      <div class="calc-profit">&mdash;</div>
+      <div class="calc-margin">&mdash;</div>
+      <div class="calc-hourly">&mdash;</div>
+    </div>
+    <div class="calc-row" data-hours="1.75">
+      <div><div class="item-name">Cookie Dough Brownies</div><div class="item-tag">Sweet</div></div>
+      <div><input type="number" class="cost-input" value="8.30" step="0.10" min="0"></div>
+      <div><input type="number" class="price-input" value="48" step="1" min="0"></div>
+      <div class="calc-profit">&mdash;</div>
+      <div class="calc-margin">&mdash;</div>
+      <div class="calc-hourly">&mdash;</div>
+    </div>
+    <div class="calc-row" data-hours="0.75">
+      <div><div class="item-name">Peanut Butter Bars</div><div class="item-tag">Sweet</div></div>
+      <div><input type="number" class="cost-input" value="6.20" step="0.10" min="0"></div>
+      <div><input type="number" class="price-input" value="42" step="1" min="0"></div>
+      <div class="calc-profit">&mdash;</div>
+      <div class="calc-margin">&mdash;</div>
+      <div class="calc-hourly">&mdash;</div>
+    </div>
+    <div class="calc-row" data-hours="0.75">
+      <div><div class="item-name">Lemon Bars</div><div class="item-tag">Sweet</div></div>
+      <div><input type="number" class="cost-input" value="5.30" step="0.10" min="0"></div>
+      <div><input type="number" class="price-input" value="42" step="1" min="0"></div>
+      <div class="calc-profit">&mdash;</div>
+      <div class="calc-margin">&mdash;</div>
+      <div class="calc-hourly">&mdash;</div>
+    </div>
+    <div class="calc-row" data-hours="0.5">
+      <div><div class="item-name">Caramel Rice Krispie Treats</div><div class="item-tag">Sweet</div></div>
+      <div><input type="number" class="cost-input" value="4.20" step="0.10" min="0"></div>
+      <div><input type="number" class="price-input" value="36" step="1" min="0"></div>
+      <div class="calc-profit">&mdash;</div>
+      <div class="calc-margin">&mdash;</div>
+      <div class="calc-hourly">&mdash;</div>
+    </div>
+  </div>
+
+  <!-- Live Summary -->
+  <div class="calc-summary">
+    <div class="stat-card green">
+      <div class="stat-value" id="avgMargin">&mdash;</div>
+      <div class="stat-label">Avg. Gross Margin</div>
+    </div>
+    <div class="stat-card pink">
+      <div class="stat-value" id="avgProfit">&mdash;</div>
+      <div class="stat-label">Avg. Profit / Dozen</div>
+    </div>
+    <div class="stat-card purple">
+      <div class="stat-value" id="bestItem">&mdash;</div>
+      <div class="stat-label">Most Profitable / Hour</div>
+    </div>
+  </div>
+
+  <!-- Forecasting Slider -->
+  <h3 style="font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-top: 3rem;">Revenue Forecasting</h3>
+  <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">Drag the slider to see how weekly order volume affects your bottom line. Assumes an average of 2 dozen items per order with a 60/40 bread-to-sweets mix.</p>
+
+  <div class="forecast-controls">
+    <label for="orderSlider">Orders per week:</label>
+    <input type="range" id="orderSlider" min="1" max="40" value="15" step="1">
+    <div class="forecast-value"><span id="orderCount">15</span> /wk</div>
+  </div>
+
+  <div class="forecast-grid">
+    <div class="forecast-card">
+      <div class="fc-label">Weekly Revenue</div>
+      <div class="fc-value fc-revenue" id="fcWeekRev">&mdash;</div>
+      <div class="fc-sub" id="fcWeekCost">&mdash;</div>
+    </div>
+    <div class="forecast-card">
+      <div class="fc-label">Monthly Profit</div>
+      <div class="fc-value fc-profit" id="fcMonthProfit">&mdash;</div>
+      <div class="fc-sub" id="fcMonthRev">&mdash;</div>
+    </div>
+    <div class="forecast-card">
+      <div class="fc-label">Annual Revenue</div>
+      <div class="fc-value fc-revenue" id="fcAnnualRev">&mdash;</div>
+      <div class="fc-sub" id="fcAnnualProfit">&mdash;</div>
+    </div>
+    <div class="forecast-card">
+      <div class="fc-label">Effective $/Hour</div>
+      <div class="fc-value fc-hourly" id="fcHourly">&mdash;</div>
+      <div class="fc-sub" id="fcHours">&mdash;</div>
+    </div>
+  </div>
+
+  <div id="capWarning" class="callout pink" style="display:none;">
+    <strong>Cottage Food Cap Warning</strong>
+    <p>At this volume, annual revenue exceeds <strong>$50,000</strong> — the Utah Traditional Cottage Food limit. You would need to operate under the <strong>Home Consumption and Homemade Food Act</strong> (Food Freedom Act) which has no revenue cap but requires direct-to-consumer sales and proper labeling.</p>
+  </div>
+
+</section>
+</div><!-- /.container -->
+
+<script>
+(function() {
+  var rows = document.querySelectorAll('.calc-row');
+  var slider = document.getElementById('orderSlider');
+  var orderCountEl = document.getElementById('orderCount');
+
+  function fmt(n) { return '$' + n.toFixed(2); }
+  function fmtInt(n) { return '$' + Math.round(n).toLocaleString(); }
+  function fmtPct(n) { return n.toFixed(1) + '%'; }
+
+  function recalc() {
+    var totalMargin = 0, totalProfit = 0, count = 0;
+    var bestHourly = 0, bestHourlyName = '';
+    var products = [];
+
+    for (var i = 0; i < rows.length; i++) {
+      var row = rows[i];
+      var cost = parseFloat(row.querySelector('.cost-input').value) || 0;
+      var price = parseFloat(row.querySelector('.price-input').value) || 0;
+      var hours = parseFloat(row.getAttribute('data-hours')) || 1;
+      var name = row.querySelector('.item-name').textContent;
+
+      var profit = price - cost;
+      var margin = price > 0 ? (profit / price) * 100 : 0;
+      var hourly = hours > 0 ? profit / hours : 0;
+
+      row.querySelector('.calc-profit').textContent = fmt(profit);
+      var marginEl = row.querySelector('.calc-margin');
+      marginEl.textContent = fmtPct(margin);
+      marginEl.className = 'calc-margin ' + (margin >= 75 ? 'margin-great' : margin >= 50 ? 'margin-good' : 'margin-low');
+      row.querySelector('.calc-hourly').textContent = fmt(hourly) + '/hr';
+
+      totalMargin += margin;
+      totalProfit += profit;
+      count++;
+
+      if (hourly > bestHourly) {
+        bestHourly = hourly;
+        bestHourlyName = name;
+      }
+
+      products.push({ name: name, cost: cost, price: price, profit: profit, margin: margin, hours: hours, tag: row.querySelector('.item-tag').textContent });
+    }
+
+    document.getElementById('avgMargin').textContent = fmtPct(totalMargin / count);
+    document.getElementById('avgProfit').textContent = fmt(totalProfit / count);
+    document.getElementById('bestItem').textContent = bestHourlyName;
+
+    // Forecasting
+    var ordersPerWeek = parseInt(slider.value) || 1;
+    orderCountEl.textContent = ordersPerWeek;
+    var dozPerOrder = 2;
+
+    // Weighted average: 60% breads, 40% sweets
+    var breads = products.filter(function(p) { return p.tag === 'Bread'; });
+    var sweets = products.filter(function(p) { return p.tag === 'Sweet'; });
+
+    var avgBreadPrice = breads.reduce(function(s, p) { return s + p.price; }, 0) / (breads.length || 1);
+    var avgBreadCost = breads.reduce(function(s, p) { return s + p.cost; }, 0) / (breads.length || 1);
+    var avgBreadHours = breads.reduce(function(s, p) { return s + p.hours; }, 0) / (breads.length || 1);
+
+    var avgSweetPrice = sweets.reduce(function(s, p) { return s + p.price; }, 0) / (sweets.length || 1);
+    var avgSweetCost = sweets.reduce(function(s, p) { return s + p.cost; }, 0) / (sweets.length || 1);
+    var avgSweetHours = sweets.reduce(function(s, p) { return s + p.hours; }, 0) / (sweets.length || 1);
+
+    var blendedPrice = avgBreadPrice * 0.6 + avgSweetPrice * 0.4;
+    var blendedCost = avgBreadCost * 0.6 + avgSweetCost * 0.4;
+    var blendedHours = avgBreadHours * 0.6 + avgSweetHours * 0.4;
+
+    var weeklyDozens = ordersPerWeek * dozPerOrder;
+    var weeklyRevenue = weeklyDozens * blendedPrice;
+    var weeklyCost = weeklyDozens * blendedCost;
+    var weeklyProfit = weeklyRevenue - weeklyCost;
+    var weeklyHours = weeklyDozens * blendedHours;
+
+    document.getElementById('fcWeekRev').textContent = fmtInt(weeklyRevenue);
+    document.getElementById('fcWeekCost').textContent = fmtInt(weeklyCost) + ' materials';
+    document.getElementById('fcMonthProfit').textContent = fmtInt(weeklyProfit * 4.33);
+    document.getElementById('fcMonthRev').textContent = 'from ' + fmtInt(weeklyRevenue * 4.33) + ' revenue';
+    document.getElementById('fcAnnualRev').textContent = fmtInt(weeklyRevenue * 52);
+    document.getElementById('fcAnnualProfit').textContent = fmtInt(weeklyProfit * 52) + ' profit';
+
+    var effectiveHourly = weeklyHours > 0 ? weeklyProfit / weeklyHours : 0;
+    document.getElementById('fcHourly').textContent = fmtInt(effectiveHourly);
+    document.getElementById('fcHours').textContent = Math.round(weeklyHours) + ' hrs/week';
+
+    // Cottage food cap warning
+    var annualRev = weeklyRevenue * 52;
+    document.getElementById('capWarning').style.display = annualRev > 50000 ? 'block' : 'none';
+  }
+
+  // Attach listeners to all inputs
+  for (var i = 0; i < rows.length; i++) {
+    var inputs = rows[i].querySelectorAll('input');
+    for (var j = 0; j < inputs.length; j++) {
+      inputs[j].addEventListener('input', recalc);
+    }
+  }
+  slider.addEventListener('input', recalc);
+
+  // Initial calculation
+  recalc();
+})();
+</script>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="brand">Kathleen's Kitchen</div>
+  <p>Prepared March 6, 2026 &nbsp;&bull;&nbsp; Premium Home Bakery &nbsp;&bull;&nbsp; Pepperwood, Utah</p>
+  <p style="margin-top:8px; font-size:0.78rem;">This document contains estimates and projections based on publicly available market data and current bulk ingredient pricing. Actual results may vary. Consult with a tax professional regarding cottage food income reporting requirements.</p>
+  <p style="margin-top:16px; font-size:0.75rem; color:#bbb;">Sources: BakeProfit.com, BakeMargin.com, BakingSubs.com, Costco.com, Queen Bee Today, Warehouse Wanderer, StandScout.com, Utah Dept. of Agriculture &amp; Food, Institute for Justice, Forrager.com</p>
+</footer>
+
+</body>
+</html>
