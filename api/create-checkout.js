@@ -3,16 +3,18 @@ const crypto = require('crypto');
 
 // Product catalog with prices in cents
 const PRODUCTS = {
-  "Grandma's Rolls":           { price: 2200, unit: 'dozen' },
-  "Cinnamon Rolls":            { price: 4800, unit: 'dozen' },
-  "Crescent Rolls":            { price: 2400, unit: 'dozen' },
-  "Cheese Rolls":              { price: 2800, unit: 'dozen' },
-  "Wheat Bread":               { price: 1000, unit: 'loaf' },
-  "Soft French Bread":         { price: 800, unit: 'loaf' },
-  "Cookie Dough Brownies":     { price: 4800, unit: 'dozen' },
-  "Peanut Butter Bars":        { price: 4200, unit: 'dozen' },
-  "Lemon Bars":                { price: 4200, unit: 'dozen' },
-  "Caramel Rice Krispie Treats": { price: 3600, unit: 'dozen' },
+  "Grandma's Dinner Rolls":       { price: 2200, unit: 'dozen' },
+  "Cinnamon Rolls":                { price: 2400, unit: '6-pack' },
+  "Crescent Rolls":                { price: 2200, unit: 'dozen' },
+  "Cheese Rolls":                  { price: 2500, unit: 'dozen' },
+  "Mom's Wheat Bread":             { price: 900, unit: 'loaf' },
+  "Soft French Bread":             { price: 600, unit: 'loaf' },
+  "Cookie Dough Brownies":         { price: 2400, unit: 'pan' },
+  "Peanut Butter Bars":            { price: 2000, unit: 'pan' },
+  "Lemon Bars":                    { price: 2000, unit: 'pan' },
+  "Caramel Rice Krispie Treats":   { price: 2000, unit: 'pan' },
+  "Chocolate Dipped Strawberries": { price: 3600, unit: 'dozen' },
+  "Chocolate Dipped Grapes":       { price: 400, unit: 'cup' },
 };
 
 module.exports = async function handler(req, res) {
