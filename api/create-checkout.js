@@ -79,7 +79,7 @@ module.exports = async function handler(req, res) {
         redirectUrl: `${baseUrl}/order-confirmed.html`,
         askForShippingAddress: false,
         merchantSupportEmail: 'kathleens.kitchen.ut@gmail.com',
-        allowTipping: true,
+        allowTipping: false,
       },
       prePopulatedData: {
         buyerPhone: phone,
