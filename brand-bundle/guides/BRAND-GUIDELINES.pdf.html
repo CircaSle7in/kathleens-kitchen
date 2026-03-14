@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kathleen's Kitchen — Brand Guidelines</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        @page { size: letter; margin: 0.75in; }
+        @media print {
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .page-break { page-break-before: always; }
+        }
+
+        :root {
+            --pink: #CF7A9B;
+            --pink-dark: #B86485;
+            --pink-light: #F5E0EA;
+            --purple: #A893C2;
+            --purple-dark: #8F7AAD;
+            --green: #7BA37B;
+            --cream: #FDF8FA;
+            --charcoal: #2D2D2D;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 300;
+            color: var(--charcoal);
+            line-height: 1.6;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 2rem;
+            background: white;
+        }
+
+        .cover {
+            text-align: center;
+            padding: 4rem 2rem;
+            border: 2px solid var(--pink-light);
+            border-radius: 8px;
+            margin-bottom: 3rem;
+        }
+        .cover h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            color: var(--pink-dark);
+            margin-bottom: 0.5rem;
+        }
+        .cover .subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: var(--purple-dark);
+            font-style: italic;
+        }
+        .cover .year {
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 1rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--pink-dark);
+            margin: 2.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--pink-light);
+        }
+        h3 {
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            color: var(--charcoal);
+            margin: 1.5rem 0 0.5rem;
+        }
+        p { margin-bottom: 0.8rem; }
+        strong { font-weight: 500; }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 1rem 0 2rem;
+        }
+        .color-card {
+            text-align: center;
+        }
+        .color-swatch {
+            width: 100%;
+            height: 60px;
+            border-radius: 6px;
+            margin-bottom: 0.4rem;
+            border: 1px solid #eee;
+        }
+        .color-name {
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .color-hex {
+            font-size: 0.7rem;
+            color: #999;
+            font-family: monospace;
+        }
+
+        .font-sample {
+            padding: 1rem;
+            background: var(--cream);
+            border-radius: 6px;
+            margin: 0.5rem 0 1.5rem;
+        }
+        .font-sample.display { font-family: 'Great Vibes', cursive; font-size: 2rem; color: var(--pink-dark); }
+        .font-sample.heading { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 500; }
+        .font-sample.body-text { font-family: 'Work Sans', sans-serif; font-weight: 300; }
+
+        .do-dont {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+        .do, .dont {
+            padding: 1rem;
+            border-radius: 6px;
+        }
+        .do { background: rgba(123, 163, 123, 0.1); border-left: 3px solid var(--green); }
+        .dont { background: rgba(207, 122, 155, 0.1); border-left: 3px solid var(--pink); }
+        .do h4, .dont h4 { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+        .do h4 { color: var(--green); }
+        .dont h4 { color: var(--pink-dark); }
+        .do li, .dont li { font-size: 0.85rem; margin-bottom: 0.3rem; margin-left: 1rem; }
+
+        .tone-examples {
+            background: var(--cream);
+            padding: 1.5rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+        }
+        .tone-examples p { font-size: 0.9rem; font-style: italic; color: #555; }
+        .tone-examples strong { color: var(--charcoal); font-style: normal; }
+
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--pink-light);
+            font-size: 0.75rem;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+<div class="cover">
+    <h1>Kathleen's Kitchen</h1>
+    <div class="subtitle">Brand Guidelines</div>
+    <div class="year">2026 Edition</div>
+</div>
+
+<h2>Brand Story</h2>
+<p>Kathleen's Kitchen is a home bakery in Sandy, Utah, specializing in homemade breads and sweet treats. Every item is baked from scratch with the same care Kathleen puts into feeding her own family. Orders are placed through the website or by text, and picked up locally for holidays, gatherings, and special occasions.</p>
+<p>The brand is <strong>warm, personal, and approachable</strong> — like getting baked goods from a friend, not a store. It should feel handmade, not corporate.</p>
+
+<h2>Color Palette</h2>
+<p>These are the official brand colors. Use them consistently across all materials — social media, packaging, signage, and print.</p>
+
+<div class="color-grid">
+    <div class="color-card">
+        <div class="color-swatch" style="background: #CF7A9B;"></div>
+        <div class="color-name">Rose Pink</div>
+        <div class="color-hex">#CF7A9B</div>
+    </div>
+    <div class="color-card">
+        <div class="color-swatch" style="background: #B86485;"></div>
+        <div class="color-name">Deep Rose</div>
+        <div class="color-hex">#B86485</div>
+    </div>
+    <div class="color-card">
+        <div class="color-swatch" style="background: #F5E0EA;"></div>
+        <div class="color-name">Blush</div>
+        <div class="color-hex">#F5E0EA</div>
+    </div>
+    <div class="color-card">
+        <div class="color-swatch" style="background: #A893C2;"></div>
+        <div class="color-name">Lavender</div>
+        <div class="color-hex">#A893C2</div>
+    </div>
+    <div class="color-card">
+        <div class="color-swatch" style="background: #8F7AAD;"></div>
+        <div class="color-name">Deep Lavender</div>
+        <div class="color-hex">#8F7AAD</div>
+    </div>
+    <div class="color-card">
+        <div class="color-swatch" style="background: #7BA37B;"></div>
+        <div class="color-name">Sage Green</div>
+        <div class="color-hex">#7BA37B</div>
+    </div>
+    <div class="color-card">
+        <div class="color-swatch" style="background: #FDF8FA; border: 1px solid #ddd;"></div>
+        <div class="color-name">Cream</div>
+        <div class="color-hex">#FDF8FA</div>
+    </div>
+    <div class="color-card">
+        <div class="color-swatch" style="background: #2D2D2D;"></div>
+        <div class="color-name">Charcoal</div>
+        <div class="color-hex">#2D2D2D</div>
+    </div>
+</div>
+
+<h3>When to use which color</h3>
+<ul style="margin-left: 1.5rem; margin-bottom: 1rem; font-size: 0.9rem;">
+    <li><strong>Rose Pink</strong> — Primary brand color. Buttons, headers, accents, sticker backgrounds.</li>
+    <li><strong>Deep Rose</strong> — Hover states, emphasis text, logo stroke, sticker text.</li>
+    <li><strong>Blush</strong> — Light backgrounds, section dividers, soft accents.</li>
+    <li><strong>Lavender</strong> — Secondary accent. Event badges, decorative elements.</li>
+    <li><strong>Sage Green</strong> — "Open" or "Available" status indicators. Positive accents.</li>
+    <li><strong>Cream</strong> — Page backgrounds, card backgrounds.</li>
+    <li><strong>Charcoal</strong> — Body text, dark backgrounds when needed.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h2>Typography</h2>
+<p>Three fonts make up the brand. All are free on <strong>Google Fonts</strong> — search by name to download or use in any design tool (Canva, Google Docs, etc.).</p>
+
+<h3>Display / Logo — Great Vibes</h3>
+<div class="font-sample display">Kathleen's Kitchen</div>
+<p>Use for the brand name, event titles, and decorative headings. Never use for body text or small sizes — it's a script font meant to be big and beautiful.</p>
+
+<h3>Headings / Elegant Text — Cormorant Garamond</h3>
+<div class="font-sample heading">Homemade Breads & Sweet Treats</div>
+<p>Use for section titles, taglines, and elegant body text. Weights: Regular (400), Medium (500), Semi-Bold (600).</p>
+
+<h3>Body / UI Text — Work Sans</h3>
+<div class="font-sample body-text">Baked with love in Sandy, Utah. Every order is made from scratch with the same care I'd put into feeding my own family.</div>
+<p>Use for everything else — descriptions, buttons, labels, social media captions. Weights: Light (300), Regular (400), Medium (500).</p>
+
+<h2>Brand Voice & Tone</h2>
+<p>Kathleen's Kitchen should always sound like a <strong>warm, friendly neighbor</strong> — never corporate, never salesy. Think of how you'd text a friend about something you just baked.</p>
+
+<h3>Voice Attributes</h3>
+<ul style="margin-left: 1.5rem; margin-bottom: 1rem; font-size: 0.9rem;">
+    <li><strong>Warm</strong> — Like a hug. Genuine care for customers.</li>
+    <li><strong>Personal</strong> — First person. "I" not "we." Kathleen is the brand.</li>
+    <li><strong>Humble</strong> — Proud of the work but never boastful.</li>
+    <li><strong>Inviting</strong> — Always welcoming new customers and returning ones.</li>
+</ul>
+
+<div class="tone-examples">
+    <p><strong>Instead of:</strong> "Order our artisanal handcrafted bread today."</p>
+    <p><strong>Say:</strong> "I just pulled a fresh batch of honey wheat out of the oven — text me if you want one before they're gone!"</p>
+    <br>
+    <p><strong>Instead of:</strong> "Limited availability. Order now to secure your items."</p>
+    <p><strong>Say:</strong> "I can only make so many in my kitchen, so grab a spot while there's room!"</p>
+</div>
+
+<div class="do-dont">
+    <div class="do">
+        <h4>Do</h4>
+        <ul>
+            <li>Use first person ("I baked..." not "We baked...")</li>
+            <li>Mention Sandy, Utah</li>
+            <li>Talk about family, gatherings, holidays</li>
+            <li>Be specific about what's baking</li>
+            <li>Use casual, friendly language</li>
+            <li>Share behind-the-scenes moments</li>
+        </ul>
+    </div>
+    <div class="dont">
+        <h4>Don't</h4>
+        <ul>
+            <li>Use corporate language ("artisanal," "curated")</li>
+            <li>Be pushy or create false urgency</li>
+            <li>Use industry jargon</li>
+            <li>Over-use hashtags (3-5 max)</li>
+            <li>Sound like a chain bakery</li>
+            <li>Post without a photo</li>
+        </ul>
+    </div>
+</div>
+
+<div class="page-break"></div>
+
+<h2>Logo Usage</h2>
+<p>The brand has three logo formats. SVG files are included in the <strong>logos/</strong> folder — they scale to any size without losing quality.</p>
+
+<h3>K Monogram (Filled)</h3>
+<p>The primary mark. Rose pink circle with white script K. Use for stickers, social media profile photos, favicons, and anywhere you need a compact brand mark.</p>
+
+<h3>K Monogram (Outline)</h3>
+<p>The light version. Use on light backgrounds, for stamps, embossing, or when the filled version is too heavy.</p>
+
+<h3>K Monogram (White on Transparent)</h3>
+<p>For dark backgrounds, photo overlays, or watermarks.</p>
+
+<h3>Full Brand Name</h3>
+<p>The script "Kathleen's Kitchen" in Great Vibes. Use at large sizes only — signs, banners, website header. Never shrink below 1 inch wide.</p>
+
+<h2>Photography Style</h2>
+<ul style="margin-left: 1.5rem; margin-bottom: 1rem; font-size: 0.9rem;">
+    <li><strong>Lighting</strong> — Natural light whenever possible. Warm tones. Avoid harsh flash.</li>
+    <li><strong>Backgrounds</strong> — Clean countertops, linen towels, wooden cutting boards. Keep it real and homey.</li>
+    <li><strong>Styling</strong> — Show the food being enjoyed, not just sitting there. A hand reaching for a roll, a plate at a dinner table, bread cooling on a rack.</li>
+    <li><strong>Filters</strong> — Warm, slightly soft. Avoid heavy filters or over-saturation. The food should look real and appetizing.</li>
+    <li><strong>Behind-the-scenes</strong> — Dough rising, flour on hands, the kitchen in action. People love seeing the process.</li>
+</ul>
+
+<h2>Print & Packaging</h2>
+<h3>Stickers</h3>
+<ul style="margin-left: 1.5rem; margin-bottom: 1rem; font-size: 0.9rem;">
+    <li><strong>Round stickers:</strong> Avery 22807 (2" diameter). Print at home on inkjet/laser.</li>
+    <li><strong>Rectangle labels:</strong> Avery 5163 (2" x 4"). For containers and bags.</li>
+    <li><strong>Professional printing:</strong> StickerMule.com or StickerGiant.com for bulk orders.</li>
+</ul>
+
+<h3>QR Codes</h3>
+<ul style="margin-left: 1.5rem; margin-bottom: 1rem; font-size: 0.9rem;">
+    <li>Print at minimum 1" x 1" (2.5 cm) for reliable scanning</li>
+    <li>Keep a white border around the code</li>
+    <li>Three codes included: Website, Instagram, Link-in-Bio</li>
+    <li>SVG versions for print (infinite scale), PNG for digital use</li>
+</ul>
+
+<div class="footer">
+    Kathleen's Kitchen Brand Guidelines &mdash; 2026<br>
+    For questions, text Kathleen at (801) 808-9888
+</div>
+
+</body>
+</html>

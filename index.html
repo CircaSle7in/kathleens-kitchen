@@ -1249,9 +1249,10 @@
            FOOTER
            ═══════════════════════════════════════════ */
         footer {
-            background: var(--charcoal);
-            color: rgba(255,255,255,0.7);
+            background: var(--pink-pale);
+            color: var(--taupe);
             padding: 4rem 2rem 2rem;
+            border-top: 1px solid var(--border);
         }
 
         .footer-content {
@@ -1264,7 +1265,7 @@
 
         .footer-brand {
             font-family: 'Great Vibes', cursive;
-            font-size: 2rem; color: white;
+            font-size: 2rem; color: var(--pink-dark);
             margin-bottom: 1rem;
         }
         .footer-desc { font-size: 0.85rem; line-height: 1.8; max-width: 300px; }
@@ -1272,32 +1273,32 @@
         .footer-heading {
             font-size: 0.7rem; font-weight: 500;
             letter-spacing: 0.2em; text-transform: uppercase;
-            color: white; margin-bottom: 1.2rem;
+            color: var(--charcoal); margin-bottom: 1.2rem;
         }
 
         .footer-links { list-style: none; }
         .footer-links li { margin-bottom: 0.6rem; }
         .footer-links a { font-size: 0.85rem; transition: color 0.3s; }
-        .footer-links a:hover { color: var(--pink-light); }
+        .footer-links a:hover { color: var(--pink-dark); }
         .footer-subtle { margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.6; }
         .footer-legal { margin-top: 0.8rem; font-size: 0.75rem; opacity: 0.5; }
 
         .footer-social { display: flex; gap: 1rem; margin-top: 1rem; }
         .footer-social a {
             padding: 0.7rem 1.5rem;
-            border: 1px solid rgba(255,255,255,0.25);
+            border: 1px solid var(--border);
             border-radius: 50px;
             display: inline-flex; align-items: center; gap: 0.5rem;
             transition: all 0.3s; font-size: 0.85rem;
             font-weight: 400;
-            text-decoration: none; color: rgba(255,255,255,0.9);
-            background: rgba(255,255,255,0.05);
+            text-decoration: none; color: var(--taupe);
+            background: white;
         }
         .footer-social a:hover {
             border-color: var(--pink);
-            color: white;
-            background: linear-gradient(135deg, rgba(207,122,155,0.3), rgba(168,147,194,0.2));
-            box-shadow: 0 4px 15px rgba(207,122,155,0.25);
+            color: var(--pink-dark);
+            background: white;
+            box-shadow: 0 4px 15px rgba(207,122,155,0.15);
             transform: translateY(-1px);
         }
         .footer-social a svg {
@@ -1308,7 +1309,7 @@
         .footer-bottom {
             max-width: 1100px; margin: 0 auto;
             padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid var(--border);
             display: flex; justify-content: space-between;
             align-items: center; font-size: 0.75rem;
         }
@@ -1343,12 +1344,7 @@
             .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; padding-bottom: 4rem; }
             .hero-title { font-size: clamp(3rem, 12vw, 5rem); }
             .nav-order-btn {
-                position: absolute;
-                right: 60px;
-                top: 50%;
-                transform: translateY(-50%);
-                font-size: 0.6rem;
-                padding: 0.5rem 1rem;
+                display: none;
             }
         }
 
@@ -1414,15 +1410,15 @@
             border: none;
             cursor: pointer;
             box-shadow: 0 4px 20px rgba(207,122,155,0.4);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease;
-            pointer-events: none;
-        }
-        .floating-order-btn.visible {
             opacity: 1;
             transform: translateY(0);
+            transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease;
             pointer-events: auto;
+        }
+        .floating-order-btn.hidden {
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
         }
         .floating-order-btn:hover {
             background: var(--pink-dark);
@@ -1543,11 +1539,7 @@
     <div class="about-content fade-in">
         <div class="about-image"></div>
         <div class="about-text">
-            <h2>From Our <span>Kitchen</span> to Yours</h2>
-            <p>
-                There's something special about homemade bread straight from the oven &mdash;
-                the warmth, the aroma, and the way it brings people together around the table.
-            </p>
+            <h2>From My <span>Kitchen</span> to Yours</h2>
             <p>
                 For decades, my kitchen has been the heart of our home. Whether it's
                 Grandma Blood's dinner roll recipe passed down through generations or her
@@ -1555,10 +1547,10 @@
                 is made with the same love and care I'd use when feeding my own family.
             </p>
             <p>
-                Years ago, while Todd was in medical school, I baked for friends and neighbors
-                who loved having homemade treats for their gatherings. Now that we have a little
-                more time, we're enjoying sharing these special recipes again for holidays,
-                celebrations, and everyday moments. If you have a special occasion I can help you with, feel free to reach out to me!
+                Now that we have a little more time, we're enjoying sharing these special
+                recipes again for holidays, celebrations, and everyday moments.
+                If you have a special occasion I can help you with, feel free to
+                <a href="#special-occasions" style="color: var(--pink-dark); text-decoration: underline;">reach out to me</a>!
             </p>
             <p>
                 Every order is baked fresh, made from scratch, and delivered with a smile.
@@ -1990,78 +1982,6 @@
 </section>
 
 <!-- ═══════════════════════════════════════════
-     SPECIAL OCCASIONS
-     ═══════════════════════════════════════════ -->
-<section class="special-occasions section" id="special-occasions">
-    <div class="special-occasions-content fade-in">
-        <div class="section-label">Beyond the Events</div>
-        <h2>Have a <span>Special Occasion</span>?</h2>
-        <p>
-            Whether it's a birthday, baby shower, family reunion, or just a Tuesday that deserves
-            something homemade — I'd love to help make it special. Reach out and let's talk
-            about what you're looking for.
-        </p>
-        <div class="occasion-tags">
-            <span class="occasion-tag">Birthdays</span>
-            <span class="occasion-tag">Baby Showers</span>
-            <span class="occasion-tag">Holidays</span>
-            <span class="occasion-tag">Family Reunions</span>
-            <span class="occasion-tag">Teacher Gifts</span>
-            <span class="occasion-tag">Neighbor Treats</span>
-        </div>
-        <a href="#custom-inquiry" class="btn btn-pink">Send a Custom Request</a>
-    </div>
-</section>
-
-<!-- ═══════════════════════════════════════════
-     CUSTOM INQUIRY
-     ═══════════════════════════════════════════ -->
-<section class="custom-inquiry section" id="custom-inquiry">
-    <div class="section-wide">
-        <div class="section-header fade-in">
-            <div class="section-label">Custom Orders</div>
-            <h2 class="section-title">Send a Request</h2>
-            <div class="section-divider"></div>
-            <p class="section-desc">Tell me about your occasion and I'll get back to you within 24 hours.</p>
-        </div>
-        <form class="inquiry-form fade-in" action="https://formspree.io/f/xpwzgkvq" method="POST">
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="inquiry-name">Your Name</label>
-                    <input type="text" id="inquiry-name" name="name" required placeholder="First & Last">
-                </div>
-                <div class="form-group">
-                    <label for="inquiry-contact">Phone or Email</label>
-                    <input type="text" id="inquiry-contact" name="contact" required placeholder="Best way to reach you">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inquiry-occasion">What's the Occasion?</label>
-                <select id="inquiry-occasion" name="occasion">
-                    <option value="">Select one...</option>
-                    <option value="birthday">Birthday</option>
-                    <option value="baby-shower">Baby Shower</option>
-                    <option value="holiday">Holiday Gathering</option>
-                    <option value="family-reunion">Family Reunion</option>
-                    <option value="teacher-gift">Teacher / Neighbor Gift</option>
-                    <option value="other">Other</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="inquiry-date">When Do You Need It?</label>
-                <input type="date" id="inquiry-date" name="date">
-            </div>
-            <div class="form-group">
-                <label for="inquiry-details">Tell Me More</label>
-                <textarea id="inquiry-details" name="details" placeholder="How many people? Any specific items? Anything else I should know?"></textarea>
-            </div>
-            <input type="hidden" name="_subject" value="Custom Order Inquiry from kathleens.kitchen">
-            <button type="submit" class="btn btn-pink" style="width: 100%;">Send Request</button>
-        </form>
-    </div>
-</section>
-
-<!-- ═══════════════════════════════════════════
      ORDER FORM
      ═══════════════════════════════════════════ -->
 <section class="order section" id="order">
@@ -2202,7 +2122,6 @@
                 <div class="payment-badges">
                     <span class="payment-badge">Apple Pay</span>
                     <span class="payment-badge">Google Pay</span>
-                    <span class="payment-badge">Venmo</span>
                     <span class="payment-badge">Card</span>
                 </div>
                 <p class="form-note">
@@ -2218,6 +2137,78 @@
             <br>
             <a href="#events" class="btn btn-outline">Back to Events</a>
         </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SPECIAL OCCASIONS
+     ═══════════════════════════════════════════ -->
+<section class="special-occasions section" id="special-occasions">
+    <div class="special-occasions-content fade-in">
+        <div class="section-label">Beyond the Events</div>
+        <h2>Have a <span>Special Occasion</span>?</h2>
+        <p>
+            Whether it's a birthday, baby shower, family reunion, or just a Tuesday that deserves
+            something homemade — I'd love to help make it special. Reach out and let's talk
+            about what you're looking for.
+        </p>
+        <div class="occasion-tags">
+            <span class="occasion-tag">Birthdays</span>
+            <span class="occasion-tag">Baby Showers</span>
+            <span class="occasion-tag">Holidays</span>
+            <span class="occasion-tag">Family Reunions</span>
+            <span class="occasion-tag">Teacher Gifts</span>
+            <span class="occasion-tag">Neighbor Treats</span>
+        </div>
+        <a href="#custom-inquiry" class="btn btn-pink">Send a Custom Request</a>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CUSTOM INQUIRY
+     ═══════════════════════════════════════════ -->
+<section class="custom-inquiry section" id="custom-inquiry">
+    <div class="section-wide">
+        <div class="section-header fade-in">
+            <div class="section-label">Custom Orders</div>
+            <h2 class="section-title">Send a Request</h2>
+            <div class="section-divider"></div>
+            <p class="section-desc">Tell me about your occasion and I'll get back to you within 24 hours.</p>
+        </div>
+        <form class="inquiry-form fade-in" action="https://formspree.io/f/xpwzgkvq" method="POST">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="inquiry-name">Your Name</label>
+                    <input type="text" id="inquiry-name" name="name" required placeholder="First & Last">
+                </div>
+                <div class="form-group">
+                    <label for="inquiry-contact">Phone or Email</label>
+                    <input type="text" id="inquiry-contact" name="contact" required placeholder="Best way to reach you">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inquiry-occasion">What's the Occasion?</label>
+                <select id="inquiry-occasion" name="occasion">
+                    <option value="">Select one...</option>
+                    <option value="birthday">Birthday</option>
+                    <option value="baby-shower">Baby Shower</option>
+                    <option value="holiday">Holiday Gathering</option>
+                    <option value="family-reunion">Family Reunion</option>
+                    <option value="teacher-gift">Teacher / Neighbor Gift</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="inquiry-date">When Do You Need It?</label>
+                <input type="date" id="inquiry-date" name="date">
+            </div>
+            <div class="form-group">
+                <label for="inquiry-details">Tell Me More</label>
+                <textarea id="inquiry-details" name="details" placeholder="How many people? Any specific items? Anything else I should know?"></textarea>
+            </div>
+            <input type="hidden" name="_subject" value="Custom Order Inquiry from kathleens.kitchen">
+            <button type="submit" class="btn btn-pink" style="width: 100%;">Send Request</button>
+        </form>
     </div>
 </section>
 
@@ -2256,7 +2247,7 @@
             <div class="footer-heading">Get in Touch</div>
             <ul class="footer-links">
                 <li><a href="mailto:kathleens.kitchen.ut@gmail.com">kathleens.kitchen.ut@gmail.com</a></li>
-                <li><a href="https://instagram.com/kathleens.kitchen.ut" target="_blank" rel="noopener noreferrer">@kathleens.kitchen.ut</a></li>
+                <li><a href="https://instagram.com/kathleens.kitchen.ut" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.4rem;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>@kathleens.kitchen.ut</a></li>
                 <li><a href="#special-occasions">Special Occasion? Let's talk</a></li>
                 <li>Sandy, Utah</li>
                 <li class="footer-subtle">Local delivery available</li>
@@ -2279,6 +2270,14 @@
     var navToggleEl = document.querySelector('.nav-toggle');
     navLinksEl.addEventListener('click', function(e) {
         if (e.target.tagName === 'A') {
+            navLinksEl.classList.remove('open');
+            navToggleEl.classList.remove('open');
+        }
+    });
+
+    // Close mobile nav when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('nav') && navLinksEl.classList.contains('open')) {
             navLinksEl.classList.remove('open');
             navToggleEl.classList.remove('open');
         }
@@ -2580,10 +2579,13 @@
     // Sticky nav + floating order button
     var navEl = document.querySelector('nav');
     var floatingBtn = document.getElementById('floatingOrderBtn');
-    var heroHeight = document.querySelector('.hero').offsetHeight;
+    var orderSection = document.getElementById('order');
     window.addEventListener('scroll', function() {
         navEl.classList.toggle('scrolled', window.scrollY > 50);
-        floatingBtn.classList.toggle('visible', window.scrollY > heroHeight);
+        // Hide floating button when the order section is visible
+        var orderRect = orderSection.getBoundingClientRect();
+        var orderVisible = orderRect.top < window.innerHeight && orderRect.bottom > 0;
+        floatingBtn.classList.toggle('hidden', orderVisible);
     });
 
     // Fade-in on scroll
@@ -2651,8 +2653,10 @@
             item.classList.add('expanded');
             item.setAttribute('aria-expanded', 'true');
             setTimeout(function() {
-                item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }, 100);
+                var navHeight = document.querySelector('nav').offsetHeight;
+                var cardTop = item.getBoundingClientRect().top + window.scrollY - navHeight - 16;
+                window.scrollTo({ top: cardTop, behavior: 'smooth' });
+            }, 150);
         }
     });
 </script>
