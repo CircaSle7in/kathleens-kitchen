@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ — Kathleen's Kitchen</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Frequently asked questions about ordering from Kathleen's Kitchen — homemade breads and sweet treats baked fresh in Sandy, Utah.">
+    <meta name="theme-color" content="#CF7A9B">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="FAQ — Kathleen's Kitchen">
+    <meta property="og:description" content="Frequently asked questions about ordering from Kathleen's Kitchen — homemade breads and sweet treats baked fresh in Sandy, Utah.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://kathleens.kitchen/images/hero-bakery-spread.png">
+    <meta property="og:url" content="https://kathleens.kitchen/faq.html">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FAQ — Kathleen's Kitchen">
+    <meta name="twitter:description" content="Frequently asked questions about ordering from Kathleen's Kitchen — homemade breads and sweet treats baked fresh in Sandy, Utah.">
+    <meta name="twitter:image" content="https://kathleens.kitchen/images/hero-bakery-spread.png">
+
+    <link rel="canonical" href="https://kathleens.kitchen/faq.html">
+
+    <!-- Inline SVG Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%23CF7A9B'/><text x='16' y='22' font-size='18' font-family='serif' font-weight='bold' fill='white' text-anchor='middle'>K</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Great+Vibes&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* ═══════════════════════════════════════════
+           COLOR SYSTEM — Pink, Purple & Green Pastels
+           ═══════════════════════════════════════════ */
+        :root {
+            --cream: #FDF8FA;
+            --warm-white: #FFFAFC;
+            --pink: #CF7A9B;
+            --pink-dark: #B86485;
+            --pink-light: #F5E0EA;
+            --pink-pale: #FBF0F4;
+            --purple: #A893C2;
+            --purple-dark: #8F7AAD;
+            --purple-light: #EDE8F3;
+            --green: #7BA37B;
+            --green-dark: #5E8A5E;
+            --green-light: #E5EDE5;
+            --charcoal: #2D2D2D;
+            --taupe: #706B60;
+            --border: #EADEE4;
+        }
+
+        /* ═══════════════════════════════════════════
+           RESET & BASE
+           ═══════════════════════════════════════════ */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 300;
+            color: var(--charcoal);
+            background: var(--cream);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img { max-width: 100%; display: block; }
+        a { color: inherit; text-decoration: none; }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+        /* ═══════════════════════════════════════════
+           NAVIGATION
+           ═══════════════════════════════════════════ */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s ease;
+            background: rgba(253, 248, 250, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 20px rgba(0,0,0,0.05);
+        }
+
+        .nav-logo {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.8rem;
+            color: var(--pink-dark);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--taupe);
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 1px;
+            background: var(--pink);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--pink); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-links a.active { color: var(--pink); }
+        .nav-links a.active::after { width: 100%; }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 24px;
+            height: 1.5px;
+            background: var(--charcoal);
+            margin: 6px 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .nav-toggle.open span:nth-child(1) {
+            transform: translateY(7.5px) rotate(45deg);
+        }
+        .nav-toggle.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .nav-toggle.open span:nth-child(3) {
+            transform: translateY(-7.5px) rotate(-45deg);
+        }
+
+        .nav-order-btn {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 0.6rem 1.4rem;
+            background: var(--pink);
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .nav-order-btn:hover {
+            background: var(--pink-dark);
+        }
+
+        /* ═══════════════════════════════════════════
+           PAGE HERO
+           ═══════════════════════════════════════════ */
+        .page-hero {
+            padding: 8rem 2rem 5rem;
+            text-align: center;
+            background: var(--warm-white);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .page-hero-label {
+            font-size: 0.7rem;
+            font-weight: 400;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--purple);
+            margin-bottom: 0.8rem;
+        }
+
+        .page-hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.4rem, 5vw, 3.5rem);
+            font-weight: 400;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-hero-title span {
+            font-style: italic;
+            color: var(--pink-dark);
+        }
+
+        .section-divider {
+            width: 60px; height: 1px;
+            background: linear-gradient(to right, var(--pink), var(--purple));
+            margin: 1.5rem auto;
+        }
+
+        .page-hero-desc {
+            max-width: 500px;
+            margin: 0 auto;
+            color: var(--taupe);
+            font-size: 0.95rem;
+        }
+
+        /* ═══════════════════════════════════════════
+           FAQ SECTION
+           ═══════════════════════════════════════════ */
+        .faq-section {
+            padding: 5rem 2rem 7rem;
+            background: var(--cream);
+        }
+
+        .faq-wrap {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .faq-item:first-child {
+            border-top: 1px solid var(--border);
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 1.4rem 0;
+            cursor: pointer;
+            text-align: left;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--charcoal);
+            transition: color 0.25s;
+        }
+
+        .faq-question:hover {
+            color: var(--pink-dark);
+        }
+
+        .faq-question[aria-expanded="true"] {
+            color: var(--pink-dark);
+        }
+
+        .faq-icon {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease, background 0.25s, border-color 0.25s;
+            color: var(--taupe);
+        }
+
+        .faq-question[aria-expanded="true"] .faq-icon {
+            transform: rotate(45deg);
+            background: var(--pink-pale);
+            border-color: var(--pink);
+            color: var(--pink-dark);
+        }
+
+        .faq-icon svg {
+            width: 10px;
+            height: 10px;
+            display: block;
+        }
+
+        .faq-answer {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.35s ease, padding 0.35s ease;
+        }
+
+        .faq-answer.open {
+            max-height: 400px;
+        }
+
+        .faq-answer-inner {
+            padding-bottom: 1.4rem;
+            color: var(--taupe);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        /* ═══════════════════════════════════════════
+           FOOTER CTA BAND
+           ═══════════════════════════════════════════ */
+        .faq-cta {
+            background: var(--pink-pale);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .faq-cta p {
+            color: var(--taupe);
+            font-size: 0.95rem;
+            max-width: 500px;
+            margin: 0 auto 1.8rem;
+        }
+
+        .btn {
+            display: inline-block;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 1rem 2.5rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-pink { background: var(--pink); color: white; }
+        .btn-pink:hover {
+            background: var(--pink-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(207,122,155,0.35);
+        }
+
+        .faq-cta-heading {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--charcoal);
+            margin-bottom: 0.6rem;
+        }
+
+        /* ═══════════════════════════════════════════
+           FOOTER
+           ═══════════════════════════════════════════ */
+        footer {
+            background: var(--charcoal);
+            color: rgba(255,255,255,0.7);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1100px; margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem; color: white;
+            margin-bottom: 1rem;
+        }
+        .footer-desc { font-size: 0.85rem; line-height: 1.8; max-width: 300px; }
+
+        .footer-heading {
+            font-size: 0.7rem; font-weight: 500;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            color: white; margin-bottom: 1.2rem;
+        }
+
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.6rem; }
+        .footer-links a { font-size: 0.85rem; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--pink-light); }
+        .footer-subtle { margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.6; }
+        .footer-legal { margin-top: 0.8rem; font-size: 0.75rem; opacity: 0.5; }
+
+        .footer-social { display: flex; gap: 1rem; margin-top: 1rem; }
+        .footer-social a {
+            padding: 0.7rem 1.5rem;
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 50px;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            transition: all 0.3s; font-size: 0.85rem;
+            font-weight: 400;
+            text-decoration: none; color: rgba(255,255,255,0.9);
+            background: rgba(255,255,255,0.05);
+        }
+        .footer-social a:hover {
+            border-color: var(--pink);
+            color: white;
+            background: linear-gradient(135deg, rgba(207,122,155,0.3), rgba(168,147,194,0.2));
+            box-shadow: 0 4px 15px rgba(207,122,155,0.25);
+            transform: translateY(-1px);
+        }
+        .footer-social a svg {
+            width: 20px; height: 20px;
+            vertical-align: middle;
+        }
+
+        .footer-bottom {
+            max-width: 1100px; margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex; justify-content: space-between;
+            align-items: center; font-size: 0.75rem;
+        }
+
+        /* Skip to content */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 1rem;
+            z-index: 200;
+            padding: 0.8rem 1.5rem;
+            background: var(--pink);
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: top 0.2s;
+        }
+        .skip-link:focus { top: 1rem; }
+
+        /* ═══════════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════════ */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex; flex-direction: column;
+                position: absolute; top: 100%; left: 0; right: 0;
+                background: rgba(253,248,250,0.98);
+                backdrop-filter: blur(10px);
+                padding: 1.5rem 2rem; gap: 1rem;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-toggle { display: block; }
+            .nav-order-btn {
+                position: absolute;
+                right: 60px;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: 0.6rem;
+                padding: 0.5rem 1rem;
+            }
+            .footer-content { grid-template-columns: 1fr; gap: 2rem; }
+            .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; padding-bottom: 4rem; }
+            .faq-question { font-size: 1.05rem; }
+        }
+    </style>
+</head>
+<body>
+
+<a href="#faq" class="skip-link">Skip to content</a>
+
+<nav>
+    <a href="index.html" class="nav-logo">Kathleen's Kitchen</a>
+    <ul class="nav-links">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#events">Upcoming</a></li>
+        <li><a href="index.html#menu">What We Make</a></li>
+        <li><a href="faq.html" class="active">FAQ</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open'); this.classList.toggle('open')">
+        <span></span><span></span><span></span>
+    </button>
+    <a href="index.html#order" class="nav-order-btn">Order Now</a>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     PAGE HERO
+     ═══════════════════════════════════════════ -->
+<div class="page-hero">
+    <div class="page-hero-label">Help & Information</div>
+    <h1 class="page-hero-title">Frequently Asked <span>Questions</span></h1>
+    <div class="section-divider"></div>
+    <p class="page-hero-desc">Everything you need to know about ordering, pickup, and our baked goods.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     FAQ ACCORDION
+     ═══════════════════════════════════════════ -->
+<section class="faq-section" id="faq">
+    <div class="faq-wrap">
+
+        <div class="faq-item">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
+                How do I place an order?
+                <span class="faq-icon" aria-hidden="true">
+                    <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                        <line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="faq-answer" id="faq-answer-1" role="region">
+                <div class="faq-answer-inner">
+                    Browse our upcoming events on the main page, pick your items, and check out securely online. You'll receive a text from Kathleen to confirm your order details.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
+                Do you deliver?
+                <span class="faq-icon" aria-hidden="true">
+                    <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                        <line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="faq-answer" id="faq-answer-2" role="region">
+                <div class="faq-answer-inner">
+                    We offer pickup in Sandy, Utah on the event date. Local delivery is also available within the Sandy and Draper area for a small additional fee. Delivery details are confirmed when Kathleen texts you.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
+                How far in advance should I order?
+                <span class="faq-icon" aria-hidden="true">
+                    <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                        <line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="faq-answer" id="faq-answer-3" role="region">
+                <div class="faq-answer-inner">
+                    Each event has limited spots that fill up fast. We recommend ordering as soon as an event goes live for the best selection. Follow us on Instagram @kathleens.kitchen.ut to get notified first.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">
+                Can I order for a special occasion outside of events?
+                <span class="faq-icon" aria-hidden="true">
+                    <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                        <line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="faq-answer" id="faq-answer-4" role="region">
+                <div class="faq-answer-inner">
+                    Absolutely! We love helping with birthdays, baby showers, family reunions, and other special occasions. Use our custom inquiry form on the main page to tell us about your event and we'll work something out.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5">
+                What allergens are in your products?
+                <span class="faq-icon" aria-hidden="true">
+                    <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                        <line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="faq-answer" id="faq-answer-5" role="region">
+                <div class="faq-answer-inner">
+                    Most of our items contain wheat, dairy, eggs, and sugar. Some items contain nuts or chocolate. If you have specific allergy concerns, please reach out and we'll be happy to provide detailed ingredient information for any item.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-6">
+                Are you a licensed bakery?
+                <span class="faq-icon" aria-hidden="true">
+                    <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                        <line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="faq-answer" id="faq-answer-6" role="region">
+                <div class="faq-answer-inner">
+                    We operate as a Utah Cottage Food producer under Utah's cottage food laws. This means our kitchen is a home kitchen and is not inspected by the Department of Agriculture, as permitted by state law.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-7">
+                Can I freeze your baked goods?
+                <span class="faq-icon" aria-hidden="true">
+                    <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                        <line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="faq-answer" id="faq-answer-7" role="region">
+                <div class="faq-answer-inner">
+                    Yes! Our rolls and breads freeze beautifully. Wrap them tightly in plastic wrap or foil and freeze within 24 hours of receiving them. To enjoy, thaw at room temperature or warm in the oven at 350&deg;F for a few minutes.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-8">
+                What forms of payment do you accept?
+                <span class="faq-icon" aria-hidden="true">
+                    <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                        <line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="faq-answer" id="faq-answer-8" role="region">
+                <div class="faq-answer-inner">
+                    We accept all major credit and debit cards through our secure Square checkout system. Payment is collected when you place your order online.
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CTA BAND
+     ═══════════════════════════════════════════ -->
+<div class="faq-cta">
+    <h2 class="faq-cta-heading">Still have questions?</h2>
+    <p>Reach out on Instagram or send us an email — we're happy to help.</p>
+    <a href="index.html#contact" class="btn btn-pink">Get in Touch</a>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════ -->
+<footer id="contact">
+    <div class="footer-content">
+        <div>
+            <div class="footer-brand">Kathleen's Kitchen</div>
+            <p class="footer-desc">
+                Homemade breads and sweet treats, baked fresh in Sandy, Utah.
+                Made from scratch with love for your family's table.
+            </p>
+            <div class="footer-social">
+                <a href="https://instagram.com/kathleens.kitchen.ut" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    @kathleens.kitchen.ut
+                </a>
+            </div>
+        </div>
+        <div>
+            <div class="footer-heading">Quick Links</div>
+            <ul class="footer-links">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#events">Upcoming Events</a></li>
+                <li><a href="index.html#menu">What We Make</a></li>
+                <li><a href="index.html#order">Place an Order</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
+        </div>
+        <div>
+            <div class="footer-heading">Get in Touch</div>
+            <ul class="footer-links">
+                <li><a href="mailto:kathleens.kitchen.ut@gmail.com">kathleens.kitchen.ut@gmail.com</a></li>
+                <li><a href="https://instagram.com/kathleens.kitchen.ut" target="_blank" rel="noopener noreferrer">@kathleens.kitchen.ut</a></li>
+                <li><a href="index.html#special-occasions">Special Occasion? Let's talk</a></li>
+                <li>Sandy, Utah</li>
+                <li class="footer-subtle">Local delivery available</li>
+                <li class="footer-legal">Made in a Home Kitchen &bull; Not inspected by the Dept. of Agriculture</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>&copy; 2026 Kathleen's Kitchen. All rights reserved.</span>
+        <span>Baked with love in Sandy</span>
+    </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════
+     SCRIPTS
+     ═══════════════════════════════════════════ -->
+<script>
+    // Mobile nav close on link click
+    var navLinksEl = document.querySelector('.nav-links');
+    var navToggleEl = document.querySelector('.nav-toggle');
+    navLinksEl.addEventListener('click', function(e) {
+        if (e.target.tagName === 'A') {
+            navLinksEl.classList.remove('open');
+            navToggleEl.classList.remove('open');
+        }
+    });
+
+    // FAQ accordion — one open at a time
+    var faqButtons = document.querySelectorAll('.faq-question');
+
+    faqButtons.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var isOpen = this.getAttribute('aria-expanded') === 'true';
+            var answerId = this.getAttribute('aria-controls');
+            var answerEl = document.getElementById(answerId);
+
+            // Close all
+            faqButtons.forEach(function(otherBtn) {
+                var otherAnswerId = otherBtn.getAttribute('aria-controls');
+                var otherAnswer = document.getElementById(otherAnswerId);
+                otherBtn.setAttribute('aria-expanded', 'false');
+                otherAnswer.classList.remove('open');
+            });
+
+            // If this one was closed, open it
+            if (!isOpen) {
+                this.setAttribute('aria-expanded', 'true');
+                answerEl.classList.add('open');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
