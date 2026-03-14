@@ -194,6 +194,21 @@
         .nav-toggle.open span:nth-child(3) {
             transform: translateY(-7.5px) rotate(-45deg);
         }
+        .nav-order-btn {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 0.6rem 1.4rem;
+            background: var(--pink);
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .nav-order-btn:hover {
+            background: var(--pink-dark);
+        }
 
         /* ═══════════════════════════════════════════
            HERO
@@ -1173,6 +1188,14 @@
             .footer-content { grid-template-columns: 1fr; gap: 2rem; }
             .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; padding-bottom: 4rem; }
             .hero-title { font-size: clamp(3rem, 12vw, 5rem); }
+            .nav-order-btn {
+                position: absolute;
+                right: 60px;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: 0.6rem;
+                padding: 0.5rem 1rem;
+            }
         }
 
         /* Skip to content */
@@ -1317,6 +1340,7 @@
     <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open'); this.classList.toggle('open')">
         <span></span><span></span><span></span>
     </button>
+<a href="#order" class="nav-order-btn">Order Now</a>
 </nav>
 
 <!-- ═══════════════════════════════════════════
