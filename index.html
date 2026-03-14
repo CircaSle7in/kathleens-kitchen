@@ -953,6 +953,58 @@
         }
 
         /* ═══════════════════════════════════════════
+           CUSTOM INQUIRY FORM
+           ═══════════════════════════════════════════ */
+        .custom-inquiry {
+            padding: 5rem 2rem;
+            background: var(--warm-white);
+        }
+        .inquiry-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2.5rem;
+            border: 1px solid var(--border);
+        }
+        .inquiry-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .inquiry-form label {
+            display: block;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--taupe);
+            margin-bottom: 0.5rem;
+        }
+        .inquiry-form input,
+        .inquiry-form textarea,
+        .inquiry-form select {
+            width: 100%;
+            padding: 0.8rem 0;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: var(--charcoal);
+            border: none;
+            border-bottom: 1px solid var(--border);
+            background: transparent;
+            transition: border-color 0.3s;
+        }
+        .inquiry-form input:focus,
+        .inquiry-form textarea:focus,
+        .inquiry-form select:focus {
+            outline: none;
+            border-bottom-color: var(--pink);
+        }
+        .inquiry-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* ═══════════════════════════════════════════
            ORDER FORM
            ═══════════════════════════════════════════ */
         .order { background: var(--warm-white); }
@@ -1957,6 +2009,54 @@
             <span class="occasion-tag">Neighbor Treats</span>
         </div>
         <a href="#custom-inquiry" class="btn btn-pink">Send a Custom Request</a>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CUSTOM INQUIRY
+     ═══════════════════════════════════════════ -->
+<section class="custom-inquiry section" id="custom-inquiry">
+    <div class="section-wide">
+        <div class="section-header fade-in">
+            <div class="section-label">Custom Orders</div>
+            <h2 class="section-title">Send a Request</h2>
+            <div class="section-divider"></div>
+            <p class="section-desc">Tell me about your occasion and I'll get back to you within 24 hours.</p>
+        </div>
+        <form class="inquiry-form fade-in" action="https://formspree.io/f/xpwzgkvq" method="POST">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="inquiry-name">Your Name</label>
+                    <input type="text" id="inquiry-name" name="name" required placeholder="First & Last">
+                </div>
+                <div class="form-group">
+                    <label for="inquiry-contact">Phone or Email</label>
+                    <input type="text" id="inquiry-contact" name="contact" required placeholder="Best way to reach you">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inquiry-occasion">What's the Occasion?</label>
+                <select id="inquiry-occasion" name="occasion">
+                    <option value="">Select one...</option>
+                    <option value="birthday">Birthday</option>
+                    <option value="baby-shower">Baby Shower</option>
+                    <option value="holiday">Holiday Gathering</option>
+                    <option value="family-reunion">Family Reunion</option>
+                    <option value="teacher-gift">Teacher / Neighbor Gift</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="inquiry-date">When Do You Need It?</label>
+                <input type="date" id="inquiry-date" name="date">
+            </div>
+            <div class="form-group">
+                <label for="inquiry-details">Tell Me More</label>
+                <textarea id="inquiry-details" name="details" placeholder="How many people? Any specific items? Anything else I should know?"></textarea>
+            </div>
+            <input type="hidden" name="_subject" value="Custom Order Inquiry from kathleens.kitchen">
+            <button type="submit" class="btn btn-pink" style="width: 100%;">Send Request</button>
+        </form>
     </div>
 </section>
 
