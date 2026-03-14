@@ -902,6 +902,57 @@
         .step-desc { font-size: 0.85rem; color: var(--taupe); }
 
         /* ═══════════════════════════════════════════
+           SPECIAL OCCASIONS
+           ═══════════════════════════════════════════ */
+        .special-occasions {
+            background: linear-gradient(135deg, var(--purple-light) 0%, var(--pink-pale) 100%);
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+        .special-occasions-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .special-occasions h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 500;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+        }
+        .special-occasions h2 span {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: var(--pink-dark);
+        }
+        .special-occasions p {
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 300;
+            color: var(--taupe);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        .occasion-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+            margin: 1.5rem 0 2rem;
+        }
+        .occasion-tag {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.5rem 1.2rem;
+            background: white;
+            color: var(--taupe);
+            border: 1px solid var(--border);
+        }
+
+        /* ═══════════════════════════════════════════
            ORDER FORM
            ═══════════════════════════════════════════ */
         .order { background: var(--warm-white); }
@@ -1882,6 +1933,30 @@
                 <p class="step-desc">Pick up fresh-baked items in Sandy, Utah on the event date. Local delivery is available for an additional fee within the Sandy/Draper area.</p>
             </div>
         </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SPECIAL OCCASIONS
+     ═══════════════════════════════════════════ -->
+<section class="special-occasions section" id="special-occasions">
+    <div class="special-occasions-content fade-in">
+        <div class="section-label">Beyond the Events</div>
+        <h2>Have a <span>Special Occasion</span>?</h2>
+        <p>
+            Whether it's a birthday, baby shower, family reunion, or just a Tuesday that deserves
+            something homemade — I'd love to help make it special. Reach out and let's talk
+            about what you're looking for.
+        </p>
+        <div class="occasion-tags">
+            <span class="occasion-tag">Birthdays</span>
+            <span class="occasion-tag">Baby Showers</span>
+            <span class="occasion-tag">Holidays</span>
+            <span class="occasion-tag">Family Reunions</span>
+            <span class="occasion-tag">Teacher Gifts</span>
+            <span class="occasion-tag">Neighbor Treats</span>
+        </div>
+        <a href="#custom-inquiry" class="btn btn-pink">Send a Custom Request</a>
     </div>
 </section>
 
