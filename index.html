@@ -432,6 +432,57 @@
         }
 
         /* ═══════════════════════════════════════════
+           TESTIMONIALS
+           ═══════════════════════════════════════════ */
+        .testimonials {
+            background: var(--pink-pale);
+            padding: 5rem 2rem;
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+        .testimonial-card::before {
+            content: '\201C';
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            color: var(--pink-light);
+            position: absolute;
+            top: 0.5rem;
+            left: 1rem;
+            line-height: 1;
+        }
+        .testimonial-text {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: var(--charcoal);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            padding-top: 1.5rem;
+        }
+        .testimonial-author {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--pink-dark);
+        }
+        .testimonial-context {
+            font-size: 0.75rem;
+            color: var(--taupe);
+            margin-top: 0.2rem;
+        }
+
+        /* ═══════════════════════════════════════════
            EVENT CARDS
            ═══════════════════════════════════════════ */
         .events { background: var(--cream); }
@@ -1413,6 +1464,36 @@
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
                 Follow on Instagram
             </a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     TESTIMONIALS
+     ═══════════════════════════════════════════ -->
+<section class="testimonials section">
+    <div class="section-wide">
+        <div class="section-header fade-in">
+            <div class="section-label">Kind Words</div>
+            <h2 class="section-title">What People Are Saying</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="testimonial-grid fade-in">
+            <div class="testimonial-card">
+                <div class="testimonial-text">The cinnamon rolls were absolutely incredible. My whole family fought over the last one. We'll be ordering these for every holiday from now on!</div>
+                <div class="testimonial-author">Sarah M.</div>
+                <div class="testimonial-context">Easter Brunch Order</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">Kathleen's dinner rolls taste exactly like the ones my grandmother used to make. They brought tears to my eyes. Thank you for sharing this gift.</div>
+                <div class="testimonial-author">Jennifer R.</div>
+                <div class="testimonial-context">Thanksgiving Order</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">I ordered the cookie dough brownies for a work event and they were gone in minutes. Everyone wanted to know where they came from!</div>
+                <div class="testimonial-author">David L.</div>
+                <div class="testimonial-context">Office Event</div>
+            </div>
         </div>
     </div>
 </section>
