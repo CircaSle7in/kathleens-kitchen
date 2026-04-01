@@ -15,7 +15,7 @@ const PRODUCTS = {
   "Caramel Rice Krispie Treats":   { price: 2000, unit: '8x8 pan' },
   "Chocolate Dipped Strawberries": { price: 3600, unit: 'dozen' },
   "Chocolate Dipped Grapes":       { price: 400, unit: '10 grapes' },
-  "Homemade Oreo Cookies":         { price: 300, unit: 'cookie' },
+  "Homemade Oreo Cookies":         { price: 3600, unit: 'dozen' },
 };
 
 module.exports = async function handler(req, res) {
