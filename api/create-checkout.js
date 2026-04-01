@@ -4,17 +4,18 @@ const crypto = require('crypto');
 // Product catalog with prices in cents
 const PRODUCTS = {
   "Grandma's Dinner Rolls":       { price: 2200, unit: 'dozen' },
-  "Cinnamon Rolls":                { price: 2400, unit: '6-pack' },
+  "Cinnamon Rolls":                { price: 4800, unit: 'dozen' },
   "Crescent Rolls":                { price: 2200, unit: 'dozen' },
   "Cheese Rolls":                  { price: 2500, unit: 'dozen' },
-  "Mom's Wheat Bread":             { price: 900, unit: 'loaf' },
-  "Soft French Bread":             { price: 600, unit: 'loaf' },
-  "Cookie Dough Brownies":         { price: 2400, unit: 'pan' },
-  "Peanut Butter Bars":            { price: 2000, unit: 'pan' },
-  "Lemon Bars":                    { price: 2000, unit: 'pan' },
-  "Caramel Rice Krispie Treats":   { price: 2000, unit: 'pan' },
+  "Mom's Wheat Bread":             { price: 1000, unit: 'loaf' },
+  "Soft French Bread":             { price: 700, unit: 'loaf' },
+  "Cookie Dough Brownies":         { price: 2400, unit: '8x8 pan' },
+  "Peanut Butter Bars":            { price: 2000, unit: '8x8 pan' },
+  "Lemon Bars":                    { price: 2000, unit: '8x8 pan' },
+  "Caramel Rice Krispie Treats":   { price: 2000, unit: '8x8 pan' },
   "Chocolate Dipped Strawberries": { price: 3600, unit: 'dozen' },
-  "Chocolate Dipped Grapes":       { price: 400, unit: 'cup' },
+  "Chocolate Dipped Grapes":       { price: 400, unit: '10 grapes' },
+  "Homemade Oreo Cookies":         { price: 300, unit: 'cookie' },
 };
 
 module.exports = async function handler(req, res) {
@@ -55,8 +56,11 @@ module.exports = async function handler(req, res) {
 
   // Determine Square environment
   const isSandbox = process.env.SQUARE_ENVIRONMENT !== 'production';
+  const token = isSandbox
+    ? (process.env.SQUARE_ACCESS_TOKEN_SANDBOX || process.env.SQUARE_ACCESS_TOKEN)
+    : (process.env.SQUARE_ACCESS_TOKEN_PROD || process.env.SQUARE_ACCESS_TOKEN);
   const client = new SquareClient({
-    token: process.env.SQUARE_ACCESS_TOKEN,
+    token,
     environment: isSandbox ? SquareEnvironment.Sandbox : SquareEnvironment.Production,
   });
 
