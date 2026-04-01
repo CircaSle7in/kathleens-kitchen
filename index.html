@@ -654,10 +654,10 @@
         /* Collapsed: hide details */
         .event-card .event-items-label,
         .event-card .event-items,
-        .event-card .event-progress,
         .event-card .event-order-by,
         .event-card .event-card-inline-order,
         .event-card .btn { display: none; }
+        .event-card .event-progress { display: block; }
 
         /* Collapsed: show short desc + view link */
         .event-card .event-desc {
@@ -2682,9 +2682,9 @@
                     if (fillEl) {
                         fillEl.style.width = pct + '%';
                         // Color shift: green -> yellow (>60%) -> red (>85%)
-                        fillEl.classList.remove('green', 'yellow', 'red');
+                        fillEl.classList.remove('green', 'orange', 'red');
                         if (pct >= 85) fillEl.classList.add('red');
-                        else if (pct >= 60) fillEl.classList.add('yellow');
+                        else if (pct >= 60) fillEl.classList.add('orange');
                         else fillEl.classList.add('green');
                     }
 
