@@ -2,9 +2,7 @@ const { SquareClient, SquareEnvironment } = require('square');
 
 // Event definitions: slug -> { displayName, total spots }
 const EVENTS = {
-  'easter-conference-2026': { name: 'Conference Easter Weekend', total: 15 },
-  'spring-sweets-2026':     { name: 'Spring Sweets',             total: 15 },
-  'mothers-day-2026':       { name: "Mother's Day",              total: 15 },
+  'mothers-day-2026': { name: "Mother's Day", total: 15 },
 };
 
 module.exports = async function handler(req, res) {

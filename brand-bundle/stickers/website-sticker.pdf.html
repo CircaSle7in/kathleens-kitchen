@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kathleen's Kitchen — Website Sticker Sheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Work+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  /* ── Reset ── */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  /* ── Brand tokens ── */
+  :root {
+    --pink:       #CF7A9B;
+    --pink-dark:  #B86485;
+    --pink-light: #F5E0EA;
+    --pink-pale:  #FBF0F4;
+    --purple:     #A893C2;
+    --charcoal:   #2D2D2D;
+    --taupe:      #706B60;
+    --cream:      #FDF8FA;
+  }
+
+  /* ── Page setup — US Letter ── */
+  @page {
+    size: letter;
+    margin: 0.4in;
+  }
+
+  body {
+    background: #f5f0f2;
+    font-family: 'Work Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+  }
+
+  /* ── Sticker grid — 2 columns x 4 rows = 8 stickers per page ── */
+  .sticker-sheet {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 0.25in;
+    width: 7.7in;
+    height: 10.2in;
+    background: white;
+    padding: 0.15in;
+    border-radius: 4px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  }
+
+  /* ── Individual sticker ── */
+  .sticker {
+    border: 2px solid var(--pink);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.2in 0.15in;
+    position: relative;
+    overflow: hidden;
+    background: var(--cream);
+  }
+
+  /* Subtle inner border */
+  .sticker::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border: 1px solid var(--pink-light);
+    border-radius: 12px;
+    pointer-events: none;
+  }
+
+  /* ── Typography ── */
+  .sticker-brand {
+    font-family: 'Great Vibes', cursive;
+    font-size: 28px;
+    color: var(--pink-dark);
+    line-height: 1.1;
+    text-align: center;
+    margin-bottom: 2px;
+  }
+
+  .sticker-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 11px;
+    color: var(--purple);
+    letter-spacing: 0.02em;
+    margin-bottom: 8px;
+  }
+
+  .sticker-qr {
+    width: 1.3in;
+    height: 1.3in;
+    margin-bottom: 4px;
+  }
+
+  .sticker-qr img {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .sticker-scan {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 400;
+    font-size: 9px;
+    color: var(--taupe);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .sticker-url {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--pink);
+    letter-spacing: 0.03em;
+  }
+
+  /* ── Print-specific ── */
+  @media print {
+    body {
+      background: white;
+      padding: 0;
+    }
+    .sticker-sheet {
+      box-shadow: none;
+      border-radius: 0;
+    }
+    .print-instructions { display: none !important; }
+  }
+
+  /* ── On-screen instructions ── */
+  .print-instructions {
+    margin-top: 1.5rem;
+    max-width: 7.7in;
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    color: var(--charcoal);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .print-instructions h3 {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--pink-dark);
+    font-size: 18px;
+    margin-bottom: 0.5rem;
+  }
+  .print-instructions ul {
+    padding-left: 1.2rem;
+  }
+  .print-instructions li { margin-bottom: 0.3rem; }
+  .print-instructions code {
+    background: var(--pink-pale);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+
+<div class="sticker-sheet">
+  <div class="sticker">
+    <div class="sticker-brand">Kathleen's Kitchen</div>
+    <div class="sticker-tagline">Homemade Breads &amp; Sweet Treats</div>
+    <div class="sticker-qr"><img src="../qr-codes/qr-website.png" alt="QR code to kathleens.kitchen"></div>
+    <div class="sticker-scan">Scan to Order</div>
+    <div class="sticker-url">www.kathleens.kitchen</div>
+  </div>
+  <div class="sticker">
+    <div class="sticker-brand">Kathleen's Kitchen</div>
+    <div class="sticker-tagline">Homemade Breads &amp; Sweet Treats</div>
+    <div class="sticker-qr"><img src="../qr-codes/qr-website.png" alt="QR code to kathleens.kitchen"></div>
+    <div class="sticker-scan">Scan to Order</div>
+    <div class="sticker-url">www.kathleens.kitchen</div>
+  </div>
+  <div class="sticker">
+    <div class="sticker-brand">Kathleen's Kitchen</div>
+    <div class="sticker-tagline">Homemade Breads &amp; Sweet Treats</div>
+    <div class="sticker-qr"><img src="../qr-codes/qr-website.png" alt="QR code to kathleens.kitchen"></div>
+    <div class="sticker-scan">Scan to Order</div>
+    <div class="sticker-url">www.kathleens.kitchen</div>
+  </div>
+  <div class="sticker">
+    <div class="sticker-brand">Kathleen's Kitchen</div>
+    <div class="sticker-tagline">Homemade Breads &amp; Sweet Treats</div>
+    <div class="sticker-qr"><img src="../qr-codes/qr-website.png" alt="QR code to kathleens.kitchen"></div>
+    <div class="sticker-scan">Scan to Order</div>
+    <div class="sticker-url">www.kathleens.kitchen</div>
+  </div>
+  <div class="sticker">
+    <div class="sticker-brand">Kathleen's Kitchen</div>
+    <div class="sticker-tagline">Homemade Breads &amp; Sweet Treats</div>
+    <div class="sticker-qr"><img src="../qr-codes/qr-website.png" alt="QR code to kathleens.kitchen"></div>
+    <div class="sticker-scan">Scan to Order</div>
+    <div class="sticker-url">www.kathleens.kitchen</div>
+  </div>
+  <div class="sticker">
+    <div class="sticker-brand">Kathleen's Kitchen</div>
+    <div class="sticker-tagline">Homemade Breads &amp; Sweet Treats</div>
+    <div class="sticker-qr"><img src="../qr-codes/qr-website.png" alt="QR code to kathleens.kitchen"></div>
+    <div class="sticker-scan">Scan to Order</div>
+    <div class="sticker-url">www.kathleens.kitchen</div>
+  </div>
+  <div class="sticker">
+    <div class="sticker-brand">Kathleen's Kitchen</div>
+    <div class="sticker-tagline">Homemade Breads &amp; Sweet Treats</div>
+    <div class="sticker-qr"><img src="../qr-codes/qr-website.png" alt="QR code to kathleens.kitchen"></div>
+    <div class="sticker-scan">Scan to Order</div>
+    <div class="sticker-url">www.kathleens.kitchen</div>
+  </div>
+  <div class="sticker">
+    <div class="sticker-brand">Kathleen's Kitchen</div>
+    <div class="sticker-tagline">Homemade Breads &amp; Sweet Treats</div>
+    <div class="sticker-qr"><img src="../qr-codes/qr-website.png" alt="QR code to kathleens.kitchen"></div>
+    <div class="sticker-scan">Scan to Order</div>
+    <div class="sticker-url">www.kathleens.kitchen</div>
+  </div>
+</div>
+
+<div class="print-instructions">
+  <h3>Printing Instructions</h3>
+  <ul>
+    <li>Press <code>Cmd + P</code> (Mac) or <code>Ctrl + P</code> (Windows)</li>
+    <li>Set destination to <strong>"Save as PDF"</strong> or your printer</li>
+    <li>Paper size: <strong>US Letter (8.5 x 11)</strong></li>
+    <li>Margins: <strong>None</strong> or <strong>Minimum</strong></li>
+    <li>Check <strong>"Background graphics"</strong> to keep colors</li>
+    <li>For best results, print on sticker paper or adhesive label sheets</li>
+    <li>Each sticker is approximately <strong>3.5" x 2.4"</strong> — fits standard rectangular label sheets</li>
+  </ul>
+</div>
+
+</body>
+</html>
