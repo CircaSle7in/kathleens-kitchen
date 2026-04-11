@@ -55,10 +55,11 @@
     border: 2px solid var(--pink);
     border-radius: 16px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    padding: 0.2in 0.15in;
+    padding: 0.2in 0.25in;
+    gap: 0.25in;
     position: relative;
     overflow: hidden;
     background: var(--cream);
@@ -74,54 +75,60 @@
     pointer-events: none;
   }
 
+  /* Left side: text content */
+  .sticker-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    flex: 1;
+    min-width: 0;
+  }
+
   /* ── Typography ── */
   .sticker-brand {
     font-family: 'Great Vibes', cursive;
-    font-size: 28px;
+    font-size: 36px;
     color: var(--pink-dark);
     line-height: 1.1;
-    text-align: center;
-    margin-bottom: 2px;
-  }
-
-  .sticker-tagline {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-weight: 300;
-    font-size: 11px;
-    color: var(--purple);
-    letter-spacing: 0.02em;
-    margin-bottom: 8px;
-  }
-
-  .sticker-qr {
-    width: 1.3in;
-    height: 1.3in;
-    margin-bottom: 4px;
-  }
-
-  .sticker-qr img {
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-
-  .sticker-scan {
-    font-family: 'Work Sans', sans-serif;
-    font-weight: 400;
-    font-size: 9px;
-    color: var(--taupe);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
     margin-bottom: 6px;
   }
 
   .sticker-url {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 13px;
     color: var(--pink);
-    letter-spacing: 0.03em;
+    letter-spacing: 0.04em;
+  }
+
+  /* Right side: QR + scan label */
+  .sticker-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .sticker-scan {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 500;
+    font-size: 10px;
+    color: var(--pink-dark);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 5px;
+  }
+
+  .sticker-qr {
+    width: 1.25in;
+    height: 1.25in;
+  }
+
+  .sticker-qr img {
+    width: 100%;
+    height: 100%;
+    display: block;
   }
 
   /* ── Print-specific ── */
@@ -135,6 +142,7 @@
       border-radius: 0;
     }
     .print-instructions { display: none !important; }
+    .print-bar { display: none !important; }
   }
 
   /* ── On-screen instructions ── */
@@ -165,66 +173,138 @@
     border-radius: 4px;
     font-size: 13px;
   }
+
+  /* ── Print bar ── */
+  .print-bar {
+    max-width: 7.7in;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding: 0.8rem 1.2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  }
+  .print-bar-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--charcoal);
+  }
+  .print-bar-title span {
+    color: var(--taupe);
+    font-size: 13px;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 300;
+    margin-left: 0.5rem;
+  }
+  .btn-print {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--pink);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 8px;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-print:hover { background: var(--pink-dark); }
 </style>
 </head>
 <body>
 
+<div class="print-bar">
+  <div class="print-bar-title">Website Sticker Sheet <span>8 per page</span></div>
+  <button class="btn-print" onclick="window.print()">Save as PDF / Print</button>
+</div>
+
 <div class="sticker-sheet">
   <div class="sticker">
-    <div class="sticker-brand">Kathleen's Kitchen</div>
-    <div class="sticker-tagline">Homemade Breads &amp; Sweet Treats</div>
-    <div class="sticker-qr"><img src="../qr-codes/qr-website.png" alt="QR code to kathleens.kitchen"></div>
-    <div class="sticker-scan">Scan to Order</div>
-    <div class="sticker-url">www.kathleens.kitchen</div>
+    <div class="sticker-text">
+      <div class="sticker-brand">Kathleen's Kitchen</div>
+      <div class="sticker-url">www.kathleens.kitchen</div>
+    </div>
+    <div class="sticker-right">
+      <div class="sticker-qr"><img src="../qr-codes/qr-website.png" alt="QR code to kathleens.kitchen"></div>
+      <div class="sticker-scan">Scan to Order</div>
+    </div>
   </div>
   <div class="sticker">
-    <div class="sticker-brand">Kathleen's Kitchen</div>
-    <div class="sticker-tagline">Homemade Breads &amp; Sweet Treats</div>
-    <div class="sticker-qr"><img src="../qr-codes/qr-website.png" alt="QR code to kathleens.kitchen"></div>
-    <div class="sticker-scan">Scan to Order</div>
-    <div class="sticker-url">www.kathleens.kitchen</div>
+    <div class="sticker-text">
+      <div class="sticker-brand">Kathleen's Kitchen</div>
+      <div class="sticker-url">www.kathleens.kitchen</div>
+    </div>
+    <div class="sticker-right">
+      <div class="sticker-qr"><img src="../qr-codes/qr-website.png" alt="QR code to kathleens.kitchen"></div>
+      <div class="sticker-scan">Scan to Order</div>
+    </div>
   </div>
   <div class="sticker">
-    <div class="sticker-brand">Kathleen's Kitchen</div>
-    <div class="sticker-tagline">Homemade Breads &amp; Sweet Treats</div>
-    <div class="sticker-qr"><img src="../qr-codes/qr-website.png" alt="QR code to kathleens.kitchen"></div>
-    <div class="sticker-scan">Scan to Order</div>
-    <div class="sticker-url">www.kathleens.kitchen</div>
+    <div class="sticker-text">
+      <div class="sticker-brand">Kathleen's Kitchen</div>
+      <div class="sticker-url">www.kathleens.kitchen</div>
+    </div>
+    <div class="sticker-right">
+      <div class="sticker-qr"><img src="../qr-codes/qr-website.png" alt="QR code to kathleens.kitchen"></div>
+      <div class="sticker-scan">Scan to Order</div>
+    </div>
   </div>
   <div class="sticker">
-    <div class="sticker-brand">Kathleen's Kitchen</div>
-    <div class="sticker-tagline">Homemade Breads &amp; Sweet Treats</div>
-    <div class="sticker-qr"><img src="../qr-codes/qr-website.png" alt="QR code to kathleens.kitchen"></div>
-    <div class="sticker-scan">Scan to Order</div>
-    <div class="sticker-url">www.kathleens.kitchen</div>
+    <div class="sticker-text">
+      <div class="sticker-brand">Kathleen's Kitchen</div>
+      <div class="sticker-url">www.kathleens.kitchen</div>
+    </div>
+    <div class="sticker-right">
+      <div class="sticker-qr"><img src="../qr-codes/qr-website.png" alt="QR code to kathleens.kitchen"></div>
+      <div class="sticker-scan">Scan to Order</div>
+    </div>
   </div>
   <div class="sticker">
-    <div class="sticker-brand">Kathleen's Kitchen</div>
-    <div class="sticker-tagline">Homemade Breads &amp; Sweet Treats</div>
-    <div class="sticker-qr"><img src="../qr-codes/qr-website.png" alt="QR code to kathleens.kitchen"></div>
-    <div class="sticker-scan">Scan to Order</div>
-    <div class="sticker-url">www.kathleens.kitchen</div>
+    <div class="sticker-text">
+      <div class="sticker-brand">Kathleen's Kitchen</div>
+      <div class="sticker-url">www.kathleens.kitchen</div>
+    </div>
+    <div class="sticker-right">
+      <div class="sticker-qr"><img src="../qr-codes/qr-website.png" alt="QR code to kathleens.kitchen"></div>
+      <div class="sticker-scan">Scan to Order</div>
+    </div>
   </div>
   <div class="sticker">
-    <div class="sticker-brand">Kathleen's Kitchen</div>
-    <div class="sticker-tagline">Homemade Breads &amp; Sweet Treats</div>
-    <div class="sticker-qr"><img src="../qr-codes/qr-website.png" alt="QR code to kathleens.kitchen"></div>
-    <div class="sticker-scan">Scan to Order</div>
-    <div class="sticker-url">www.kathleens.kitchen</div>
+    <div class="sticker-text">
+      <div class="sticker-brand">Kathleen's Kitchen</div>
+      <div class="sticker-url">www.kathleens.kitchen</div>
+    </div>
+    <div class="sticker-right">
+      <div class="sticker-qr"><img src="../qr-codes/qr-website.png" alt="QR code to kathleens.kitchen"></div>
+      <div class="sticker-scan">Scan to Order</div>
+    </div>
   </div>
   <div class="sticker">
-    <div class="sticker-brand">Kathleen's Kitchen</div>
-    <div class="sticker-tagline">Homemade Breads &amp; Sweet Treats</div>
-    <div class="sticker-qr"><img src="../qr-codes/qr-website.png" alt="QR code to kathleens.kitchen"></div>
-    <div class="sticker-scan">Scan to Order</div>
-    <div class="sticker-url">www.kathleens.kitchen</div>
+    <div class="sticker-text">
+      <div class="sticker-brand">Kathleen's Kitchen</div>
+      <div class="sticker-url">www.kathleens.kitchen</div>
+    </div>
+    <div class="sticker-right">
+      <div class="sticker-qr"><img src="../qr-codes/qr-website.png" alt="QR code to kathleens.kitchen"></div>
+      <div class="sticker-scan">Scan to Order</div>
+    </div>
   </div>
   <div class="sticker">
-    <div class="sticker-brand">Kathleen's Kitchen</div>
-    <div class="sticker-tagline">Homemade Breads &amp; Sweet Treats</div>
-    <div class="sticker-qr"><img src="../qr-codes/qr-website.png" alt="QR code to kathleens.kitchen"></div>
-    <div class="sticker-scan">Scan to Order</div>
-    <div class="sticker-url">www.kathleens.kitchen</div>
+    <div class="sticker-text">
+      <div class="sticker-brand">Kathleen's Kitchen</div>
+      <div class="sticker-url">www.kathleens.kitchen</div>
+    </div>
+    <div class="sticker-right">
+      <div class="sticker-qr"><img src="../qr-codes/qr-website.png" alt="QR code to kathleens.kitchen"></div>
+      <div class="sticker-scan">Scan to Order</div>
+    </div>
   </div>
 </div>
 
