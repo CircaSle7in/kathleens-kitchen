@@ -14,7 +14,7 @@ const PRODUCTS = {
   "Lemon Bars":                    { price: 2000, unit: '8x8 pan' },
   "Caramel Rice Krispie Treats":   { price: 2000, unit: '8x8 pan' },
   "Chocolate Dipped Strawberries": { price: 3600, unit: 'dozen' },
-  "Chocolate Dipped Grapes":       { price: 400, unit: '10 grapes' },
+  "Chocolate Covered Grapes – Dessert Cup": { price: 600, unit: 'dessert cup (approx. 10 grapes)' },
   "Homemade Oreo Cookies":         { price: 3600, unit: 'dozen' },
 };
 
