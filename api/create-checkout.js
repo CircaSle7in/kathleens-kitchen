@@ -16,6 +16,11 @@ const PRODUCTS = {
   "Chocolate Dipped Strawberries": { price: 3600, unit: 'dozen' },
   "Chocolate Covered Grapes – Dessert Cup": { price: 600, unit: 'dessert cup (approx. 10 grapes)' },
   "Homemade Oreo Cookies":         { price: 3600, unit: 'dozen' },
+  "9-inch Dutch Apple Pie":        { price: 2500, unit: '9-inch pie' },
+  "9-inch Apple Pie":              { price: 2500, unit: '9-inch pie' },
+  "9-inch Pumpkin Pie":            { price: 2500, unit: '9-inch pie' },
+  "9-inch Coconut Cream Pie":      { price: 2500, unit: '9-inch pie' },
+  "9-inch Pecan Pie":              { price: 2500, unit: '9-inch pie' },
 };
 
 module.exports = async function handler(req, res) {
