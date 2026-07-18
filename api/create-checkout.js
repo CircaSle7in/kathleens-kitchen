@@ -20,6 +20,7 @@ const PRODUCTS = {
   "9-inch Apple Pie":              { price: 2500, unit: '9-inch pie' },
   "9-inch Pumpkin Pie":            { price: 2500, unit: '9-inch pie' },
   "9-inch Coconut Cream Pie":      { price: 2500, unit: '9-inch pie' },
+  "9-inch Banana Cream Pie":       { price: 2500, unit: '9-inch pie' },
   "9-inch Pecan Pie":              { price: 2500, unit: '9-inch pie' },
 };
 

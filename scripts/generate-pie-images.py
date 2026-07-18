@@ -68,6 +68,13 @@ PIES = [
                    "cream and a generous sprinkle of golden toasted coconut flakes.",
     },
     {
+        "slug": "banana-cream-pie",
+        "subject": "a 9-inch BANANA CREAM PIE in a flaky golden crust, filled with smooth pale-"
+                   "yellow vanilla custard and visible slices of fresh banana, topped with billowy "
+                   "swirls of fresh whipped cream and a few banana slices arranged on top. Warm, "
+                   "homemade, appetizing.",
+    },
+    {
         "slug": "pecan-pie",
         "subject": "a 9-inch PECAN PIE, deep golden-brown and glossy. The whole pecan halves "
                    "are packed NATURALLY and densely across the top the way a real homemade "
