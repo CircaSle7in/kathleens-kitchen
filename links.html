@@ -185,14 +185,14 @@
     <p class="tagline">Homemade Breads & Sweet Treats</p>
     <p class="location">Sandy, Utah</p>
 
-    <!-- Current event status badge — update this with each event -->
-    <span class="event-badge open">Easter Orders Open</span>
+    <!-- Current event status badge — set automatically from the EVENTS list in the script below -->
+    <span class="event-badge open" id="eventBadge">Now Taking Orders</span>
 
     <div class="links">
         <!-- PRIMARY: Always the current event order link -->
         <a href="index.html#order" class="link-btn primary">
             Order Now
-            <span class="btn-subtitle">Easter & Conference Weekend — Apr 4-5</span>
+            <span class="btn-subtitle" id="eventSubtitle">See what's baking next</span>
         </a>
 
         <a href="index.html#events" class="link-btn secondary">
@@ -219,6 +219,51 @@
         Made with love in Sandy
     </p>
 </div>
+
+<script>
+    /*
+      Featured-event logic for this bio link.
+
+      TO ADD OR CHANGE EVENTS, edit ONLY the EVENTS list below (keep it in sync
+      with the events on index.html). The badge and the "Order Now" subtitle
+      update themselves to the next event you can still order, so this page
+      never shows a stale/past event again.
+
+      Each entry:
+        badge   – short text for the little status pill
+        label   – the "Order Now" subtitle (event name + date)
+        orderBy – last day to order (YYYY-MM-DD); event drops off after this
+        date    – the event date (YYYY-MM-DD), for reference
+    */
+    const EVENTS = [
+        { name: 'Pioneer Day Pies',        badge: 'Pioneer Day Pie Orders Open', label: 'Pioneer Day Pies — July 23',      orderBy: '2026-07-19', date: '2026-07-23' },
+        { name: 'General Conference Feast', badge: 'Conference Orders Open',       label: 'General Conference Feast — Oct 2', orderBy: '2026-09-28', date: '2026-10-02' },
+        { name: 'Thanksgiving Pies',        badge: 'Thanksgiving Pie Orders Open', label: 'Thanksgiving Pies — Nov 25',       orderBy: '2026-11-21', date: '2026-11-25' },
+    ];
+
+    (function () {
+        const toDate = (s) => { const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d); };
+        const today = new Date(); today.setHours(0, 0, 0, 0);
+
+        // Featured = the soonest event whose order deadline hasn't passed yet.
+        const featured = EVENTS.slice()
+            .sort((a, b) => toDate(a.orderBy) - toDate(b.orderBy))
+            .find((e) => toDate(e.orderBy) >= today);
+
+        const badge = document.getElementById('eventBadge');
+        const subtitle = document.getElementById('eventSubtitle');
+
+        if (featured) {
+            badge.textContent = featured.badge;
+            badge.className = 'event-badge open';
+            subtitle.textContent = featured.label;
+        } else {
+            // No events currently open for orders — stay neutral rather than show a past date.
+            badge.style.display = 'none';
+            subtitle.textContent = "See what's baking next";
+        }
+    })();
+</script>
 
 </body>
 </html>
