@@ -75,6 +75,18 @@ PIES = [
                    "homemade, appetizing.",
     },
     {
+        "slug": "cherry-pie",
+        "subject": "a classic 9-inch CHERRY PIE with a golden-brown woven LATTICE top crust, "
+                   "glossy deep-red cherry filling bubbling up through the lattice gaps, the "
+                   "edges lightly sugar-dusted and hand-crimped.",
+    },
+    {
+        "slug": "chocolate-cream-pie",
+        "subject": "a 9-inch CHOCOLATE CREAM PIE in a flaky crust, filled with smooth glossy "
+                   "dark-chocolate custard, topped with billowy swirls of fresh whipped cream "
+                   "and a light scattering of chocolate curls/shavings.",
+    },
+    {
         "slug": "pecan-pie",
         "subject": "a 9-inch PECAN PIE, deep golden-brown and glossy. The whole pecan halves "
                    "are packed NATURALLY and densely across the top the way a real homemade "

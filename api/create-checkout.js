@@ -21,7 +21,11 @@ const PRODUCTS = {
   "9-inch Pumpkin Pie":            { price: 2500, unit: '9-inch pie' },
   "9-inch Coconut Cream Pie":      { price: 2500, unit: '9-inch pie' },
   "9-inch Banana Cream Pie":       { price: 2500, unit: '9-inch pie' },
-  "9-inch Pecan Pie":              { price: 2500, unit: '9-inch pie' },
+  "9-inch Cherry Pie":             { price: 2500, unit: '9-inch pie' },
+  "9-inch Chocolate Cream Pie":    { price: 2500, unit: '9-inch pie' },
+  "9-inch Pecan Pie":              { price: 2800, unit: '9-inch pie' },
+  "Pumpkin Chocolate Chip Muffins":   { price: 150, unit: 'muffins' },
+  "Chocolate Chocolate Chip Muffins": { price: 150, unit: 'muffins' },
 };
 
 module.exports = async function handler(req, res) {
