@@ -4,7 +4,7 @@ const crypto = require('crypto');
 // Product catalog with prices in cents
 const PRODUCTS = {
   "Grandma's Dinner Rolls":       { price: 2200, unit: 'dozen' },
-  "Cinnamon Rolls":                { price: 4800, unit: 'dozen' },
+  "Cinnamon Rolls":                { price: 400, unit: 'cinnamon rolls (6 per pan)' },
   "Crescent Rolls":                { price: 2200, unit: 'dozen' },
   "Cheese Rolls":                  { price: 2500, unit: 'dozen' },
   "Mom's Wheat Bread":             { price: 1000, unit: 'loaf' },
@@ -25,7 +25,7 @@ const PRODUCTS = {
   "9-inch Chocolate Cream Pie":    { price: 2500, unit: '9-inch pie' },
   "9-inch Pecan Pie":              { price: 2800, unit: '9-inch pie' },
   "Pumpkin Chocolate Chip Muffins":   { price: 150, unit: 'muffins' },
-  "Chocolate Chocolate Chip Muffins": { price: 150, unit: 'muffins' },
+  "Chocolate Zucchini Chocolate Chip Muffins": { price: 150, unit: 'muffins' },
 };
 
 module.exports = async function handler(req, res) {
